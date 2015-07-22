@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.express.R;
+import com.example.express.activity.BaseActivity;
 import com.silent.adapter.SortAdapter;
 import com.silent.handle.CharacterParser;
 import com.silent.handle.PinyinComparator;
@@ -31,7 +32,7 @@ import com.silent.model.PhoneModel;
  * 
  * @author Mr.Z
  */
-public class ShowCompanyListActivity extends Activity {
+public class ShowCompanyListActivity extends BaseActivity {
 	private Context				context	= ShowCompanyListActivity.this;
 	private ListView			sortListView;
 	private SideBar				sideBar;
@@ -42,7 +43,7 @@ public class ShowCompanyListActivity extends Activity {
 	private String[] data_phone;
 	private String[] data_img;
 	/**
-	 * 汉字转换成拼音的�?
+	 * 汉字转换成拼音的�?
 	 */
 	private CharacterParser		characterParser;
 	private List<PhoneModel>	SourceDateList;
@@ -58,7 +59,7 @@ public class ShowCompanyListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent() ;
 		exjson = intent.getStringExtra("json");
-		JSONObject json_data=null;
+		JSONObject json_data;
 		
 		try {
 			JSONArray jsonArray=new JSONArray(exjson);
@@ -95,7 +96,7 @@ public class ShowCompanyListActivity extends Activity {
 			sortModel.setImgSrc(imgData[i]);
 			sortModel.setName(date[i]);
 			sortModel.setPhone(phoneData[i]);
-			// 汉字转换成拼�?
+			// 汉字转换成拼�?
 			String pinyin = characterParser.getSelling(date[i]);
 			String sortString = pinyin.substring(0, 1).toUpperCase();
 
@@ -113,7 +114,10 @@ public class ShowCompanyListActivity extends Activity {
 	}
 
 	private void initViews() {
-		// 实例化汉字转拼音�?
+
+		initTop();
+		setTitle("选择快递公司");
+		// 实例化汉字转拼音�?
 		characterParser = CharacterParser.getInstance();
 
 		pinyinComparator = new PinyinComparator();
@@ -141,7 +145,7 @@ public class ShowCompanyListActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// 这里要利用adapter.getItem(position)来获取当前position�?��应的对象
+				// 这里要利用adapter.getItem(position)来获取当前position�?��应的对象
 				//Toast.makeText(context, ((PhoneModel) adapter.getItem(position)).getName(), Toast.LENGTH_SHORT).show();
                 TextView textview = (TextView) findViewById(R.id.company_name);
                 Object obj = ((PhoneModel) adapter.getItem(position)).getName();
@@ -159,7 +163,7 @@ public class ShowCompanyListActivity extends Activity {
 //		data_img=getData("ico");
 		SourceDateList = filledData(data_name, data_phone,data_img);
 
-		// 根据a-z进行排序源数�?
+		// 根据a-z进行排序源数�?
 		Collections.sort(SourceDateList, pinyinComparator);
 		adapter = new SortAdapter(context, SourceDateList);
 		sortListView.setAdapter(adapter);

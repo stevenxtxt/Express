@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.express.activity.LoginActivity"
+            android:name="com.example.express.activity.my.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -32,19 +32,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.express.activity.ShowExpressInfoActivity"
+            android:name="com.example.express.activity.query.ShowExpressInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.express.activity.ShowCompanyListActivity"
+            android:name="com.example.express.activity.query.ShowCompanyListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.express.activity.ShowInfo"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.express.activity.MipcaActivityCapture"
+            android:name="com.example.express.activity.query.MipcaActivityCapture"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.express.activity.MainTabActivity"
+            android:name="com.example.express.activity.main.MainTabActivity"
             android:screenOrientation="portrait" />
     </application>
 

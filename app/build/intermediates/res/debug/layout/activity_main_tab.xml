@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+        
+        <RadioButton
+            android:id="@+id/rb_query"
+            style="@style/RadioButtonBottomTab"
+            android:gravity="center"
+            android:text="查快递"
+            android:drawableTop="@drawable/ic_launcher"
+            android:checked="false" />
+        
+        <RadioButton
+            android:id="@+id/rb_send"
+            style="@style/RadioButtonBottomTab"
+            android:gravity="center"
+            android:text="寄快递"
+            android:drawableTop="@drawable/ic_launcher"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/rb_my"
+            style="@style/RadioButtonBottomTab"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_launcher"
+            android:text="我的快递"
+            android:checked="false" />
+
+        <RadioButton
+            android:id="@+id/rb_more"
+            style="@style/RadioButtonBottomTab"
+            android:gravity="center"
+            android:text="更多"
+            android:drawableTop="@drawable/ic_launcher"
+            android:checked="false" />
+        
+    </RadioGroup>
+          
+</LinearLayout><!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/activity_main_tab.xml -->

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="coffee">#795548</color>
+    <color name="coffee_dark">#5d4037</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="main_bg">#ebebeb</color>
+    <color name="blue_top">#30a2e9</color>
+    <color name="btn_bg1">#c1c1c1</color>
+</resources>

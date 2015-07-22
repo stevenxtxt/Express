@@ -1,36 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white" >
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/country_lvcountry"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
-        android:divider="#c0c0c0"
-        android:dividerHeight="1px"
-        android:paddingLeft="15dip"
-        android:paddingRight="25dip"
-        android:scrollbars="none" />
+    <include layout="@layout/common_top"/>
 
-    <TextView
-        android:id="@+id/dialog"
-        android:layout_width="80.0dip"
-        android:layout_height="80.0dip"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#ffffffff"
-        android:textSize="30.0dip"
-        android:visibility="invisible" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <com.silent.handle.SideBar
-        android:id="@+id/sidrbar"
-        android:layout_width="30.0dip"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="right|center" />
+        <ListView
+            android:id="@+id/country_lvcountry"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:divider="#c0c0c0"
+            android:dividerHeight="1px"
+            android:paddingLeft="15dip"
+            android:paddingRight="25dip"
+            android:scrollbars="none" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="30.0dip"
+            android:visibility="invisible" />
+
+        <com.silent.handle.SideBar
+            android:id="@+id/sidrbar"
+            android:layout_width="30.0dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right|center" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -709,4 +709,39 @@
     <style name="Widget.AppCompat.ProgressBar" parent="Widget.AppCompat.Base.ProgressBar"/>
     <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Widget.AppCompat.Base.ProgressBar.Horizontal"/>
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner"/>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="main_bg">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/main_bg</item>
+    </style>
+    <style name="title_btn_back">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:src">@drawable/common_selector_top_back</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <style name="title_btn_back_layout">
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+    <style name="title_name">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <style name="title_relativelayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@color/blue_top</item>
+        <item name="android:paddingRight">15dip</item>
+    </style>
 </resources>

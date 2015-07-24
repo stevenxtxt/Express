@@ -36,13 +36,22 @@
             android:name=".activity.query.ShowCompanyListActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.example.express.activity.ShowInfo"
+            android:name=".activity.my.ShowInfoActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.query.MipcaActivityCapture"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.main.MainTabActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.example.express.activity.my.RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.my.ForgetPasswordOneActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.my.ForgetPasswordTwoActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

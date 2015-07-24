@@ -17,7 +17,6 @@ import com.boredream.volley.BDListener;
 import com.boredream.volley.BDVolleyHttp;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
-import com.example.express.activity.ShowInfo;
 
 public class MyFragment extends BaseFragment {
 
@@ -53,7 +52,7 @@ public class MyFragment extends BaseFragment {
 							public void onResponse(String response) {
 								// 杩斿洖鎴愬姛澶勭悊 response涓簀son瀛楃涓�								  
 								  Intent intent = new Intent(); 
-								  intent.setClass(getActivity(), ShowInfo.class);
+								  intent.setClass(getActivity(), ShowInfoActivity.class);
 								  intent.putExtra("json", response);
 								  startActivity(intent);
 

@@ -8,6 +8,10 @@ import android.widget.RelativeLayout;
 
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.activity.more.adapter.FavCourierAdapter;
+import com.example.express.bean.CourierBean;
+
+import java.util.ArrayList;
 
 /**
  * 项目名称：Express2015-4-24
@@ -23,6 +27,8 @@ public class FavouriteCourierActivity extends BaseActivity {
     private RelativeLayout rl_official;
     private LinearLayout ll_no_data;
     private ListView lv_fav_courier;
+    private FavCourierAdapter adapter;
+    private ArrayList<CourierBean> courierList = new ArrayList<CourierBean>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,9 @@ public class FavouriteCourierActivity extends BaseActivity {
         initTop();
         setTitle("收藏的快递员");
 
+        adapter = new FavCourierAdapter(FavouriteCourierActivity.this);
+        adapter.setList(courierList);
+
         initViews();
     }
 
@@ -38,6 +47,9 @@ public class FavouriteCourierActivity extends BaseActivity {
         rl_official = (RelativeLayout) findViewById(R.id.rl_official);
         ll_no_data = (LinearLayout) findViewById(R.id.ll_no_data);
         lv_fav_courier = (ListView) findViewById(R.id.lv_fav_courier);
+
+        lv_fav_courier.setAdapter(adapter);
+
         rl_official.setOnClickListener(this);
     }
 

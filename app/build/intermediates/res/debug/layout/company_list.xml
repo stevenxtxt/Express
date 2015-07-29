@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/catalog"
@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/company_logo"
@@ -29,30 +29,30 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_launcher" />
 
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/company_name"
-        android:layout_width="fill_parent"
-        android:layout_height="30dip"
-        android:layout_marginLeft="5dip"
-        android:gravity="left"
-        android:text="hhhhhhhhhhhhhhhhhhhh"
-        android:textColor="@color/coffee_dark"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/company_name"
+                android:layout_width="fill_parent"
+                android:layout_height="30dip"
+                android:layout_marginLeft="5dip"
+                android:gravity="left"
+                android:text="hhhhhhhhhhhhhhhhhhhh"
+                android:textColor="@color/coffee_dark"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/company_phone"
-        android:layout_width="262dp"
-        android:layout_height="24dip"
-        android:layout_gravity="left"
-        android:layout_marginLeft="5dip"
-        android:text="hhhhhhhhhhhhhhhhh"
-        android:textColor="@color/coffee" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/company_phone"
+                android:layout_width="262dp"
+                android:layout_height="24dip"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dip"
+                android:text="hhhhhhhhhhhhhhhhh"
+                android:textColor="@color/coffee" />
+        </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout><!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/company_list.xml -->

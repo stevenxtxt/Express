@@ -172,6 +172,16 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="about_us_content">\t\t\t\t\t\t快递网是追影网络旗下的的一个快递平台，提供一站式的快递查询服务，
+        涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口(API)，
+        帮助企业、网商提升物流环节的客户满意度。也帮助快递公司网点提高运营效率、减少客服成本、优化取件环节。\n\n
+        \t\t\t\t\t\t快递网改善了电话叫快递的多种弊病，比如：找不到快递电话号码、电话无法打通、无法确定取件时间、信息不对、手写快递信息等多个问题。
+        目前用户可以通过快递网的微信和网站下单叫快递，通过快递网叫快递可全程跟踪快递状态。\n\n
+        \t\t\t\t\t\t南京追影网络科技有限公司(简称"追影网络")，是一家专业从事互联网商务应用和增值服务的高新技术服务型企业。
+        公司以高科技为起点、以互联网增值服务为核心、以强大的销售服务队伍为支撑，与国内外各大新闻门户网站结成紧密的合作关系，
+        是南京金湖，规模最大的网络营销服务公司之一、公司致力于为政府、企事业单位上网提供高技术含量的网络应用解决方案及增值服务。\n\n
+        \t\t\t\t\t\t未来，追影网络将抓住当前快递业难得的发展机遇，开拓创新，锐意进取，大力推进全网信息化建设，秉承"投资于人，投资于技术"的企业文化，
+        与行业精英共同为中国快递事业的飞速发展贡献力量!</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">Express</string>
     <string name="hello_world">Hello world!</string>
@@ -723,6 +733,12 @@
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner"/>
     <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/styles.xml -->
     <eat-comment/>
+    <style name="about_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#666666</item>
+    </style>
     <style name="main_bg">
         <item name="android:orientation">vertical</item>
         <item name="android:layout_width">match_parent</item>

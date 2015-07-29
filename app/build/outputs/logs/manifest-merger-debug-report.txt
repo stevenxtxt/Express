@@ -57,7 +57,7 @@ MERGED from com.android.support:appcompat-v7:18.0.0:19:5
 		ADDED from AndroidManifest.xml:23:9
 	android:name
 		ADDED from AndroidManifest.xml:19:9
-activity#com.example.express.activity.my.LoginActivity
+activity#com.example.express.activity.WelcomeActivity
 ADDED from AndroidManifest.xml:24:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:27:13
@@ -75,87 +75,123 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:31:17
 	android:name
 		ADDED from AndroidManifest.xml:31:27
-activity#com.example.express.activity.query.ShowExpressInfoActivity
+activity#com.example.express.activity.SplashActivity
 ADDED from AndroidManifest.xml:34:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:36:13
 	android:name
 		ADDED from AndroidManifest.xml:35:13
-activity#com.example.express.activity.query.ShowCompanyListActivity
+activity#com.example.express.activity.my.LoginActivity
 ADDED from AndroidManifest.xml:37:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:39:13
 	android:name
 		ADDED from AndroidManifest.xml:38:13
-activity#com.example.express.activity.my.ShowInfoActivity
+activity#com.example.express.activity.query.ShowExpressInfoActivity
 ADDED from AndroidManifest.xml:40:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:42:13
 	android:name
 		ADDED from AndroidManifest.xml:41:13
-activity#com.example.express.activity.query.MipcaActivityCapture
+activity#com.example.express.activity.query.ShowCompanyListActivity
 ADDED from AndroidManifest.xml:43:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:45:13
 	android:name
 		ADDED from AndroidManifest.xml:44:13
-activity#com.example.express.activity.main.MainTabActivity
+activity#com.example.express.activity.my.ShowInfoActivity
 ADDED from AndroidManifest.xml:46:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:48:13
 	android:name
 		ADDED from AndroidManifest.xml:47:13
-activity#com.example.express.activity.my.RegisterActivity
+activity#com.example.express.activity.query.MipcaActivityCapture
 ADDED from AndroidManifest.xml:49:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:51:13
 	android:name
 		ADDED from AndroidManifest.xml:50:13
-activity#com.example.express.activity.my.ForgetPasswordOneActivity
+activity#com.example.express.activity.main.MainTabActivity
 ADDED from AndroidManifest.xml:52:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:54:13
 	android:name
 		ADDED from AndroidManifest.xml:53:13
-activity#com.example.express.activity.my.ForgetPasswordTwoActivity
+activity#com.example.express.activity.my.RegisterActivity
 ADDED from AndroidManifest.xml:55:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:57:13
 	android:name
 		ADDED from AndroidManifest.xml:56:13
-activity#com.example.express.activity.more.PersonalInfoActivity
-ADDED from AndroidManifest.xml:59:9
+activity#com.example.express.activity.my.ForgetPasswordOneActivity
+ADDED from AndroidManifest.xml:58:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:61:13
-	android:name
 		ADDED from AndroidManifest.xml:60:13
-activity#com.example.express.activity.more.TrueNameActivity
-ADDED from AndroidManifest.xml:62:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:64:13
 	android:name
+		ADDED from AndroidManifest.xml:59:13
+activity#com.example.express.activity.my.ForgetPasswordTwoActivity
+ADDED from AndroidManifest.xml:61:9
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:63:13
-activity#com.example.express.activity.more.ChangePasswordActivity
+	android:name
+		ADDED from AndroidManifest.xml:62:13
+activity#com.example.express.activity.more.PersonalInfoActivity
 ADDED from AndroidManifest.xml:65:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:67:13
 	android:name
 		ADDED from AndroidManifest.xml:66:13
-activity#com.example.express.activity.more.ChangePhoneOneActivity
+activity#com.example.express.activity.more.TrueNameActivity
 ADDED from AndroidManifest.xml:68:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:70:13
 	android:name
 		ADDED from AndroidManifest.xml:69:13
-activity#com.example.express.activity.more.ChangePhoneTwoActivity
+activity#com.example.express.activity.more.ChangePasswordActivity
 ADDED from AndroidManifest.xml:71:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:73:13
 	android:name
 		ADDED from AndroidManifest.xml:72:13
-activity#com.example.express.activity.more.FavouriteCourierActivity
+activity#com.example.express.activity.more.ChangePhoneOneActivity
 ADDED from AndroidManifest.xml:74:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:75:13
+		ADDED from AndroidManifest.xml:76:13
 	android:name
-		ADDED from AndroidManifest.xml:74:19
+		ADDED from AndroidManifest.xml:75:13
+activity#com.example.express.activity.more.ChangePhoneTwoActivity
+ADDED from AndroidManifest.xml:77:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:79:13
+	android:name
+		ADDED from AndroidManifest.xml:78:13
+activity#com.example.express.activity.more.FavouriteCourierActivity
+ADDED from AndroidManifest.xml:80:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:82:13
+	android:name
+		ADDED from AndroidManifest.xml:81:13
+activity#com.example.express.activity.more.AboutActivity
+ADDED from AndroidManifest.xml:83:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:85:13
+	android:name
+		ADDED from AndroidManifest.xml:84:13
+activity#com.example.express.activity.more.AboutUsActivity
+ADDED from AndroidManifest.xml:86:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:88:13
+	android:name
+		ADDED from AndroidManifest.xml:87:13
+activity#com.example.express.activity.more.FeedbackActivity
+ADDED from AndroidManifest.xml:89:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:91:13
+	android:name
+		ADDED from AndroidManifest.xml:90:13
+activity#com.example.express.activity.more.MessageActivity
+ADDED from AndroidManifest.xml:92:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:94:13
+	android:name
+		ADDED from AndroidManifest.xml:93:13

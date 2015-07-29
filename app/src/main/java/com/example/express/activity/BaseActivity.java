@@ -43,7 +43,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
     }
 
-    protected void intent2Activity(Class<? extends Activity> tarActivity) {
+    protected void launch(Class<? extends Activity> tarActivity) {
         Intent intent = new Intent(this, tarActivity);
         startActivity(intent);
     }
@@ -127,5 +127,4 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
 
         Logger.show(TAG, msg);
     }
-
 }

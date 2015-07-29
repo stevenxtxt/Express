@@ -14,9 +14,6 @@ public class BaseApplication extends Application {
 
 	private static BaseApplication instance;
 	public static BaseApplication getInstance() {
-		if (null == instance) {
-			instance = new BaseApplication();
-		}
 		return instance;
 	}
 	
@@ -24,7 +21,7 @@ public class BaseApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 		BDVolley.init(this);
-		
+		instance = this;
 	}
 	
 	public void addActivity(Activity activity) {

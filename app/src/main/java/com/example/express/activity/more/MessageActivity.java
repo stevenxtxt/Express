@@ -6,6 +6,10 @@ import android.widget.ListView;
 
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.activity.more.adapter.MessageAdapter;
+import com.example.express.bean.MessageBean;
+
+import java.util.ArrayList;
 
 /**
  * 项目名称：Express2015-4-24
@@ -19,7 +23,8 @@ import com.example.express.activity.BaseActivity;
 public class MessageActivity extends BaseActivity {
 
     private ListView lv_message;
-
+    private MessageAdapter adapter;
+    private ArrayList<MessageBean> messageList = new ArrayList<MessageBean>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,9 @@ public class MessageActivity extends BaseActivity {
         setTitle("消息");
 
         lv_message = (ListView) findViewById(R.id.lv_message);
+        adapter = new MessageAdapter(MessageActivity.this);
+        adapter.setList(messageList);
+        lv_message.setAdapter(adapter);
     }
 
     @Override

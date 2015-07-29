@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\18.0.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8f11f56e350eacabf2273f646d981356eea0ed77">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\classes-c37185419579b7b70b3f11a505db9eddf39b200a.jar" />
-    </item>
-    <item
         jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\zxing.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -16,11 +9,18 @@
         <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\zxing-4148cfd5faaa6d4deee15cd8b3af4a1212207c52.jar" />
     </item>
     <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\volley.jar"
+        jar="E:\Android\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\volley-c4e177223f520f6c6bea8e6adc072bcf57ad15b8.jar" />
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-c9ca4790586c43673a9bed1613b517c40a8a153f.jar" />
+    </item>
+    <item
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\18.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8f11f56e350eacabf2273f646d981356eea0ed77">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\classes-c37185419579b7b70b3f11a505db9eddf39b200a.jar" />
     </item>
     <item
         jar="C:\Users\xutework\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
@@ -30,11 +30,18 @@
         <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\gson-2.2.4-c4eb05508200cd30cd5b25cb4fcc33dbb0a5cab4.jar" />
     </item>
     <item
-        jar="E:\Android\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\volley.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-c9ca4790586c43673a9bed1613b517c40a8a153f.jar" />
+        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\volley-c4e177223f520f6c6bea8e6adc072bcf57ad15b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\universal-image-loader-1.9.0-snapshot-with-sources.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d2cfd5e86599841ae974abfa2dc0e7db004b6b83">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.0-snapshot-with-sources-46a4c1e041a2993c9d5e0881d383c01cca972b8f.jar" />
     </item>
 
 </items>

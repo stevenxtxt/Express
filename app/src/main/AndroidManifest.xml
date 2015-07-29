@@ -71,5 +71,7 @@
         <activity
             android:name=".activity.more.ChangePhoneTwoActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.more.FavouriteCourierActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

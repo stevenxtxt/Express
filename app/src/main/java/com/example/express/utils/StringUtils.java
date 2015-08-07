@@ -375,4 +375,14 @@ public class StringUtils {
         return str;
     }
 
+    /**
+     * 将地址前面的xx省xx市xx区信息去掉，只取后面
+     * @param address
+     * @return
+     */
+    public static String splitAddress(String address) {
+        String[] addrArray = address.split(" ");
+        int length = addrArray.length;
+        return addrArray[length - 1];
+    }
 }

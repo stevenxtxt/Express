@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/main_bg" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/blue_top">
+        <TextView
+            android:id="@+id/tv_received"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已签收"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tv_not_received"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未签收"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_show_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您当前处于未登录状态，我们将不保存您"
+            android:textColor="#666666"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="所产生的快递订单，如需要请登录"
+            android:textColor="#666666"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/btn_round_bg2"
+            android:text="我要登录"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#d0d0d0"
+        android:dividerHeight="1dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

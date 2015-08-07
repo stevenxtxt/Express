@@ -69,6 +69,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.rl_username:
+                launch(PersonalInfoActivity.class);
                 break;
 
             case R.id.rl_recycler:
@@ -78,15 +79,19 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
                 break;
 
             case R.id.rl_message:
+                launch(MessageActivity.class);
                 break;
 
             case R.id.rl_favourite:
+                launch(FavouriteCourierActivity.class);
                 break;
 
             case R.id.rl_feedback:
+                launch(FeedbackActivity.class);
                 break;
 
             case R.id.rl_about:
+                launch(AboutActivity.class);
                 break;
 
             default:

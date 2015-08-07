@@ -68,18 +68,21 @@ public class PersonalInfoActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.tv_change_password:
+                launch(ChangePasswordActivity.class);
                 break;
 
             case R.id.rl_username:
                 break;
 
             case R.id.rl_true_name:
+                launch(TrueNameActivity.class);
                 break;
 
             case R.id.rl_gender:
                 break;
 
             case R.id.rl_phone:
+                launch(ChangePhoneOneActivity.class);
                 break;
 
             case R.id.rl_address:

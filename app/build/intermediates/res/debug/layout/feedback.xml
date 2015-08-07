@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <include layout="@layout/common_top"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="15dp"
+        android:padding="10dp">
+        <EditText
+            android:id="@+id/et_feedback_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:textColorHint="#d4d4d4"
+            android:textColor="#3e3e3e"
+            android:background="@null"
+            android:textSize="18sp"
+            android:hint="请输入文字..."
+            android:gravity="top|left"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_margin="15dp"
+        android:padding="10dp">
+        <EditText
+            android:id="@+id/et_feedback_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#d4d4d4"
+            android:textColor="#3e3e3e"
+            android:background="@null"
+            android:textSize="18sp"
+            android:hint="联系电话或者QQ"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/btn_round_bg2"
+        android:text="提交"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:padding="10dp"/>
+
+</LinearLayout><!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/feedback.xml -->

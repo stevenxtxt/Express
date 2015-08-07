@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <RelativeLayout
+        style="@style/title_relativelayout">
+
+        <RelativeLayout
+            android:id="@+id/btn_title_btn_back_layout"
+            style="@style/title_btn_back_layout">
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/title_btn_back" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title_name"
+            style="@style/title_name"
+            android:ellipsize="end"
+            android:maxEms="11"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_search_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/btn_round_bg1"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索地点"
+            android:textSize="18sp"
+            android:textColor="#666666"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/check_express_icon"
+            android:drawablePadding="5dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d0d0d0" />
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/mv_map"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d0d0d0" />
+
+    <ListView
+        android:id="@+id/lv_places"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#d0d0d0"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>

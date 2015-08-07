@@ -18,7 +18,7 @@ public class BaseFragment extends Fragment {
 		activity = (MainTabActivity) getActivity();
 	}
 	
-	protected void intent2Activity(Class<? extends Activity> tarActivity) {
+	protected void launch(Class<? extends Activity> tarActivity) {
 		Intent intent = new Intent(activity, tarActivity);
 		startActivity(intent);
 	}

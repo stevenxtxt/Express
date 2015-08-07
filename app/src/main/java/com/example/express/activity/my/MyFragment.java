@@ -1,92 +1,89 @@
 package com.example.express.activity.my;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.android.volley.VolleyError;
-import com.boredream.volley.BDListener;
-import com.boredream.volley.BDVolleyHttp;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
+import com.example.express.activity.my.adapter.MyRecordAdapter;
+import com.example.express.activity.query.ShowResultActivity;
+import com.example.express.bean.RecordBean;
 
-public class MyFragment extends BaseFragment {
+import java.util.ArrayList;
 
-	private View view;
-	private EditText loginname;
-	private EditText loginpwd;
-	private Button login_btn;
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		view = View.inflate(getActivity(), R.layout.frag_shop, null);
-		loginname=(EditText) view.findViewById(R.id.login_name);
-		loginpwd=(EditText) view.findViewById(R.id.login_pwd);
-		login_btn=(Button) view.findViewById(R.id.loginbtn);
-		login_btn.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				Map<String, Object> params = new HashMap<String, Object>();
-				String content_name=loginname.getText().toString().trim();
-				//String content_pwd=loginpwd.getText().toString().trim();
-				params.put("user", content_name);
-				//params.put("psw", content_pwd);
-				BDVolleyHttp.postString("10.0.2.2/select.php",params,new BDListener<String>() {
+public class MyFragment extends BaseFragment implements View.OnClickListener{
 
-							@Override
-							public void onErrorResponse(VolleyError error) {
-								// 杩斿洖澶辫触澶勭悊
-								
-							}
+    private View view;
+    private TextView tv_received;
+    private TextView tv_not_received;
+    private LinearLayout ll_show_login;
+    private ListView lv_record;
+    private Button btn_login;
+    private MyRecordAdapter adapter;
+    private ArrayList<RecordBean> recordList = new ArrayList<RecordBean>();
 
-							@Override
-							public void onResponse(String response) {
-								// 杩斿洖鎴愬姛澶勭悊 response涓簀son瀛楃涓�								  
-								  Intent intent = new Intent(); 
-								  intent.setClass(getActivity(), ShowInfoActivity.class);
-								  intent.putExtra("json", response);
-								  startActivity(intent);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
-							}
-						});
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = View.inflate(activity, R.layout.frag_my, null);
+        initViews();
 
-			}
-		});
-		
-//		et1 = (EditText) view.findViewById(R.id.et);
-//		et1.addTextChangedListener(new TextWatcher() {
-//			@Override
-//			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-//				if(arg0.length() >= 7) {
-//					
-//				}
-//			}
-//			
-//			@Override
-//			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
-//					int arg3) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-		
-//			
-//			@Override
-//			public void afterTextChanged(Editable arg0) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
+        adapter = new MyRecordAdapter(activity);
+        adapter.setList(recordList);
+        lv_record.setAdapter(adapter);
 
-		return view;
-	}
+        return view;
+}
 
+    private void initViews() {
+        tv_received = (TextView) view.findViewById(R.id.tv_received);
+        tv_not_received = (TextView) view.findViewById(R.id.tv_not_received);
+        ll_show_login = (LinearLayout) view.findViewById(R.id.ll_show_login);
+        lv_record = (ListView) view.findViewById(R.id.lv_record);
+        btn_login = (Button) view.findViewById(R.id.btn_login);
+
+        ll_show_login.setVisibility(View.GONE);
+        lv_record.setVisibility(View.VISIBLE);
+
+        tv_received.setOnClickListener(this);
+        tv_not_received.setOnClickListener(this);
+        btn_login.setOnClickListener(this);
+
+        lv_record.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(activity, ShowResultActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_received:
+                break;
+
+            case R.id.tv_not_received:
+                break;
+
+            case R.id.btn_login:
+                break;
+
+            default:
+                break;
+        }
+    }
 }

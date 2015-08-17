@@ -13,100 +13,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查询"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_left"
+            android:gravity="center"
+            android:textColor="@color/blue_top"/>
         <TextView
             android:id="@+id/tv_contacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="通讯录"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_right_press"
+            android:gravity="center"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_margin="15dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_launcher"/>
-            <EditText
-                android:id="@+id/et_number"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="请输入单号"
-                android:textColorHint="#d4d4d4"
-                android:textColor="#3e3e3e"
-                android:background="@null"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textSize="18sp"/>
-            <ImageView
-                android:id="@+id/iv_scan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_launcher"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e5e5e5"/>
-
-        <LinearLayout
-            android:id="@+id/ll_company"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_launcher"/>
-            <TextView
-                android:id="@+id/tv_company"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#d4d4d4"
-                android:text="请选择快递公司"
-                android:textSize="18sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_launcher"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_express_query"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@drawable/btn_round_bg2"
-        android:text="查  询"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:padding="10dp"/>
-
-    <ImageView
-        android:id="@+id/iv_qrcode_bitmap"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/ic_launcher"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
 <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/frag_home.xml -->

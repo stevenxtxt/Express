@@ -22,6 +22,9 @@ import com.example.express.activity.BaseActivity;
  */
 public class AboutActivity extends BaseActivity {
 
+    private RelativeLayout rl_view_homepage;
+    private RelativeLayout rl_weibo;
+    private RelativeLayout rl_weixin;
     private RelativeLayout rl_about_us;
     private TextView tv_version_no;
 
@@ -36,8 +39,14 @@ public class AboutActivity extends BaseActivity {
     }
 
     private void initViews() {
+        rl_view_homepage = (RelativeLayout) findViewById(R.id.rl_view_homepage);
+        rl_weibo = (RelativeLayout) findViewById(R.id.rl_weibo);
+        rl_weixin = (RelativeLayout) findViewById(R.id.rl_weixin);
         rl_about_us = (RelativeLayout) findViewById(R.id.rl_about_us);
         tv_version_no = (TextView) findViewById(R.id.tv_version_no);
+        rl_view_homepage.setOnClickListener(this);
+        rl_weibo.setOnClickListener(this);
+        rl_weixin.setOnClickListener(this);
         rl_about_us.setOnClickListener(this);
 
         tv_version_no.setText("V" + getVersionName());
@@ -63,10 +72,25 @@ public class AboutActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent();
         super.onClick(v);
-        if (v.getId() == R.id.rl_about_us) {
-            Intent intent = new Intent(AboutActivity.this, AboutUsActivity.class);
-            startActivity(intent);
+        switch (v.getId()) {
+            case R.id.rl_view_homepage:
+                break;
+
+            case R.id.rl_weibo:
+                break;
+
+            case R.id.rl_weixin:
+                break;
+
+            case R.id.rl_about_us:
+                intent.setClass(this, AboutUsActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
         }
     }
 }

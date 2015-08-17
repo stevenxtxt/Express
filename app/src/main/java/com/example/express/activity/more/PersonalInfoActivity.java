@@ -1,13 +1,18 @@
 package com.example.express.activity.more;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.utils.Density;
 
 /**
  * 项目名称：Express2015-4-24
@@ -31,6 +36,10 @@ public class PersonalInfoActivity extends BaseActivity {
     private RelativeLayout rl_address;
     private TextView tv_address;
     private Button btn_logout;
+
+    private String province;
+    private String city;
+    private String gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +88,7 @@ public class PersonalInfoActivity extends BaseActivity {
                 break;
 
             case R.id.rl_gender:
+                showGenderDialog();
                 break;
 
             case R.id.rl_phone:
@@ -86,6 +96,8 @@ public class PersonalInfoActivity extends BaseActivity {
                 break;
 
             case R.id.rl_address:
+                Intent address_intent = new Intent(PersonalInfoActivity.this, ChooseAddressActivity.class);
+                startActivityForResult(address_intent, 1001);
                 break;
 
             case R.id.btn_logout:
@@ -94,5 +106,55 @@ public class PersonalInfoActivity extends BaseActivity {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1001 && resultCode == RESULT_OK) {
+            city = data.getStringExtra("city");
+            province = data.getStringExtra("province");
+            tv_address.setText(province + "-" + city);
+        }
+    }
+
+    private void showGenderDialog() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.choose_gender_dialog, null);
+        final TextView tv_privacy = (TextView) view.findViewById(R.id.tv_privacy);
+        final TextView tv_male = (TextView) view.findViewById(R.id.tv_male);
+        final TextView tv_female = (TextView) view.findViewById(R.id.tv_female);
+
+        final Dialog call_dialog = new Dialog(this, R.style.call_dialog);
+        call_dialog.setCanceledOnTouchOutside(true);
+        call_dialog.setContentView(view);
+        call_dialog.show();
+        WindowManager.LayoutParams lp = call_dialog.getWindow().getAttributes();
+        lp.width = (int) (Density.getSceenWidth(this)); // 设置宽度
+        call_dialog.getWindow().setAttributes(lp);
+
+        tv_privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                call_dialog.dismiss();
+                gender = tv_privacy.getText().toString();
+                tv_gender.setText(gender);
+            }
+        });
+        tv_male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                call_dialog.dismiss();
+                gender = tv_male.getText().toString();
+                tv_gender.setText(gender);
+            }
+        });
+        tv_female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                call_dialog.dismiss();
+                gender = tv_female.getText().toString();
+                tv_gender.setText(gender);
+            }
+        });
     }
 }

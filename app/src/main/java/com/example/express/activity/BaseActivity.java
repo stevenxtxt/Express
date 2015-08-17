@@ -34,6 +34,7 @@ import com.example.express.R;
 import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
 import com.example.express.utils.StringUtils;
+import com.example.express.view.CustomProgressDialog;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     protected SharedPreferences sp;
     protected Intent intent;
     protected ProgressDialog progDialog;
+    protected CustomProgressDialog customProgressDialog;
     protected Button btn_top_right;
     protected Button btn_top_right_first;
 
@@ -198,14 +200,6 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         showLog("onPause()");
     }
 
-    /**
-     * 方法必须重写
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
 
     protected void finishActivity() {
 
@@ -313,6 +307,26 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     public void dismissDialog() {
         if (progDialog != null) {
             progDialog.dismiss();
+        }
+    }
+
+    /**
+     * 展示自定义对话框
+     * @param str
+     */
+    public void showCustomDialog(String str) {
+        if (customProgressDialog == null) {
+            customProgressDialog = new CustomProgressDialog(this, str, R.anim.frame);
+        }
+        customProgressDialog.show();
+    }
+
+    /**
+     * 隐藏自定义对话框
+     */
+    public void dismissCustomDialog() {
+        if (customProgressDialog != null) {
+            customProgressDialog.dismiss();
         }
     }
 }

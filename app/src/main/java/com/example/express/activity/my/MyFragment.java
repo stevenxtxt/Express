@@ -10,12 +10,17 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+import com.boredream.volley.BDListener;
+import com.boredream.volley.BDVolleyHttp;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
 import com.example.express.activity.my.adapter.MyRecordAdapter;
 import com.example.express.activity.query.ShowResultActivity;
 import com.example.express.bean.RecordBean;
+import com.example.express.constants.CommonConstants;
 
 import java.util.ArrayList;
 
@@ -29,6 +34,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
     private Button btn_login;
     private MyRecordAdapter adapter;
     private ArrayList<RecordBean> recordList = new ArrayList<RecordBean>();
+
+    //测试数据
+    private String nu = "132471708788";
+    private String com = "shunfeng";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,8 +73,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
         lv_record.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(activity, ShowResultActivity.class);
-                startActivity(intent);
+                queryExpressResult();
             }
         });
     }
@@ -85,5 +93,29 @@ public class MyFragment extends BaseFragment implements View.OnClickListener{
             default:
                 break;
         }
+    }
+
+    /**
+     * 查询快递
+     */
+    private void queryExpressResult() {
+        showCustomDialog("正在努力查询中...");
+        BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_EXPRESS_RESULT + nu + "-" + com + CommonConstants.HTML,
+                new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dismissCustomDialog();
+                        Intent intent = new Intent();
+                        intent.putExtra("json", response);
+                        intent.setClass(getActivity(), ShowResultActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        dismissCustomDialog();
+                        Toast.makeText(activity, "查询失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

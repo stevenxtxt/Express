@@ -9,13 +9,13 @@
         android:id="@+id/iv_message_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/weidu"
         android:layout_centerVertical="true"/>
     <ImageView
         android:id="@+id/iv_delete_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/delete_blue_icon"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"/>
     <LinearLayout

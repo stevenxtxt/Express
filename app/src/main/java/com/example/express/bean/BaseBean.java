@@ -8,13 +8,22 @@ import java.io.Serializable;
  * Created by xutework on 2015/7/23.
  */
 public class BaseBean implements BDVolleyUtils.BDSmartParserable, Serializable {
-    private String returnMsg;
+    private boolean result;
+    private String reason;
 
-    public String getReturnMsg() {
-        return returnMsg;
+    public boolean isResult() {
+        return result;
     }
 
-    public void setReturnMsg(String returnMsg) {
-        this.returnMsg = returnMsg;
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

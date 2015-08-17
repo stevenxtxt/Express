@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg">
+
+    <include layout="@layout/common_top" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="@color/blue_top">
+
+        <com.example.express.view.ClearEditText
+            android:id="@+id/cet_filter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/sousuo"
+            android:drawablePadding="3dp"
+            android:hint="请输入城市名或者首字母查询"
+            android:textColorHint="@color/white"
+            android:paddingLeft="6dp"
+            android:singleLine="true"
+            android:textSize="15sp"
+            android:background="@drawable/btn_round_bg1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_current_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前城市：南京市"
+            android:textSize="16sp"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lv_country"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:divider="#e5e5e5"
+            android:dividerHeight="1dp"
+            android:layout_toLeftOf="@+id/sb_sidebar"
+            android:listSelector="@null"/>
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/show_head_toast_bg"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+        <com.silent.handle.SideBar
+            android:id="@+id/sb_sidebar"
+            android:layout_width="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right|center" />
+    </RelativeLayout>
+
+</LinearLayout><!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/city_main.xml -->

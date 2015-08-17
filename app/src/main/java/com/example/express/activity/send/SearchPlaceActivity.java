@@ -42,7 +42,8 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
     private TextView tv_cancel;
     private TextView tv_record_hint;
     private ListView lv_search_record;
-    private String city;
+    private String city;//城市名
+    private String code;//城市代码
     private BaseApplication app;
     private MyDb myDb;
     private SearchRecordAdapter adapter;
@@ -117,7 +118,19 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.tv_city:
+                Intent intent = new Intent(SearchPlaceActivity.this, CityActivity.class);
+                startActivityForResult(intent, 200);
+                break;
+
+            case R.id.tv_cancel:
+                finish();
+                break;
+
+            default:
+                break;
+        }
     }
 
     @Override
@@ -203,5 +216,14 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
             }
         }
         return flag;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            city = app.getExpressCity();
+            code = data.getStringExtra("code");
+            tv_city.setText(city);
+        }
     }
 }

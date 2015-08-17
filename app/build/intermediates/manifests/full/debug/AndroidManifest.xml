@@ -115,6 +115,12 @@
         <activity
             android:name="com.example.express.activity.send.SearchPlaceActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.express.activity.send.CityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.express.activity.more.ChooseAddressActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

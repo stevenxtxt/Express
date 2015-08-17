@@ -10,19 +10,41 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="@color/blue_top">
+        android:background="@color/blue_top"
+        android:visibility="gone">
         <TextView
             android:id="@+id/tv_nearby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="附近"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_left"
+            android:gravity="center"
+            android:textColor="@color/blue_top"/>
         <TextView
             android:id="@+id/tv_record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="预约记录"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_right_press"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue_top"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="寄快递"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <FrameLayout

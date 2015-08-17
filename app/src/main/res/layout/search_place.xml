@@ -33,7 +33,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/check_express_icon"
+                android:background="@drawable/sousuo"
                 android:layout_marginRight="5dp"/>
             <AutoCompleteTextView
                 android:id="@+id/actv_keyword"
@@ -44,12 +44,13 @@
                 android:completionThreshold="1"
                 android:dropDownVerticalOffset="1.0dip"
                 android:hint="请输入从哪寄快递"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionDone"
                 android:inputType="text|textAutoComplete"
                 android:maxLength="20"
                 android:paddingRight="37.0dip"
                 android:singleLine="true"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:textSize="16.0sp" />
         </LinearLayout>
 

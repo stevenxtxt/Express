@@ -47,8 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/dial_phone_bg"
-            android:drawableLeft="@drawable/zhuyi"
+            android:background="@drawable/dila_phone_selector"
+            android:drawableLeft="@drawable/dianhua"
             android:gravity="center"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
@@ -221,7 +221,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/zhuyi"
+                        android:drawableLeft="@drawable/shijian"
                         android:drawablePadding="5dp"
                         android:text="服务时间"
                         android:textSize="18sp" />
@@ -270,7 +270,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/zhuyi"
+                    android:drawableLeft="@drawable/fanwei"
                     android:drawablePadding="5dp"
                     android:text="收派范围"
                     android:textSize="18sp" />
@@ -295,7 +295,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/zhuyi"
+                    android:drawableLeft="@drawable/pingjia"
                     android:drawablePadding="5dp"
                     android:text="累计评论"
                     android:textSize="18sp" />

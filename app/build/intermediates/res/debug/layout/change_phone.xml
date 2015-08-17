@@ -78,7 +78,7 @@
                 android:layout_weight="1"
                 android:text="免费获取验证码"
                 android:textColor="@color/white"
-                android:background="@drawable/btn_round_bg2"
+                android:background="@drawable/yanzhengmakuang"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"/>
         </LinearLayout>

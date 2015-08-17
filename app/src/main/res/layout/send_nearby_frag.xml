@@ -12,13 +12,14 @@
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher"/>
+            android:background="@drawable/didian"
+            android:layout_marginRight="5dp"/>
         <TextView
             android:id="@+id/tv_start_place"
             android:layout_width="0dp"
@@ -29,7 +30,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/arrow_icon"/>
+            android:background="@drawable/you"/>
     </LinearLayout>
 
     <View
@@ -47,13 +48,14 @@
         android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:gravity="center_vertical">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_launcher"/>
+            android:background="@drawable/mididi"
+            android:layout_marginRight="5dp"/>
         <TextView
             android:id="@+id/tv_destination"
             android:layout_width="0dp"
@@ -64,7 +66,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/arrow_icon"/>
+            android:background="@drawable/you"/>
     </LinearLayout>
 
     <View

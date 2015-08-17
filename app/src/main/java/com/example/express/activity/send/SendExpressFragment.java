@@ -44,8 +44,8 @@ public class SendExpressFragment extends BaseFragment implements View.OnClickLis
         setDefaultFragment();
     }
 
-    /*
-    设置默认的Fragment
+    /**
+     *设置默认的Fragment
      */
     private void setDefaultFragment() {
         FragmentManager fm = getChildFragmentManager();
@@ -61,17 +61,34 @@ public class SendExpressFragment extends BaseFragment implements View.OnClickLis
         FragmentTransaction ft = fm.beginTransaction();
         switch (view.getId()) {
             case R.id.tv_nearby:
+                if (recordFragment != null) {
+                    ft.hide(recordFragment);
+                }
                 if (nearbyFragment == null) {
                     nearbyFragment = new SendNearbyFragment();
+                    ft.add(R.id.fl_content, nearbyFragment);
                 }
-                ft.replace(R.id.fl_content, nearbyFragment);
+                ft.show(nearbyFragment);
+                tv_nearby.setBackgroundResource(R.drawable.top_left);
+                tv_nearby.setTextColor(activity.getResources().getColor(R.color.blue_top));
+                tv_record.setBackgroundResource(R.drawable.top_right_press);
+                tv_record.setTextColor(activity.getResources().getColor(R.color.white));
                 break;
 
             case R.id.tv_record:
+                if (nearbyFragment != null) {
+                    ft.hide(nearbyFragment);
+                }
                 if (recordFragment == null) {
                     recordFragment = new SendRecordFragment();
+                    ft.add(R.id.fl_content, recordFragment);
                 }
+                ft.show(recordFragment);
                 ft.replace(R.id.fl_content, recordFragment);
+                tv_nearby.setBackgroundResource(R.drawable.top_left_press);
+                tv_nearby.setTextColor(activity.getResources().getColor(R.color.white));
+                tv_record.setBackgroundResource(R.drawable.top_right);
+                tv_record.setTextColor(activity.getResources().getColor(R.color.blue_top));
                 break;
 
             default:

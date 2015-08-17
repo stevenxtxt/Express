@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/catalog"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0"
+        android:background="#f8f8f8"
+        android:paddingBottom="5dip"
+        android:paddingLeft="17dip"
+        android:paddingTop="5dip"
+        android:text="A"
+        android:textColor="#999999" />
+
+    <View
+        android:id="@+id/v_top_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="17dip"
+        android:layout_weight="1.0"
+        android:gravity="center_vertical"
+        android:paddingBottom="17dip"
+        android:paddingTop="17dip"
+        android:text="hhhh"
+        android:textColor="#4c4c4c"
+        android:textSize="16dp" />
+
+    <View
+        android:id="@+id/v_group_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="17dp"
+        android:background="#e5e5e5" />
+
+    <View
+        android:id="@+id/v_bottom_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#e5e5e5"
+        android:visibility="gone" />
+</LinearLayout>

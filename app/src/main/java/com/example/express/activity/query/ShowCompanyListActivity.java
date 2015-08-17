@@ -13,7 +13,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -21,6 +26,10 @@ import android.widget.TextView;
 
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.bean.CompanyBean;
+import com.example.express.bean.CompanyListBean;
+import com.example.express.view.ClearEditText;
+import com.google.gson.Gson;
 import com.silent.adapter.SortAdapter;
 import com.silent.handle.CharacterParser;
 import com.silent.handle.PinyinComparator;
@@ -29,143 +38,209 @@ import com.silent.handle.SideBar.OnTouchingLetterChangedListener;
 import com.silent.model.PhoneModel;
 
 /**
- * 
  * @author Mr.Z
  */
 public class ShowCompanyListActivity extends BaseActivity {
-	private Context				context	= ShowCompanyListActivity.this;
-	private ListView			sortListView;
-	private SideBar				sideBar;
-	private TextView			dialog;
-	private SortAdapter			adapter;
-	private String item_name;
-	private String[] data_name;
-	private String[] data_phone;
-	private String[] data_img;
-	/**
-	 * 汉字转换成拼音的�?
-	 */
-	private CharacterParser		characterParser;
-	private List<PhoneModel>	SourceDateList;
+    private Context context = ShowCompanyListActivity.this;
+    private ListView sortListView;
+    private SideBar sideBar;
+    private TextView dialog;
+    private SortAdapter adapter;
+    private ClearEditText mClearEditText;
 
-	/**
-	 * 根据拼音来排列ListView里面的数据类
-	 */
-	private PinyinComparator	pinyinComparator;
-	Intent intent;
-	String exjson;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Intent intent = getIntent() ;
-		exjson = intent.getStringExtra("json");
-		JSONObject json_data;
-		
-		try {
-			JSONArray jsonArray=new JSONArray(exjson);
-			 data_name = new String[jsonArray.length()];
-			 data_phone = new String[jsonArray.length()];
-			 data_img = new String[jsonArray.length()];
-			 for (int i = 0; i < jsonArray.length(); i++) {
-	               json_data = jsonArray.getJSONObject(i);
-	               data_name[i]=json_data.getString("name");
-	               data_phone[i]=json_data.getString("phone");
-	               data_img[i]="http://www.kuaidi.com"+json_data.getString("ico");
-	            }
-			 
+    private CharacterParser characterParser;
+    private List<PhoneModel> SourceDateList;
 
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		setContentView(R.layout.activity_company);
-		initViews();
-	}
+    /**
+     * 根据拼音来排列ListView里面的数据类
+     */
+    private PinyinComparator pinyinComparator;
 
-	/**
-	 * 为ListView填充数据
-	 * 
-	 * @param date
-	 * @return
-	 */
-	private List<PhoneModel> filledData(String[] date, String[] phoneData, String[] imgData) {
-		List<PhoneModel> mSortList = new ArrayList<PhoneModel>();
+    private String exjson;
 
-		for (int i = 0; i < date.length; i++) {
-			PhoneModel sortModel = new PhoneModel();
-			sortModel.setImgSrc(imgData[i]);
-			sortModel.setName(date[i]);
-			sortModel.setPhone(phoneData[i]);
-			// 汉字转换成拼�?
-			String pinyin = characterParser.getSelling(date[i]);
-			String sortString = pinyin.substring(0, 1).toUpperCase();
+    private CompanyListBean companyListBean;
 
-			// 正则表达式，判断首字母是否是英文字母
-			if(sortString.matches("[A-Z]")) {
-				sortModel.setSortLetters(sortString.toUpperCase());
-			} else {
-				sortModel.setSortLetters("#");
-			}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        exjson = intent.getStringExtra("json");
+        getJsonData(exjson);
+        setContentView(R.layout.activity_company);
+        initViews();
+    }
 
-			mSortList.add(sortModel);
-		}
-		return mSortList;
+	private void getJsonData(String str) {
+        try {
+            JSONObject obj = new JSONObject(str);
+            companyListBean = new CompanyListBean();
+            companyListBean.setResult(obj.getBoolean("success"));
+            companyListBean.setReason(obj.getString("reason"));
+            JSONArray arr = obj.getJSONArray("data");
+            if (arr != null && arr.length() > 0) {
+                ArrayList<CompanyBean> list = new ArrayList<CompanyBean>();
+                for (int i = 0; i < arr.length(); i++) {
+                    CompanyBean companyBean = new CompanyBean();
+                    JSONObject arrObj = arr.getJSONObject(i);
+                    companyBean.setCompanytype(arrObj.getString("companytype"));
+                    companyBean.setCompany(arrObj.getString("company"));
+                    companyBean.setPhone(arrObj.getString("phone"));
+                    companyBean.setIco(arrObj.getString("ico"));
+                    list.add(companyBean);
+                }
+                companyListBean.setData(list);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
 
-	}
+    /**
+     * 为ListView填充数据
+     *
+     * @param listBean
+     * @return
+     */
+    private List<PhoneModel> filledData(CompanyListBean listBean) {
+        List<PhoneModel> mSortList = new ArrayList<PhoneModel>();
+        ArrayList<CompanyBean> companyBeans = listBean.getData();
+        int size = companyBeans.size();
+        for (int i = 0; i < size; i++) {
+            PhoneModel sortModel = new PhoneModel();
+            CompanyBean bean = companyBeans.get(i);
+            sortModel.setImgSrc(bean.getIco());
+            sortModel.setName(bean.getCompany());
+            sortModel.setPhone(bean.getPhone());
+            sortModel.setCompanytype(bean.getCompanytype());
+            String pinyin = characterParser.getSelling(bean.getCompany());
+            String sortString = pinyin.substring(0, 1).toUpperCase();
 
-	private void initViews() {
+            // 正则表达式，判断首字母是否是英文字母
+            if (sortString.matches("[A-Z]")) {
+                sortModel.setSortLetters(sortString.toUpperCase());
+            } else {
+                sortModel.setSortLetters("#");
+            }
 
-		initTop();
-		setTitle("选择快递公司");
-		// 实例化汉字转拼音�?
-		characterParser = CharacterParser.getInstance();
+            mSortList.add(sortModel);
+        }
+        return mSortList;
 
-		pinyinComparator = new PinyinComparator();
+    }
 
-		sideBar = (SideBar) findViewById(R.id.sidrbar);
-		dialog = (TextView) findViewById(R.id.dialog);
-		sideBar.setTextView(dialog);
+    /**
+     * 根据输入框中的值来过滤数据并更新ListView
+     *
+     * @param filterStr
+     */
+    private void filterData(String filterStr) {
+        if (null == SourceDateList) {
+            return;
+        }
+        List<PhoneModel> filterDateList = new ArrayList<PhoneModel>();
 
-		// 设置右侧触摸监听
-		sideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() {
+        if (TextUtils.isEmpty(filterStr)) {
+            filterDateList = SourceDateList;
+        } else {
+            filterDateList.clear();
+            for (PhoneModel sortModel : SourceDateList) {
+                String name = sortModel.getName();
+                if (name.indexOf(filterStr.toString()) != -1
+                        || filterStr.toString().toUpperCase()
+                        .startsWith(sortModel.getSortLetters())) {
+                    filterDateList.add(sortModel);
+                }
+            }
+        }
 
-			@Override
-			public void onTouchingLetterChanged(String s) {
-				// 该字母首次出现的位置
-				int position = adapter.getPositionForSection(s.charAt(0));
-				if(position != -1) {
-					sortListView.setSelection(position);
-				}
+        // 根据a-z进行排序
+        Collections.sort(filterDateList, pinyinComparator);
+        adapter.updateListView(filterDateList);
+    }
 
-			}
-		});
+    private void initViews() {
 
-		sortListView = (ListView) findViewById(R.id.country_lvcountry);
-		sortListView.setOnItemClickListener(new OnItemClickListener() {
+        initTop();
+        setTitle("选择快递公司");
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// 这里要利用adapter.getItem(position)来获取当前position�?��应的对象
-				//Toast.makeText(context, ((PhoneModel) adapter.getItem(position)).getName(), Toast.LENGTH_SHORT).show();
+        mClearEditText = (ClearEditText) findViewById(R.id.cet_filter);
+        characterParser = CharacterParser.getInstance();
+
+        pinyinComparator = new PinyinComparator();
+
+        sideBar = (SideBar) findViewById(R.id.sidrbar);
+        dialog = (TextView) findViewById(R.id.dialog);
+        sideBar.setTextView(dialog);
+
+        // 设置右侧触摸监听
+        sideBar.setOnTouchingLetterChangedListener(new OnTouchingLetterChangedListener() {
+
+            @Override
+            public void onTouchingLetterChanged(String s) {
+                // 该字母首次出现的位置
+                int position = adapter.getPositionForSection(s.charAt(0));
+                if (position != -1) {
+                    sortListView.setSelection(position);
+                }
+
+            }
+        });
+
+        sortListView = (ListView) findViewById(R.id.country_lvcountry);
+        sortListView.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textview = (TextView) findViewById(R.id.company_name);
-                Object obj = ((PhoneModel) adapter.getItem(position)).getName();
-                String s = obj.toString();
-			    //String str =textview.getText().toString().trim();
-				Intent intent = new Intent();
-				intent.putExtra("item", s);
-				setResult(1001, intent);
-				finish();
+                PhoneModel pm = ((PhoneModel) adapter.getItem(position));
+                Intent intent = new Intent();
+                intent.putExtra("company", pm.getName());
+                intent.putExtra("companytype", pm.getCompanytype());
+                setResult(1001, intent);
+                finish();
 
-			}
-		});
+            }
+        });
 //		data_name=getData("name");
 //		data_phone=getData("phone");
 //		data_img=getData("ico");
-		SourceDateList = filledData(data_name, data_phone,data_img);
+        SourceDateList = filledData(companyListBean);
 
-		// 根据a-z进行排序源数�?
-		Collections.sort(SourceDateList, pinyinComparator);
-		adapter = new SortAdapter(context, SourceDateList);
-		sortListView.setAdapter(adapter);
-	}
+        Collections.sort(SourceDateList, pinyinComparator);
+        adapter = new SortAdapter(context, SourceDateList);
+        sortListView.setAdapter(adapter);
+
+        // 根据输入框输入值的改变来过滤搜索
+        mClearEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // 当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
+                filterData(charSequence.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        //点击列表隐藏输入法
+        sortListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (null != getCurrentFocus())
+                    ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+                            .hideSoftInputFromWindow(ShowCompanyListActivity.this
+                                            .getCurrentFocus().getWindowToken(),
+                                    InputMethodManager.HIDE_NOT_ALWAYS);
+                return false;
+            }
+        });
+    }
 }

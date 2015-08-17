@@ -2,25 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\xutework\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\zxing.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\gson-2.2.4-c4eb05508200cd30cd5b25cb4fcc33dbb0a5cab4.jar" />
-    </item>
-    <item
-        jar="E:\Android\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-c9ca4790586c43673a9bed1613b517c40a8a153f.jar" />
-    </item>
-    <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\volley.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\volley-c4e177223f520f6c6bea8e6adc072bcf57ad15b8.jar" />
+        sha1="e88c14e6e7daa0fa65172a62b54ee6a16ff4162d">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\zxing-4148cfd5faaa6d4deee15cd8b3af4a1212207c52.jar" />
     </item>
     <item
         jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\universal-image-loader-1.9.0-snapshot-with-sources.jar"
@@ -30,27 +16,6 @@
         <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.0-snapshot-with-sources-46a4c1e041a2993c9d5e0881d383c01cca972b8f.jar" />
     </item>
     <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\MapApiServices.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e84628aa8eea7b9892768f19c41dbe02abc7f666">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\MapApiServices-59d2724cf47d139bb22d31e72b61dc4c30ee603b.jar" />
-    </item>
-    <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\zxing.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e88c14e6e7daa0fa65172a62b54ee6a16ff4162d">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\zxing-4148cfd5faaa6d4deee15cd8b3af4a1212207c52.jar" />
-    </item>
-    <item
-        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\Android_Map_V2.5.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
-        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\Android_Map_V2.5.0-31dcbe2aa89df7406a9df819ee94ecbba5c53cd9.jar" />
-    </item>
-    <item
         jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\18.0.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -58,11 +23,46 @@
         <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\classes-c37185419579b7b70b3f11a505db9eddf39b200a.jar" />
     </item>
     <item
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\MapApiServices.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e84628aa8eea7b9892768f19c41dbe02abc7f666">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\MapApiServices-59d2724cf47d139bb22d31e72b61dc4c30ee603b.jar" />
+    </item>
+    <item
+        jar="C:\Users\xutework\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\gson-2.2.4-c4eb05508200cd30cd5b25cb4fcc33dbb0a5cab4.jar" />
+    </item>
+    <item
         jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\MapApiLocation_1.3.3.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="71e7604372d8a66689ff8df047e9a748e19a5169">
         <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\MapApiLocation_1.3.3-f3f66ab80ff99cc2d96ab0437159d41535777700.jar" />
+    </item>
+    <item
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\volley.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4a94601db9bdfb7dc60efabb3dea91a0675f591d">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\volley-c4e177223f520f6c6bea8e6adc072bcf57ad15b8.jar" />
+    </item>
+    <item
+        jar="E:\Android\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-c9ca4790586c43673a9bed1613b517c40a8a153f.jar" />
+    </item>
+    <item
+        jar="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\libs\Android_Map_V2.5.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61c0fb7dbd0cffd2682dd10c5b589902345cfa25">
+        <dex dex="C:\Users\xutework\AndroidStudioProjects\Express2015-4-24\app\build\intermediates\pre-dexed\debug\Android_Map_V2.5.0-31dcbe2aa89df7406a9df819ee94ecbba5c53cd9.jar" />
     </item>
 
 </items>

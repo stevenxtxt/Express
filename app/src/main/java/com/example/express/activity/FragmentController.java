@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.example.express.activity.more.MoreFragment;
 import com.example.express.activity.my.MyFragment;
+import com.example.express.activity.query.HomeFragment;
 import com.example.express.activity.query.QueryExpressFragment;
 import com.example.express.activity.send.SendExpressFragment;
 
@@ -13,7 +14,7 @@ public class FragmentController {
 	private int containerId;
 	private android.support.v4.app.FragmentManager fm;
 	
-	private QueryExpressFragment homeFragment;
+	private HomeFragment homeFragment;
 	private static final String TAG_HOME = "home";
 	private MyFragment shopFragment;
 	private static final String TAG_SHOP = "shop";
@@ -31,7 +32,7 @@ public class FragmentController {
 		hideFragments();
 		
 		if(homeFragment == null) {
-			homeFragment = new QueryExpressFragment();
+			homeFragment = new HomeFragment();
 			FragmentTransaction ft = fm.beginTransaction();
 			ft.add(containerId, homeFragment, TAG_HOME);
 			ft.commit();

@@ -89,6 +89,15 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
         doSearchQuery(center_point);
     }
 
+    /**
+     * 方法必须重写
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
     private void initViews() {
         tv_confirm = (TextView) findViewById(R.id.tv_confirm);
         ll_search_place = (LinearLayout) findViewById(R.id.ll_search_place);
@@ -160,6 +169,7 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
         if (resultCode == RESULT_OK) {
             address = data.getStringExtra("name");
             String district = data.getStringExtra("district");
+            city = app.getExpressCity();
             getLatlon(district + address);
         }
     }

@@ -12,6 +12,8 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.example.express.R;
+import com.example.express.constants.CommonConstants;
+import com.example.express.utils.ImageLoaderUtil;
 import com.silent.handle.ImageLoader;
 import com.silent.model.PhoneModel;
 
@@ -79,7 +81,7 @@ public class SortAdapter extends BaseAdapter implements SectionIndexer {
 			viewHolder.tvLetter.setVisibility(View.GONE);
 		}
 
-		imageLoader.DisplayImage(this.list.get(position).getImgSrc(), viewHolder.tvHead);
+		ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + this.list.get(position).getImgSrc() , viewHolder.tvHead);
 		viewHolder.tvTitle.setText(this.list.get(position).getName());
 		viewHolder.tvPhone.setText(this.list.get(position).getPhone());
 		// viewHolder.tvTitle.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//下划线

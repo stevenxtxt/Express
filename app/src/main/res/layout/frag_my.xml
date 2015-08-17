@@ -13,13 +13,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="已签收"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_left"
+            android:gravity="center"
+            android:textColor="@color/blue_top"/>
         <TextView
             android:id="@+id/tv_not_received"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未签收"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/top_right_press"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+
     </LinearLayout>
 
     <LinearLayout

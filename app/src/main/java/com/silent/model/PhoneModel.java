@@ -2,39 +2,49 @@ package com.silent.model;
 
 public class PhoneModel {
 
-	private String	imgSrc;		// ��ʾͷ��
-	private String	name;			// ��ʾ�����
-	private String	sortLetters;	// ��ʾ���ƴ��������ĸ
-    private String  phone;
-	public String getImgSrc() {
-		return imgSrc;
-	}
+    private String imgSrc;
+    private String name;
+    private String sortLetters;
+    private String phone;
+    private String companytype;
 
-	public void setImgSrc(String imgSrc) {
-		this.imgSrc = imgSrc;
-	}
+    public String getCompanytype() {
+        return companytype;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setCompanytype(String companytype) {
+        this.companytype = companytype;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getImgSrc() {
+        return imgSrc;
+    }
 
-	public String getPhone() {
-		return phone;
-	}
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getSortLetters() {
-		return sortLetters;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setSortLetters(String sortLetters) {
-		this.sortLetters = sortLetters;
-	}
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getSortLetters() {
+        return sortLetters;
+    }
+
+    public void setSortLetters(String sortLetters) {
+        this.sortLetters = sortLetters;
+    }
 }

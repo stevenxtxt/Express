@@ -13,13 +13,25 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.boredream.volley.BDListener;
+import com.boredream.volley.BDVolleyHttp;
 import com.example.express.BaseApplication;
 import com.example.express.R;
+import com.example.express.activity.BaseActivity;
+import com.example.express.activity.BaseFragment;
 import com.example.express.activity.main.MainTabActivity;
 import com.example.express.activity.send.adapter.SendCourierAdapter;
 import com.example.express.bean.CourierBean;
+import com.example.express.bean.CouriorDetailBean;
+import com.example.express.bean.ScopeBean;
+import com.example.express.constants.CommonConstants;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -32,7 +44,7 @@ import java.util.ArrayList;
  * 修改时间：2015/7/31 10:15
  * 修改备注：
  */
-public class SendNearbyFragment extends Fragment implements View.OnClickListener, PullToRefreshBase.OnRefreshListener<ListView> {
+public class SendNearbyFragment extends BaseFragment implements View.OnClickListener, PullToRefreshBase.OnRefreshListener<ListView> {
 
     private View view;
     private Activity context;
@@ -49,6 +61,9 @@ public class SendNearbyFragment extends Fragment implements View.OnClickListener
     private String address;
     private double latitude;
     private double longitude;
+
+    private String userId = "67";//用户id，如果未登录则默认为字母a
+    private String couriorId = "16291";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,8 +88,7 @@ public class SendNearbyFragment extends Fragment implements View.OnClickListener
         ptrlv_courier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(context, CourierDetailActivity.class);
-                startActivity(intent);
+                queryCouriorDetail();
             }
         });
 
@@ -131,5 +145,30 @@ public class SendNearbyFragment extends Fragment implements View.OnClickListener
         this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    /**
+     * 查询快递员详情
+     */
+    private void queryCouriorDetail() {
+        showCustomDialog("正在获取快递员详情...");
+        BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_COURIOR_DETAIL +
+                        couriorId + "-" + userId + CommonConstants.HTML,
+                new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dismissCustomDialog();
+                        Intent intent = new Intent(context, CourierDetailActivity.class);
+                        intent.putExtra("json", response);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        dismissCustomDialog();
+                        showToast("查询失败");
+                    }
+                });
     }
 }

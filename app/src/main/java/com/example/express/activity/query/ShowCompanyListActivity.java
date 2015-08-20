@@ -74,18 +74,18 @@ public class ShowCompanyListActivity extends BaseActivity {
         try {
             JSONObject obj = new JSONObject(str);
             companyListBean = new CompanyListBean();
-            companyListBean.setResult(obj.getBoolean("success"));
-            companyListBean.setReason(obj.getString("reason"));
-            JSONArray arr = obj.getJSONArray("data");
+            companyListBean.setResult(obj.optBoolean("result"));
+            companyListBean.setReason(obj.optString("reason"));
+            JSONArray arr = obj.optJSONArray("data");
             if (arr != null && arr.length() > 0) {
                 ArrayList<CompanyBean> list = new ArrayList<CompanyBean>();
                 for (int i = 0; i < arr.length(); i++) {
                     CompanyBean companyBean = new CompanyBean();
-                    JSONObject arrObj = arr.getJSONObject(i);
-                    companyBean.setCompanytype(arrObj.getString("companytype"));
-                    companyBean.setCompany(arrObj.getString("company"));
-                    companyBean.setPhone(arrObj.getString("phone"));
-                    companyBean.setIco(arrObj.getString("ico"));
+                    JSONObject arrObj = arr.optJSONObject(i);
+                    companyBean.setCompanytype(arrObj.optString("companytype"));
+                    companyBean.setCompany(arrObj.optString("company"));
+                    companyBean.setPhone(arrObj.optString("phone"));
+                    companyBean.setIco(arrObj.optString("ico"));
                     list.add(companyBean);
                 }
                 companyListBean.setData(list);

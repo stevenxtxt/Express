@@ -39,7 +39,7 @@
             android:textColor="#3e3e3e"
             android:background="@null"
             android:textSize="18sp"
-            android:hint="联系电话或者QQ"
+            android:hint="请输入手机号（可不填写）"
             android:gravity="center_vertical"/>
 
     </LinearLayout>

@@ -35,6 +35,7 @@ import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
 import com.example.express.utils.StringUtils;
 import com.example.express.view.CustomProgressDialog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,7 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        MobclickAgent.updateOnlineConfig(getBaseContext());
         TAG = this.getClass().getSimpleName();
         showLog("onCreate()");
 
@@ -168,6 +170,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             mapView.onResume();
 
         }
+        MobclickAgent.onResume(this);
+        MobclickAgent.onPageStart("WelcomeScreen");
         showLog("onResume()");
     }
 
@@ -197,6 +201,8 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
             mapView.onPause();
             deactivate();
         }
+        MobclickAgent.onPause(this);
+        MobclickAgent.onPageEnd("WelcomeScreen");
         showLog("onPause()");
     }
 
@@ -230,12 +236,15 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
         String address = StringUtils.splitAddress(desc);
         BaseApplication.getInstance().setExpressLat(aMapLocation.getLatitude());
         BaseApplication.getInstance().setExpressLng(aMapLocation.getLongitude());
+        BaseApplication.getInstance().setExpressProvince(aMapLocation.getProvince());
         BaseApplication.getInstance().setExpressCity(aMapLocation.getCity());
+        BaseApplication.getInstance().setExpressDistrict(aMapLocation.getDistrict());
         BaseApplication.getInstance().setExpressAddress(address);
 
         showLog("当前位置：" + aMapLocation.getLatitude() + ","
                 + aMapLocation.getLongitude() +
                 "当前城市：" + aMapLocation.getCity()
+                + "当前区域：" + aMapLocation.getDistrict()
                 + "当前地址：" + aMapLocation.getAddress()
                 + "显示地址：" + address);
 

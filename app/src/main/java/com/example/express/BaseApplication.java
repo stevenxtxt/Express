@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.boredream.volley.BDVolley;
 import com.db.MyDb;
+import com.example.express.bean.LoginUser;
 import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Preference;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
@@ -28,6 +29,8 @@ public class BaseApplication extends Application {
     private static BaseApplication instance;
 
     private MyDb myDb;
+
+    private LoginUser loginUser;
 
     public static BaseApplication getInstance() {
         return instance;
@@ -77,12 +80,28 @@ public class BaseApplication extends Application {
         return Preference.getDouble("ExpressLng");
     }
 
+    public void setExpressProvince(String province) {
+        Preference.putString("ExpressProvince", province);
+    }
+
+    public String getExpressProvince() {
+        return Preference.getString("ExpressProvince");
+    }
+
     public void setExpressCity(String city) {
         Preference.putString("ExpressCity", city);
     }
 
     public String getExpressCity() {
         return Preference.getString("ExpressCity");
+    }
+
+    public void setExpressDistrict(String district) {
+        Preference.putString("ExpressDistrict", district);
+    }
+
+    public String getExpressDistrict() {
+        return Preference.getString("ExpressDistrict");
     }
 
     public void setExpressAddress(String address) {
@@ -125,5 +144,13 @@ public class BaseApplication extends Application {
                 .build();
         // Initialize ImageLoader with configuration.
         ImageLoader.getInstance().init(config);
+    }
+
+    public LoginUser getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(LoginUser loginUser) {
+        this.loginUser = loginUser;
     }
 }

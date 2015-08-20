@@ -11,9 +11,18 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.boredream.volley.BDListener;
 import com.boredream.volley.BDVolleyHttp;
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.activity.main.MainTabActivity;
+import com.example.express.bean.LoginUser;
+import com.example.express.constants.CommonConstants;
+import com.example.express.utils.MD5Util;
+import com.example.express.utils.Preference;
+import com.example.express.utils.StringUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +66,17 @@ public class LoginActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_login:
-                login();
+                username = et_username.getText().toString().trim();
+                password = et_password.getText().toString().trim();
+                if (StringUtils.isEmpty(username)) {
+                    showToast("请输入用户名");
+                    return;
+                }
+                if (StringUtils.isEmpty(password)) {
+                    showToast("请输入密码");
+                    return;
+                }
+                login(username, password);
                 break;
 
             case R.id.tv_register:
@@ -78,27 +97,57 @@ public class LoginActivity extends BaseActivity {
     /**
      * 登录方法
      */
-    private void login() {
+    private void login(final String username, final String password) {
+        showCustomDialog("正在登录...");
         Map<String, Object> params = new HashMap<String, Object>();
-        username = et_username.getText().toString().trim();
-        password = et_password.getText().toString().trim();
-        params.put("user", username);
-        params.put("psw", password);
-        BDVolleyHttp.postString("http://www.wshens.com/mobilelogin.html", params, new BDListener<String>() {
+        params.put("username", username);
+        params.put("password", MD5Util.md5(password));
+//        params.put("password", password);
+        BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.LOGIN + CommonConstants.HTML, params,
+                new BDListener<String>() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
                 // 返回失败处理
-
+                dismissCustomDialog();
             }
 
             @Override
             public void onResponse(String response) {
+                dismissCustomDialog();
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    boolean result = obj.optBoolean("result");
+                    String reason = obj.optString("reason");
+                    if (result) {
+                        //获取userId
+                        String userId = obj.optString("data");
+                        //将用户名密码存入sp
+                        Preference.putString("username", username);
+                        Preference.putString("password", MD5Util.md5(password));
+//                        Preference.putString("password", password);
+                        //存储用户信息
+                        LoginUser loginUser = new LoginUser();
+                        loginUser.setUserId(userId);
+                        loginUser.setUsername(username);
+                        loginUser.setPassword(MD5Util.md5(password));
+//                        loginUser.setPassword(password);
+                        BaseApplication.getInstance().setLoginUser(loginUser);
+                        Intent intent = new Intent(LoginActivity.this, MainTabActivity.class);
+                        intent.putExtra("tab_type", "query");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
 
-                //跳转界面
-                Intent intent = new Intent(LoginActivity.this, MainTabActivity.class);
-                startActivity(intent);
-                finish();
+                    } else {
+                        showToast(reason);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    showToast("登录失败");
+                    return;
+                }
+
 
             }
         });

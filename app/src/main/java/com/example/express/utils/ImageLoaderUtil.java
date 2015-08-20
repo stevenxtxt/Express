@@ -92,7 +92,7 @@ public class ImageLoaderUtil {
         // imageLoader.displayImage(uri, image, getDisplayImageOptions(),
         // animateFirstListener);
         if (getResId() == 0) {
-            image.setImageResource(R.drawable.wb_default_photo);
+            image.setImageResource(R.drawable.ic_launcher);
         } else {
             image.setImageResource(getResId());
             setResId(0);

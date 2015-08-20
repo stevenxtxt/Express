@@ -30,10 +30,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="@string/map_api_key_debug" />
-
         <activity
             android:name=".activity.WelcomeActivity"
             android:label="@string/app_name"
@@ -49,6 +45,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.my.LoginActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.query.ShowExpressInfoActivity"
@@ -64,6 +61,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.main.MainTabActivity"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.example.express.activity.my.RegisterActivity"
@@ -123,5 +121,22 @@
         <activity
             android:name=".activity.more.ChooseAddressActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.more.RecyclerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.more.ShowWebActivity"
+            android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55d5557e67e58e0daa000ccd" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="home" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="@string/map_api_key_debug" />
     </application>
 </manifest>

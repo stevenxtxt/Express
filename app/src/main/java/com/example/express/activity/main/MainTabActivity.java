@@ -1,9 +1,11 @@
 package com.example.express.activity.main;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,6 +15,11 @@ import android.widget.Toast;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.activity.FragmentController;
+import com.example.express.activity.more.MoreFragment;
+import com.example.express.activity.my.MyFragment;
+import com.example.express.activity.query.HomeFragment;
+import com.example.express.activity.send.SendExpressFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,12 +43,18 @@ public class MainTabActivity extends BaseActivity implements
     private Drawable more_drawable_press;
 
     private FragmentController fc;
+    private HomeFragment homeFragment;
+    private MyFragment myFragment;
+    private MoreFragment moreFragment;
+    private SendExpressFragment sendExpressFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main_tab);
+
+        MobclickAgent.updateOnlineConfig(getApplicationContext());
 
         initMap(savedInstanceState);
 
@@ -86,6 +99,7 @@ public class MainTabActivity extends BaseActivity implements
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+
         switch (checkedId) {
             case R.id.rb_query:
                 fc.showHomeFragment();
@@ -134,6 +148,17 @@ public class MainTabActivity extends BaseActivity implements
 
             default:
                 break;
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (null != intent) {
+            String tab_type = intent.getStringExtra("tab_type");
+            if (tab_type.equals("query")) {
+                rb_query.setChecked(true);
+            }
         }
     }
 

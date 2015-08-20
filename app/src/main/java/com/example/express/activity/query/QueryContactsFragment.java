@@ -253,7 +253,7 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
         try {
             JSONObject obj = new JSONObject(str);
             companyListBean = new CompanyListBean();
-            companyListBean.setResult(obj.getBoolean("success"));
+            companyListBean.setResult(obj.getBoolean("result"));
             companyListBean.setReason(obj.getString("reason"));
             JSONArray arr = obj.getJSONArray("data");
             if (arr != null && arr.length() > 0) {

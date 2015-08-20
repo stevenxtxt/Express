@@ -10,9 +10,21 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
+import com.boredream.volley.BDListener;
+import com.boredream.volley.BDVolleyHttp;
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Density;
+import com.example.express.utils.StringUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 项目名称：Express2015-4-24
@@ -40,13 +52,18 @@ public class PersonalInfoActivity extends BaseActivity {
     private String province;
     private String city;
     private String gender;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal_info);
         initTop();
         setTitle("个人信息");
+
+        userId = BaseApplication.getInstance().getLoginUser().getUserId();
+
         initViews();
+        queryUserInfo("正在获取您的信息...");
     }
 
     private void initViews() {
@@ -84,7 +101,8 @@ public class PersonalInfoActivity extends BaseActivity {
                 break;
 
             case R.id.rl_true_name:
-                launch(TrueNameActivity.class);
+                Intent truename_intent = new Intent(PersonalInfoActivity.this, TrueNameActivity.class);
+                startActivityForResult(truename_intent, 1002);
                 break;
 
             case R.id.rl_gender:
@@ -92,7 +110,8 @@ public class PersonalInfoActivity extends BaseActivity {
                 break;
 
             case R.id.rl_phone:
-                launch(ChangePhoneOneActivity.class);
+                Intent phone_intent = new Intent(PersonalInfoActivity.this, ChangePhoneOneActivity.class);
+                startActivityForResult(phone_intent, 1003);
                 break;
 
             case R.id.rl_address:
@@ -101,6 +120,8 @@ public class PersonalInfoActivity extends BaseActivity {
                 break;
 
             case R.id.btn_logout:
+                BaseApplication.getInstance().setLoginUser(null);
+                finish();
                 break;
 
             default:
@@ -113,7 +134,14 @@ public class PersonalInfoActivity extends BaseActivity {
         if (requestCode == 1001 && resultCode == RESULT_OK) {
             city = data.getStringExtra("city");
             province = data.getStringExtra("province");
-            tv_address.setText(province + "-" + city);
+//            tv_address.setText(province + "-" + city);
+            queryUserInfo("正在更新您的信息...");
+        }
+        if (requestCode == 1002 && resultCode == RESULT_OK) {
+            queryUserInfo("正在更新您的信息...");
+        }
+        if (requestCode == 1003 && resultCode == RESULT_OK) {
+            queryUserInfo("正在更新您的信息...");
         }
     }
 
@@ -137,7 +165,7 @@ public class PersonalInfoActivity extends BaseActivity {
             public void onClick(View view) {
                 call_dialog.dismiss();
                 gender = tv_privacy.getText().toString();
-                tv_gender.setText(gender);
+                changeGender();
             }
         });
         tv_male.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +173,7 @@ public class PersonalInfoActivity extends BaseActivity {
             public void onClick(View view) {
                 call_dialog.dismiss();
                 gender = tv_male.getText().toString();
-                tv_gender.setText(gender);
+                changeGender();
             }
         });
         tv_female.setOnClickListener(new View.OnClickListener() {
@@ -153,8 +181,96 @@ public class PersonalInfoActivity extends BaseActivity {
             public void onClick(View view) {
                 call_dialog.dismiss();
                 gender = tv_female.getText().toString();
-                tv_gender.setText(gender);
+                changeGender();
             }
         });
+    }
+
+    /**
+     * 修改性别
+     */
+    private void changeGender() {
+        showCustomDialog("正在修改...");
+        Map<String, Object> params = new HashMap<String, Object>();
+        String userId = BaseApplication.getInstance().getLoginUser().getUserId();
+        params.put("userId", userId);
+        params.put("sex", gender);
+        BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.CHANGE_GENDER + CommonConstants.HTML,
+                params, new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dismissCustomDialog();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optBoolean("result")) {
+                                showToast("修改成功");
+                                tv_gender.setText(gender);
+                            } else {
+                                showToast(obj.optString("reason"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showToast("修改失败，请重试");
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        dismissCustomDialog();
+                        showToast("修改失败，请重试");
+                    }
+                });
+    }
+
+    /**
+     * 查询用户信息
+     */
+    private void queryUserInfo(String str) {
+        showCustomDialog(str);
+        BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_USER + userId + CommonConstants.HTML,
+                new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dismissCustomDialog();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optBoolean("result")) {
+                                tv_username.setText(obj.optString("username"));
+                                String truename = obj.optString("truename");
+                                if (StringUtils.isEmpty(truename)) {
+                                    tv_true_name.setText("未编辑");
+                                } else {
+                                    tv_true_name.setText(truename);
+                                }
+                                String sex = obj.optString("sex");
+                                if (StringUtils.isEmpty(sex)) {
+                                    tv_gender.setText("保密");
+                                } else {
+                                    tv_gender.setText(sex);
+                                }
+                                tv_phone.setText(obj.optString("phone"));
+                                String area = obj.optString("area");
+                                if (StringUtils.isEmpty(area)) {
+                                    tv_address.setText("未编辑");
+                                } else {
+                                    tv_address.setText(area);
+                                }
+                            } else {
+                                showToast(obj.optString("reason"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showToast("查询失败");
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        dismissCustomDialog();
+                        showToast("查询失败");
+                    }
+                });
     }
 }

@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.example.express.R;
 import com.example.express.activity.main.MainTabActivity;
 import com.example.express.view.CustomProgressDialog;
+import com.umeng.analytics.MobclickAgent;
 
 public class BaseFragment extends Fragment {
 
@@ -19,6 +21,18 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         activity = (MainTabActivity) getActivity();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("MainScreen");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("MainScreen");
     }
 
     protected void launch(Class<? extends Activity> tarActivity) {
@@ -45,5 +59,10 @@ public class BaseFragment extends Fragment {
         if (customProgressDialog != null) {
             customProgressDialog.dismiss();
         }
+    }
+
+    protected void showToast(String msg) {
+
+        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
     }
 }

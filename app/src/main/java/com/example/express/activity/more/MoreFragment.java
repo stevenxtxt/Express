@@ -1,14 +1,19 @@
 package com.example.express.activity.more;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.express.BaseApplication;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
+import com.example.express.activity.my.LoginActivity;
+import com.example.express.bean.LoginUser;
 import com.example.express.view.RoundImageView;
 
 import org.w3c.dom.Text;
@@ -27,9 +32,14 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
     private RelativeLayout rl_feedback;
     private RelativeLayout rl_about;
 
+    private BaseApplication app;
+    private LoginUser loginUser;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        app = BaseApplication.getInstance();
     }
 
     @Override
@@ -38,6 +48,22 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
         view = View.inflate(activity, R.layout.frag_more, null);
         initViews();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loginUser = app.getLoginUser();
+        if (loginUser != null) {
+            tv_username.setText(loginUser.getUsername());
+            tv_login_status.setVisibility(View.GONE);
+            rl_username.setClickable(true);
+        } else {
+            tv_username.setText("个人信息");
+            tv_login_status.setVisibility(View.VISIBLE);
+            rl_username.setClickable(false);
+        }
     }
 
     private void initViews() {
@@ -54,6 +80,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
 
         riv_user_photo.setOnClickListener(this);
         rl_username.setOnClickListener(this);
+        tv_login_status.setOnClickListener(this);
         rl_recycler.setOnClickListener(this);
         rl_share.setOnClickListener(this);
         rl_message.setOnClickListener(this);
@@ -68,21 +95,42 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
             case R.id.riv_user_photo:
                 break;
 
+            case R.id.tv_login_status:
+                launch(LoginActivity.class);
+                break;
+
             case R.id.rl_username:
                 launch(PersonalInfoActivity.class);
                 break;
 
             case R.id.rl_recycler:
+                if (loginUser == null) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                launch(RecyclerActivity.class);
                 break;
 
             case R.id.rl_share:
+                if (loginUser == null) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 break;
 
             case R.id.rl_message:
+                if (loginUser == null) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 launch(MessageActivity.class);
                 break;
 
             case R.id.rl_favourite:
+                if (loginUser == null) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 launch(FavouriteCourierActivity.class);
                 break;
 

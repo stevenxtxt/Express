@@ -17,7 +17,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/delete_icon"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,10 +38,11 @@
             android:id="@+id/tv_message_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="快递员正在派件中..."
+            android:text="快递员正在派件中"
             android:textSize="16sp"
-            android:textColor="#666666"
-            android:singleLine="true"/>
+            android:textColor="@color/blue_top"
+            android:singleLine="true"
+            android:ellipsize="end"/>
         <TextView
             android:id="@+id/tv_message_time"
             android:layout_width="wrap_content"

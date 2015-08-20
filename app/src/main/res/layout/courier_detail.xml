@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:text="服务次数0"
+                        android:text="被收藏人数0"
                         android:textSize="14sp" />
 
                     <View
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
-                        android:text="服务次数0"
+                        android:text="差评次数0"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>

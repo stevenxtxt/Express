@@ -118,37 +118,29 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
 
                             @Override
                             public void onResponse(String response) {
-                                // TODO Auto-generated method stub
-                                //
-                                if (isJarray(response) == true) {
-                                    try {
-                                        Jarry = new JSONArray(response);
+                                try {
+                                    JSONObject obj = new JSONObject(response);
+                                    String data = obj.optString("data");
+                                    if (isJarray(data)) {
+                                        Jarry = new JSONArray(data);
                                         JSONObject json_data = null;
                                         json_data = Jarry.getJSONObject(0);
                                         json_result = json_data.getString("name");
                                         com = json_data.getString("exname");
                                         tv_company.setText(result);
-                                    } catch (JSONException e) {
-                                        // TODO Auto-generated catch block
-                                        e.printStackTrace();
-                                        return;
-                                    }
-
-                                } else {
-                                    try {
-                                        JSONObject json = new JSONObject(response);
+                                    } else {
+                                        JSONObject json = new JSONObject(data);
                                         JSONObject results = json.getJSONObject("0");
                                         String name = results.getString("name");
                                         com = results.getString("exname");
                                         tv_company.setText(name);
-
-                                    } catch (JSONException e) {
-                                        // TODO Auto-generated catch block
-                                        e.printStackTrace();
-                                        return;
                                     }
-
+                                } catch (JSONException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                    return;
                                 }
+
 
                             }
                         });
@@ -176,6 +168,14 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
 
             case R.id.btn_express_query:
                 nu = et_number.getText().toString().trim();
+                if (nu == null || nu.equals("")) {
+                    Toast.makeText(getActivity(), "运单号不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (com == null || com.equals("")) {
+                    Toast.makeText(getActivity(), "请选择快递公司", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 queryExpressResult();
                 break;
 

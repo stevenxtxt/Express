@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.express.R;
 import com.example.express.bean.CourierBean;
 import com.example.express.utils.ArrayListAdapter;
+import com.example.express.utils.ImageLoaderUtil;
+import com.example.express.view.ViewHolder;
 
 /**
  * 项目名称：Express2015-4-24
@@ -33,16 +37,17 @@ public class FavCourierAdapter extends ArrayListAdapter<CourierBean> {
     }
 
     @Override
-    public int getCount() {
-        return 10;
-    }
-
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.favourite_courier_item, null);
         }
-//        CourierBean courierBean = (CourierBean) getItem(position);
+        CourierBean courierBean = getItem(position);
+        ImageView iv_icon = ViewHolder.get(convertView, R.id.item_icon);
+        TextView tv_name = ViewHolder.get(convertView, R.id.item_name);
+        TextView tv_company = ViewHolder.get(convertView, R.id.item_company);
+        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), iv_icon);
+        tv_name.setText(courierBean.getName());
+        tv_company.setText(courierBean.getCompany());
         return convertView;
     }
 }

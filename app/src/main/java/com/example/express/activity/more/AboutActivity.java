@@ -76,12 +76,21 @@ public class AboutActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.rl_view_homepage:
+                intent.setClass(this, ShowWebActivity.class);
+                intent.putExtra("flag", "homepage");
+                startActivity(intent);
                 break;
 
             case R.id.rl_weibo:
+                intent.setClass(this, ShowWebActivity.class);
+                intent.putExtra("flag", "weibo");
+                startActivity(intent);
                 break;
 
             case R.id.rl_weixin:
+                intent.setClass(this, ShowWebActivity.class);
+                intent.putExtra("flag", "weixin");
+                startActivity(intent);
                 break;
 
             case R.id.rl_about_us:

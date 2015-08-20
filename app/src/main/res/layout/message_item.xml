@@ -9,7 +9,7 @@
         android:id="@+id/iv_message_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/weidu"
+        android:background="@drawable/weidu"
         android:layout_centerVertical="true"/>
     <ImageView
         android:id="@+id/iv_delete_icon"

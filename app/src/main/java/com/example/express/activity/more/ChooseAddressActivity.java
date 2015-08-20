@@ -15,8 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+import com.boredream.volley.BDListener;
+import com.boredream.volley.BDVolleyHttp;
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
 import com.widget.OnWheelChangedListener;
 import com.widget.WheelView;
@@ -158,12 +163,7 @@ public class ChooseAddressActivity extends BaseActivity implements OnWheelChange
             case R.id.btn_confirm:
                 mCurrentProviceName = mProvinceDatas[mProvince.getCurrentItem()];
                 mCurrentCityName = mCitisDatasMap.get(mCurrentProviceName)[mCity.getCurrentItem()];
-                Logger.show("--------->>>>>>>>>>", mCurrentProviceName + "+" + mCurrentCityName);
-                Intent intent = new Intent();
-                intent.putExtra("province", mCurrentProviceName);
-                intent.putExtra("city", mCurrentCityName);
-                setResult(RESULT_OK, intent);
-                finish();
+                changeArea();
                 break;
 
             case R.id.btn_cancel:
@@ -173,5 +173,48 @@ public class ChooseAddressActivity extends BaseActivity implements OnWheelChange
             default:
                 break;
         }
+    }
+
+    /**
+     * 修改所在地
+     */
+    private void changeArea() {
+        showCustomDialog("正在修改...");
+        Map<String, Object> params = new HashMap<String, Object>();
+        String userId = BaseApplication.getInstance().getLoginUser().getUserId();
+        params.put("userId", userId);
+        params.put("newArea", mCurrentProviceName + "-" + mCurrentCityName);
+        BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.CHANGE_AREA + CommonConstants.HTML,
+                params, new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        dismissCustomDialog();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optBoolean("result")) {
+                                showToast("修改成功");
+                                Logger.show("--------->>>>>>>>>>", mCurrentProviceName + "+" + mCurrentCityName);
+                                Intent intent = new Intent();
+                                intent.putExtra("province", mCurrentProviceName);
+                                intent.putExtra("city", mCurrentCityName);
+                                setResult(RESULT_OK, intent);
+                                finish();
+                            } else {
+                                dismissCustomDialog();
+                                showToast(obj.optString("reason"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showToast("修改失败，请重试");
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        dismissCustomDialog();
+                        showToast("修改失败，请重试");
+                    }
+                });
     }
 }

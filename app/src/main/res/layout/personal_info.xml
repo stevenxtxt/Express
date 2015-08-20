@@ -63,8 +63,7 @@
             style="@style/more_text"
             android:layout_toLeftOf="@id/iv_zuo"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="jaychou"/>
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
 
     <View
@@ -169,8 +168,7 @@
             style="@style/more_text"
             android:layout_toLeftOf="@id/iv_zuo3"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:text="13999999999"/>
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

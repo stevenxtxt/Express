@@ -22,6 +22,7 @@ import com.example.express.activity.BaseActivity;
 import com.example.express.activity.send.adapter.SearchRecordAdapter;
 import com.example.express.bean.SearchRecordBean;
 import com.example.express.constants.CommonConstants;
+import com.example.express.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,10 +106,16 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
             lv_search_record.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    //截取district获取city
+                    String name = recordList.get(i).getName();
+                    String district = recordList.get(i).getDistrict();
+                    city = splitDistrict(district);
+                    app.setExpressCity(city);
+                    Logger.show("--------->>>>>>>>>city---------", city);
                     //返回至上一个界面
                     Intent intent = new Intent();
-                    intent.putExtra("name", recordList.get(i).getName());
-                    intent.putExtra("district", recordList.get(i).getDistrict());
+                    intent.putExtra("name", name);
+                    intent.putExtra("district", district);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -225,5 +232,26 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
             code = data.getStringExtra("code");
             tv_city.setText(city);
         }
+    }
+
+    /**
+     * 截取地址，将xx省xx市xx区截取为xx市
+     * @param district
+     * @return
+     */
+    private String splitDistrict(String district) {
+        String subStr = null;
+        int i = district.indexOf("省");
+        int j = district.indexOf("市");
+        //不包含“省”
+        if (i == -1) {
+            //包含“市”
+            if (j != -1) {
+                subStr = district.substring(0, j + 1);
+            }
+        } else {
+            subStr = district.substring(i + 1, j + 1);
+        }
+        return subStr;
     }
 }

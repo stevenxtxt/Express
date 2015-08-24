@@ -20,7 +20,7 @@ public class CommonConstants {
 
     public static final String HOME_PAGE = "http://www.kuaidi.com";
     public static final String WEIXIN_PAGE = "http://www.kuaidi.com/weixin.html";
-    public static final String WEIBO_PAGE = "http://www.weibo.com/u/5620577606";
+    public static final String WEIBO_PAGE = "http://m.weibo.cn/5620577606";
 
     /**
      * 查询快递接口
@@ -93,7 +93,12 @@ public class CommonConstants {
     public static final String FEEDBACK = "/api-apppostmastake";
 
     /**
-     * 快递员详情
+     * 查询附件的快递员列表
+     */
+    public static final String QUERY_NEARBY_COURIER = "/api-appgetnearbypm";
+
+    /**
+     * 查询快递员详情
      */
     public static final String QUERY_COURIOR_DETAIL = "/api-appgetpminfo-";
 

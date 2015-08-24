@@ -152,6 +152,7 @@ public class ForgetPasswordOneActivity extends BaseActivity {
                             JSONObject obj = new JSONObject(response);
                             if (obj.optBoolean("result")) {
                                 Intent intent = new Intent(ForgetPasswordOneActivity.this, ForgetPasswordTwoActivity.class);
+                                intent.putExtra("phone", phone);
                                 startActivity(intent);
                             } else {
                                 showToast(obj.optString("reason"));

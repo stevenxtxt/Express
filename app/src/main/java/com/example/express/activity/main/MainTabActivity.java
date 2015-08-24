@@ -20,6 +20,7 @@ import com.example.express.activity.my.MyFragment;
 import com.example.express.activity.query.HomeFragment;
 import com.example.express.activity.send.SendExpressFragment;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -52,6 +53,7 @@ public class MainTabActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        UmengUpdateAgent.update(this);
         setContentView(R.layout.activity_main_tab);
 
         MobclickAgent.updateOnlineConfig(getApplicationContext());
@@ -156,6 +158,9 @@ public class MainTabActivity extends BaseActivity implements
         super.onNewIntent(intent);
         if (null != intent) {
             String tab_type = intent.getStringExtra("tab_type");
+            if (tab_type == null) {
+                return;
+            }
             if (tab_type.equals("query")) {
                 rb_query.setChecked(true);
             }

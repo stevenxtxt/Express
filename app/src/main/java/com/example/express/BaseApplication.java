@@ -32,6 +32,11 @@ public class BaseApplication extends Application {
 
     private LoginUser loginUser;
 
+    private String company;
+    private String com;
+    private String result;
+    private Bitmap bitmap;
+
     public static BaseApplication getInstance() {
         return instance;
     }
@@ -152,5 +157,37 @@ public class BaseApplication extends Application {
 
     public void setLoginUser(LoginUser loginUser) {
         this.loginUser = loginUser;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getCom() {
+        return com;
+    }
+
+    public void setCom(String com) {
+        this.com = com;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

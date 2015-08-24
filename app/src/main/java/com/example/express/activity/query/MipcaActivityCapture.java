@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.google.zxing.BarcodeFormat;
@@ -123,6 +124,8 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
             Bundle bundle = new Bundle();
             bundle.putString("result", resultString);
             bundle.putParcelable("bitmap", barcode);
+            BaseApplication.getInstance().setResult(resultString);
+            BaseApplication.getInstance().setBitmap(barcode);
             resultIntent.putExtras(bundle);
             setResult(1003, resultIntent);
         }

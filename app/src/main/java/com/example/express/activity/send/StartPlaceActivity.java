@@ -24,6 +24,7 @@ import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.activity.send.adapter.PoiAdapter;
+import com.example.express.utils.Logger;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,11 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
         center_point = new LatLonPoint(app.getExpressLat(), app.getExpressLng());
         geocoderSearch = new GeocodeSearch(this);
         geocoderSearch.setOnGeocodeSearchListener(this);
+
+        address = app.getExpressAddress();
+        latitude = app.getExpressLat();
+        longitude = app.getExpressLng();
+
         initTop();
         setTitle("出发地");
         initMap(savedInstanceState);
@@ -133,10 +139,15 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
                 break;
 
             case R.id.tv_confirm:
+
                 Intent intent1 = new Intent();
                 intent1.putExtra("address", address);
+                app.setExpressAddress(address);
                 intent1.putExtra("latitude", latitude);
+                app.setExpressLat(latitude);
                 intent1.putExtra("longitude", longitude);
+                app.setExpressLng(longitude);
+                Logger.show("------->>>>>latlng", "latitude:" + latitude + ", " + "longitude:" + longitude);
                 setResult(RESULT_OK, intent1);
                 finish();
                 break;
@@ -201,6 +212,8 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
                         convertToLatLng(address.getLatLonPoint()), 15));
                 geoMarker.setPosition(convertToLatLng(address
                         .getLatLonPoint()));
+                latitude = address.getLatLonPoint().getLatitude();
+                longitude = address.getLatLonPoint().getLongitude();
 
                 //查询附件建筑物
                 doSearchQuery(address.getLatLonPoint());

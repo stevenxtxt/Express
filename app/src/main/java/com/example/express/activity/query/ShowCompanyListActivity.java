@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.bean.CompanyBean;
@@ -60,9 +61,13 @@ public class ShowCompanyListActivity extends BaseActivity {
 
     private CompanyListBean companyListBean;
 
+    private BaseApplication app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = BaseApplication.getInstance();
+
         Intent intent = getIntent();
         exjson = intent.getStringExtra("json");
         getJsonData(exjson);
@@ -197,6 +202,8 @@ public class ShowCompanyListActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.putExtra("company", pm.getName());
                 intent.putExtra("companytype", pm.getCompanytype());
+                app.setCompany(pm.getName());
+                app.setCom(pm.getCompanytype());
                 setResult(1001, intent);
                 finish();
 

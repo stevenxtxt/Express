@@ -117,6 +117,7 @@
     <orderEntry type="library" exported="" name="appcompat-v7-18.0.0" level="project" />
     <orderEntry type="library" exported="" name="zxing" level="project" />
     <orderEntry type="library" exported="" name="volley" level="project" />
+    <orderEntry type="library" exported="" name="umeng-update-v2.6.0.1" level="project" />
     <orderEntry type="library" exported="" name="MapApiServices" level="project" />
   </component>
 </module>

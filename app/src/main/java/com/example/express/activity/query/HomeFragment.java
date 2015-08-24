@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseFragment;
+import com.example.express.utils.Logger;
 
 /**
  * 项目名称：Express2015-4-24
@@ -30,12 +32,14 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private QueryContactsFragment contactsFragment;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private BaseApplication app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fm = getChildFragmentManager();
         ft = fm.beginTransaction();
+        app = BaseApplication.getInstance();
     }
 
     @Override
@@ -108,16 +112,21 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1000 && resultCode == 1001) {
             String result_value = data.getStringExtra("company");
             String com = data.getStringExtra("companytype");
-            expressFragment.setData(result_value, com, null, null);
+//            expressFragment.setData(result_value, com, null, null);
+            app.setCompany(result_value);
+            app.setCom(com);
+            Logger.show("---->>>>>>company11111", result_value);
+            Logger.show("---->>>>>>com11111", com);
         }
         if (requestCode == 1002 && resultCode == 1003) {
             String result_value = data.getStringExtra("result");
             Bitmap bitmap = (Bitmap) data.getParcelableExtra("bitmap");
-            expressFragment.setData(null, null, result_value, bitmap);
+//            expressFragment.setData(null, null, result_value, bitmap);
+            app.setResult(result_value);
+            app.setBitmap(bitmap);
         }
     }
 

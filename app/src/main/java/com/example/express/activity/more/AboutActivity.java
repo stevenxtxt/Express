@@ -82,8 +82,7 @@ public class AboutActivity extends BaseActivity {
                 break;
 
             case R.id.rl_weibo:
-                intent.setClass(this, ShowWebActivity.class);
-                intent.putExtra("flag", "weibo");
+                intent.setClass(this, ShowWeiboPicActivity.class);
                 startActivity(intent);
                 break;
 

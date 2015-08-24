@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.express.BaseApplication;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
 
@@ -19,10 +20,12 @@ public class SendExpressFragment extends BaseFragment implements View.OnClickLis
     private TextView tv_record;
     private SendNearbyFragment nearbyFragment;
     private SendRecordFragment recordFragment;
+    private BaseApplication app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = BaseApplication.getInstance();
     }
 
     @Override
@@ -103,7 +106,10 @@ public class SendExpressFragment extends BaseFragment implements View.OnClickLis
             String address = data.getStringExtra("address");
             Double latitude = data.getDoubleExtra("latitude", 0);
             Double longitude = data.getDoubleExtra("longitude", 0);
-            nearbyFragment.setData(address, latitude, longitude);
+//            nearbyFragment.setData(address, latitude, longitude);
+            app.setExpressAddress(address);
+            app.setExpressLat(latitude);
+            app.setExpressLng(longitude);
         }
     }
 }

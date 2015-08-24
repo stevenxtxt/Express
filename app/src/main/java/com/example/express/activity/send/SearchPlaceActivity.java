@@ -229,7 +229,6 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             city = app.getExpressCity();
-            code = data.getStringExtra("code");
             tv_city.setText(city);
         }
     }

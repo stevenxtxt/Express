@@ -29,9 +29,11 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.boredream.volley.BDListener;
 import com.boredream.volley.BDVolleyHttp;
+import com.example.express.BaseApplication;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
 import com.example.express.constants.CommonConstants;
+import com.example.express.utils.Logger;
 import com.example.express.utils.TestKey;
 
 public class QueryExpressFragment extends BaseFragment implements OnClickListener {
@@ -62,6 +64,10 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
     @Override
     public void onResume() {
         super.onResume();
+        company = BaseApplication.getInstance().getCompany();
+        com = BaseApplication.getInstance().getCom();
+        result = BaseApplication.getInstance().getResult();
+        bitmap = BaseApplication.getInstance().getBitmap();
         if (company != null) {
             tv_company.setText(company);
         }
@@ -245,10 +251,10 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
         return true;
     }
 
-    public void setData(String company, String com, String result, Bitmap bitmap) {
-        this.company = company;
-        this.com = com;
-        this.result = result;
-        this.bitmap = bitmap;
-    }
+//    public void setData(String company, String com, String result, Bitmap bitmap) {
+//        this.company = company;
+//        this.com = com;
+//        this.result = result;
+//        this.bitmap = bitmap;
+//    }
 }

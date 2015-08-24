@@ -80,4 +80,12 @@
         android:layout_height="match_parent"
         android:divider="#d0d0d0"
         android:dividerHeight="1dp"/>
+    <LinearLayout
+        android:id="@+id/ll_no_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <include layout="@layout/no_content_layout" />
+    </LinearLayout>
 </LinearLayout><!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/layout/send_nearby_frag.xml -->

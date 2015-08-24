@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Express</string>
+    <string name="app_name">快递网</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
@@ -30,4 +30,18 @@
     <string name="desc_shrinkup">收起</string>
     <string name="desc_spread">查看全部</string>
     <string name="no_result">对不起，没有搜索到相关数据！</string>
+
+    <string-array name="hot_cities">
+        <item>北京市</item>
+        <item>天津市</item>
+        <item>重庆市</item>
+        <item>上海市</item>
+        <item>南京市</item>
+        <item>成都市</item>
+        <item>广州市</item>
+        <item>深圳市</item>
+        <item>杭州市</item>
+        <item>武汉市</item>
+        <item>西安市</item>
+    </string-array>
 </resources>

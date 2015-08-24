@@ -73,7 +73,6 @@ public class CityActivity extends BaseActivity {
     private CityDBManager cityDBManager;
     private List<CityInfo> cityList;
     private String[] cityNames;
-    private String[] cityCodes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +94,10 @@ public class CityActivity extends BaseActivity {
         cityList = cityDBManager.queryAllinfo();
         int size = cityList.size();
         cityNames = new String[size];
-        cityCodes = new String[size];
         CityInfo ci;
         for (int i = 0; i < size; i++) {
             ci = cityList.get(i);
             cityNames[i] = ci.getName();
-            cityCodes[i] = ci.getCode();
         }
     }
 
@@ -173,7 +170,7 @@ public class CityActivity extends BaseActivity {
             }
         });
 
-        sourceDateList = filledData(cityNames, cityCodes);
+        sourceDateList = filledData(cityNames);
         // 根据a-z进行排序源数据
         Collections.sort(sourceDateList, pinyinComparator);
         adapter = new CitySortAdapter(CityActivity.this, sourceDateList);
@@ -218,12 +215,11 @@ public class CityActivity extends BaseActivity {
         super.onClick(v);
     }
 
-    private List<SortModel> filledData(String[] data, String[] codes) {
+    private List<SortModel> filledData(String[] data) {
         List<SortModel> sortList = new ArrayList<SortModel>();
         for (int i = 0; i < data.length; i++) {
             SortModel sort = new SortModel();
             sort.setName(data[i]);
-            sort.setCode(codes[i]);
             String pinyin = characterParser.getSelling(data[i]);
             String sortString = pinyin.substring(0, 1).toUpperCase();
 
@@ -269,15 +265,12 @@ public class CityActivity extends BaseActivity {
     }
 
     private void setHotCity() {
-        SortModel sm1 = new SortModel();
-        sm1.setName("北京市");
-        sm1.setCode("110100");
-        hotCityModel.add(sm1);
-
-        SortModel sm2 = new SortModel();
-        sm2.setName("南京市");
-        sm2.setCode("320100");
-        hotCityModel.add(sm2);
+        String[] hotcities = getResources().getStringArray(R.array.hot_cities);
+        for (int i = 0; i < hotcities.length; i++) {
+            SortModel sm = new SortModel();
+            sm.setName(hotcities[i]);
+            hotCityModel.add(sm);
+        }
     }
 
     class HotCityAdapter extends ArrayListAdapter<SortModel> {

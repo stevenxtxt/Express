@@ -5,10 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.bean.CourierBean;
 import com.example.express.utils.ArrayListAdapter;
+import com.example.express.utils.ImageLoaderUtil;
+import com.example.express.view.RoundImageView;
+import com.example.express.view.ViewHolder;
 
 /**
  * 项目名称：Express2015-4-24
@@ -22,10 +27,12 @@ import com.example.express.utils.ArrayListAdapter;
 public class SendCourierAdapter extends ArrayListAdapter<CourierBean> {
 
     private Activity context;
+    private BaseApplication app;
 
     public SendCourierAdapter(Activity context) {
         super(context);
         this.context = context;
+        app = BaseApplication.getInstance();
     }
 
     public SendCourierAdapter(Activity context, ListView listView) {
@@ -33,15 +40,20 @@ public class SendCourierAdapter extends ArrayListAdapter<CourierBean> {
     }
 
     @Override
-    public int getCount() {
-        return 10;
-    }
-
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.send_courier_item, null);
         }
+        CourierBean courierBean = getItem(position);
+        RoundImageView riv_courier_icon = ViewHolder.get(convertView, R.id.riv_courier_icon);
+        TextView tv_courier_name = ViewHolder.get(convertView, R.id.tv_courier_name);
+        TextView tv_courier_company = ViewHolder.get(convertView, R.id.tv_courier_company);
+        TextView tv_courier_scope = ViewHolder.get(convertView, R.id.tv_courier_scope);
+
+        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), riv_courier_icon);
+        tv_courier_name.setText(courierBean.getName());
+        tv_courier_company.setText(courierBean.getCompany());
+        tv_courier_scope.setText(app.getExpressAddress() + "...");
         return convertView;
     }
 }

@@ -14,6 +14,7 @@ import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
+import com.example.express.utils.MD5Util;
 import com.example.express.utils.StringUtils;
 
 import org.json.JSONException;
@@ -38,11 +39,14 @@ public class ForgetPasswordTwoActivity extends BaseActivity {
 
     private String password;
     private String passwordConfirm;
+    private String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password_two);
+
+        phone = getIntent().getStringExtra("phone");
 
         initTop();
         setTitle("忘记密码");
@@ -85,9 +89,8 @@ public class ForgetPasswordTwoActivity extends BaseActivity {
     private void forgetPassword() {
         showCustomDialog("正在重置密码...");
         Map<String, Object> params = new HashMap<String, Object>();
-        String userId = BaseApplication.getInstance().getLoginUser().getUserId();
-        params.put("userId", userId);
-        params.put("newpassword", password);
+        params.put("phone", phone);
+        params.put("newpassword", MD5Util.md5(password));
         BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.FORGET_PASSWORD + CommonConstants.HTML,
                 params, new BDListener<String>() {
                     @Override

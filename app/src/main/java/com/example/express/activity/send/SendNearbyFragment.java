@@ -24,6 +24,7 @@ import com.example.express.activity.main.MainTabActivity;
 import com.example.express.activity.send.adapter.SendCourierAdapter;
 import com.example.express.bean.CourierBean;
 import com.example.express.bean.CouriorDetailBean;
+import com.example.express.bean.LoginUser;
 import com.example.express.bean.ScopeBean;
 import com.example.express.constants.CommonConstants;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -34,6 +35,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 项目名称：Express2015-4-24
@@ -55,6 +58,7 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
     private LinearLayout ll_destination;
     private TextView tv_destination;
     private PullToRefreshListView ptrlv_courier;
+    private LinearLayout ll_no_content;
     private SendCourierAdapter adapter;
     private ArrayList<CourierBean> courierList = new ArrayList<CourierBean>();
 
@@ -62,19 +66,33 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
     private double latitude;
     private double longitude;
 
-    private String userId = "67";//用户id，如果未登录则默认为字母a
-    private String couriorId = "16291";
+    private String userId;//用户id，如果未登录则默认为字母a
+    private LoginUser loginUser;
+    private BaseApplication app;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = (MainTabActivity) getActivity();
+        app = BaseApplication.getInstance();
+        loginUser = app.getLoginUser();
+        if (loginUser != null) {
+            userId = loginUser.getUserId();
+        } else {
+            userId = "a";
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        address = app.getExpressAddress();
+        latitude = app.getExpressLat();
+        longitude = app.getExpressLng();
         tv_start_place.setText(address);
+        if (ptrlv_courier.getVisibility() == View.GONE) {
+            queryNearbyCourier(true);
+        }
     }
 
     @Override
@@ -82,13 +100,13 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
         view = inflater.inflate(R.layout.send_nearby_frag, container, false);
         initViews();
         adapter = new SendCourierAdapter(context);
-        adapter.setList(courierList);
-        ptrlv_courier.setAdapter(adapter);
+        queryNearbyCourier(true);
 
         ptrlv_courier.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                queryCouriorDetail();
+                String courierId = courierList.get(i - 1).getId();
+                queryCouriorDetail(courierId);
             }
         });
 
@@ -102,6 +120,7 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
         ll_destination.setVisibility(View.GONE);
         tv_destination = (TextView) view.findViewById(R.id.tv_destination);
         ptrlv_courier = (PullToRefreshListView) view.findViewById(R.id.ptrlv_courier);
+        ll_no_content = (LinearLayout) view.findViewById(R.id.ll_no_content);
 
         ptrlv_courier.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         ptrlv_courier.setOnRefreshListener(this);
@@ -133,12 +152,13 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ptrlv_courier.onRefreshComplete();
-            }
-        }, 2000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                ptrlv_courier.onRefreshComplete();
+//            }
+//        }, 2000);
+        queryNearbyCourier(false);
     }
 
     public void setData(String address, double latitude, double longitude) {
@@ -148,17 +168,100 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
     }
 
     /**
+     * 查询附近的快递员
+     * @param isShowing 是否展示进度框true展示false不展示
+     */
+    private void queryNearbyCourier(final boolean isShowing) {
+        if (isShowing) {
+            showCustomDialog("正在查询中...");
+        }
+        Map<String, Object> params = new HashMap<String, Object>();
+        latitude = BaseApplication.getInstance().getExpressLat();
+        longitude = BaseApplication.getInstance().getExpressLng();
+        String lat = String.valueOf(latitude);
+        String lng = String.valueOf(longitude);
+        params.put("latitude", lat);
+        params.put("longitude", lng);
+        BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.QUERY_NEARBY_COURIER + CommonConstants.HTML,
+                params, new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        ptrlv_courier.setVisibility(View.VISIBLE);
+                        ll_no_content.setVisibility(View.GONE);
+                        if (isShowing) {
+                            dismissCustomDialog();
+                        } else {
+                            ptrlv_courier.onRefreshComplete();
+                        }
+
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optBoolean("result")) {
+                                JSONArray arr = obj.optJSONArray("data");
+                                if (arr != null && arr.length() > 0) {
+                                    if (courierList.size() > 0) {
+                                        courierList.clear();
+                                    }
+                                    ptrlv_courier.setVisibility(View.VISIBLE);
+                                    ll_no_content.setVisibility(View.GONE);
+                                    for (int i = 0; i < arr.length(); i++) {
+                                        CourierBean bean = new CourierBean();
+                                        JSONObject arrObj = arr.optJSONObject(i);
+                                        bean.setName(arrObj.optString("name"));
+                                        bean.setPhone(arrObj.optString("phone"));
+                                        bean.setId(arrObj.optString("id"));
+                                        bean.setCompany(arrObj.optString("ename"));
+                                        bean.setIcon(CommonConstants.URLConstant + arrObj.optString("smartico"));
+                                        courierList.add(bean);
+                                    }
+                                    adapter.setList(courierList);
+                                    ptrlv_courier.setAdapter(adapter);
+                                } else {
+                                    showToast("未查询到附近快递员");
+                                    ptrlv_courier.setVisibility(View.GONE);
+                                    ll_no_content.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                showToast("未查询到附近快递员");
+                                ptrlv_courier.setVisibility(View.GONE);
+                                ll_no_content.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showToast("查询失败");
+                            ptrlv_courier.setVisibility(View.GONE);
+                            ll_no_content.setVisibility(View.VISIBLE);
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        if (isShowing) {
+                            dismissCustomDialog();
+                        } else {
+                            ptrlv_courier.onRefreshComplete();
+                        }
+                        ptrlv_courier.setVisibility(View.GONE);
+                        ll_no_content.setVisibility(View.VISIBLE);
+                        showToast("网络异常，查询失败");
+                    }
+                });
+    }
+
+    /**
      * 查询快递员详情
      */
-    private void queryCouriorDetail() {
+    private void queryCouriorDetail(final String courierId) {
         showCustomDialog("正在获取快递员详情...");
         BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_COURIOR_DETAIL +
-                        couriorId + "-" + userId + CommonConstants.HTML,
+                        courierId + "-" + userId + CommonConstants.HTML,
                 new BDListener<String>() {
                     @Override
                     public void onResponse(String response) {
                         dismissCustomDialog();
                         Intent intent = new Intent(context, CourierDetailActivity.class);
+                        intent.putExtra("courierId", courierId);
                         intent.putExtra("json", response);
                         startActivity(intent);
 

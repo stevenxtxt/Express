@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string-array name="hot_cities">
+        <item>北京市</item>
+        <item>天津市</item>
+        <item>重庆市</item>
+        <item>上海市</item>
+        <item>南京市</item>
+        <item>成都市</item>
+        <item>广州市</item>
+        <item>深圳市</item>
+        <item>杭州市</item>
+        <item>武汉市</item>
+        <item>西安市</item>
+    </string-array>
     <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/18.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="actionBarDivider"/>
@@ -84,6 +99,11 @@
     <color name="orange">#fe6b01</color>
     <color name="possible_result_points">#c0ffff00</color>
     <color name="result_view">#b0000000</color>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/tb_munion_strings.xml -->
+    <eat-comment/>
+    <color name="tb_munion_item_force">#e3e3e3</color>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
     <color name="viewfinder_mask">#60000000</color>
     <color name="white">#ffffff</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr format="dimension" name="itemPadding"/></declare-styleable>
@@ -165,6 +185,23 @@
     <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/18.0.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="abc_max_action_buttons">2</integer>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/umeng_update_string.xml -->
+    <eat-comment/>
+    <string name="UMAppUpdate">应用更新</string>
+    <string name="UMBreak_Network">未联网</string>
+    <string name="UMDialog_InstallAPK">最新版本已下载，是否安装？</string>
+    <string name="UMGprsCondition">（提示：非WIFI环境）</string>
+    <string name="UMIgnore">忽略该版</string>
+    <string name="UMNewVersion">最新版本: </string>
+    <string name="UMNotNow">以后再说</string>
+    <string name="UMTargetSize">新版本大小:</string>
+    <string name="UMToast_IsUpdating">正在更新中....</string>
+    <string name="UMUpdateContent">更新内容</string>
+    <string name="UMUpdateNow">立即更新</string>
+    <string name="UMUpdateSize">仅需要下载:</string>
+    <string name="UMUpdateTitle">发现新版本</string>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/18.0.0/res/values/values.xml -->
+    <eat-comment/>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_up_description">Navigate up</string>
     <string name="abc_action_menu_overflow_description">More options</string>
@@ -191,7 +228,7 @@
         \t\t\t\t未来，追影网络将抓住当前快递业难得的发展机遇，开拓创新，锐意进取，大力推进全网信息化建设，秉承"投资于人，投资于技术"的企业文化，
         与行业精英共同为中国快递事业的飞速发展贡献力量!</string>
     <string name="action_settings">Settings</string>
-    <string name="app_name">Express</string>
+    <string name="app_name">快递网</string>
     <string name="desc_shrinkup">收起</string>
     <string name="desc_spread">查看全部</string>
     <string name="hello_world">Hello world!</string>
@@ -206,6 +243,26 @@
     <string name="pull_to_refresh_release_label" translatable="false">松开刷新\.\.\.</string>
     <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
     <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/tb_munion_strings.xml -->
+    <eat-comment/>
+    <string name="tb_munion_tip_download_prefix">正在下载:</string>
+    <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/umeng_common_strings.xml -->
+    <eat-comment/>
+    <string name="umeng_common_action_cancel">取消</string>
+    <string name="umeng_common_action_continue">继续</string>
+    <string name="umeng_common_action_info_exist">正在下载中.</string>
+    <string name="umeng_common_action_pause">暂停</string>
+    <string name="umeng_common_download_failed">下载失败</string>
+    <string name="umeng_common_download_finish">下载完成，请点击安装</string>
+    <string name="umeng_common_download_notification_prefix">正在下载: </string>
+    <string name="umeng_common_icon">icon</string>
+    <string name="umeng_common_info_interrupt">下载出错啦，请检查网络后继续。</string>
+    <string name="umeng_common_network_break_alert">请连接网络后再尝试！</string>
+    <string name="umeng_common_patch_finish">更新完成，请点击安装</string>
+    <string name="umeng_common_pause_notification_prefix">暂停: </string>
+    <string name="umeng_common_silent_download_finish">新版本已经准备好，请点击安装</string>
+    <string name="umeng_common_start_download_notification">正在下载应用</string>
+    <string name="umeng_common_start_patch_notification">正在更新安装包</string>
     <!-- From: file:/C:/Users/xutework/AndroidStudioProjects/Express2015-4-24/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light"/>

@@ -10,10 +10,19 @@ package com.example.express.bean;
  * 修改备注：
  */
 public class CourierBean extends BaseBean {
+    private String id;
     private String name;
     private String icon;
     private String phone;
     private String company;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

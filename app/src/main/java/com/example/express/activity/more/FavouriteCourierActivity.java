@@ -54,7 +54,7 @@ public class FavouriteCourierActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favourite_courier);
         initTop();
-        setTitle("收藏的快递员");
+        setTitle("关注的快递员");
 
         userId = BaseApplication.getInstance().getLoginUser().getUserId();
 

@@ -232,6 +232,7 @@ public class RegisterActivity extends BaseActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             if (obj.optBoolean("result")) {
+                                showToast("注册成功，请登录");
                                 launch(LoginActivity.class);
                                 finish();
                             } else {

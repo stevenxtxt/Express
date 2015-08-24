@@ -65,8 +65,8 @@ public class CourierDetailActivity extends BaseActivity {
     private TextView tv_comment_content;
     private StarBarView stv_comment_star;
 
-    private String userId = "67";//用户id，如果未登录则默认为字母a
-    private String couriorId = "16291";
+    private String userId;//用户id，如果未登录则默认为字母a
+    private String couriorId;
     private LoginUser loginUser;
     private CouriorDetailBean couriorDetailBean;
     private ArrayList<ScopeBean> delivery = new ArrayList<ScopeBean>();
@@ -89,13 +89,13 @@ public class CourierDetailActivity extends BaseActivity {
         setContentView(R.layout.courier_detail);
         initTop();
 
-//        couriorId = getIntent().getStringExtra("couriorId");
-//        loginUser = BaseApplication.getInstance().getLoginUser();
-//        if (loginUser != null) {
-//            userId = loginUser.getUserId();
-//        }
+        loginUser = BaseApplication.getInstance().getLoginUser();
+        if (loginUser != null) {
+            userId = loginUser.getUserId();
+        }
 
         String response = getIntent().getStringExtra("json");
+        couriorId = getIntent().getStringExtra("courierId");
         getJsonData(response);
 
         initViews();
@@ -137,9 +137,9 @@ public class CourierDetailActivity extends BaseActivity {
                     showToast("您尚未登录，登录后即可关注快递员");
                     return;
                 }
-                if (flag.equals(FOLLOW)) {
+                if (couriorDetailBean.getIsFavourite().equals(FOLLOW)) {
                     followOrUnfollow(UNFOLLOW);
-                } else if (flag.equals(UNFOLLOW)) {
+                } else if (couriorDetailBean.getIsFavourite().equals(UNFOLLOW)) {
                     followOrUnfollow(FOLLOW);
                 }
                 break;
@@ -165,7 +165,7 @@ public class CourierDetailActivity extends BaseActivity {
     }
 
     private void showData() {
-        ImageLoaderUtil.getInstance().displayImage(couriorDetailBean.getCourierIcon(), riv_user_icon);
+        ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + couriorDetailBean.getCourierIcon(), riv_user_icon);
         tv_name.setText(couriorDetailBean.getName());
         tv_company.setText(couriorDetailBean.getEname());
         tv_service_time.setText(couriorDetailBean.getServertime());
@@ -212,6 +212,10 @@ public class CourierDetailActivity extends BaseActivity {
         showCustomDialog("正在处理，请稍后...");
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("courierId", couriorId);
+        params.put("courierName", couriorDetailBean.getName());
+        params.put("courierIcon", couriorDetailBean.getCourierIcon());
+        params.put("phone", couriorDetailBean.getPhone());
+        params.put("courierCompany", couriorDetailBean.getEname());
         params.put("userId", userId);
         params.put("isFavourite", isFavourite);
         BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.FOLLOW_OR_UNFOlLOW + CommonConstants.HTML,
@@ -225,8 +229,10 @@ public class CourierDetailActivity extends BaseActivity {
                                 showToast("处理成功");
                                 if (isFavourite.equals(FOLLOW)) {
                                     tv_follow_flag.setText("取消关注");
+                                    couriorDetailBean.setIsFavourite(FOLLOW);
                                 } else if (isFavourite.equals(UNFOLLOW)) {
                                     tv_follow_flag.setText("关注");
+                                    couriorDetailBean.setIsFavourite(UNFOLLOW);
                                 }
                             } else {
                                 showToast(obj.optString("reason"));
@@ -293,7 +299,7 @@ public class CourierDetailActivity extends BaseActivity {
                 couriorDetailBean.setServertime(obj.optString("servertime"));
                 couriorDetailBean.setEname(obj.optString("ename"));
                 couriorDetailBean.setIsFavourite(obj.optString("isFavourite"));
-                couriorDetailBean.setCourierIcon(CommonConstants.URLConstant + obj.getString("courierIcon"));
+                couriorDetailBean.setCourierIcon(obj.getString("courierIcon"));
                 JSONArray arr = obj.optJSONArray("delivery");
                 if (arr != null && arr.length() > 0) {
                     for (int i = 0; i < arr.length(); i++) {

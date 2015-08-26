@@ -59,10 +59,12 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener {
             tv_username.setText(loginUser.getUsername());
             tv_login_status.setVisibility(View.GONE);
             rl_username.setClickable(true);
+            riv_user_photo.setBackgroundResource(R.drawable.user_login_icon);
         } else {
             tv_username.setText("个人信息");
             tv_login_status.setVisibility(View.VISIBLE);
             rl_username.setClickable(false);
+            riv_user_photo.setBackgroundResource(R.drawable.user_logout_icon);
         }
     }
 

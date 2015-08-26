@@ -21,15 +21,24 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+import com.boredream.volley.BDListener;
+import com.boredream.volley.BDVolley;
+import com.boredream.volley.BDVolleyHttp;
 import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
+import com.example.express.constants.CommonConstants;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.qrcode.camera.CameraManager;
 import com.qrcode.decoding.CaptureActivityHandler;
 import com.qrcode.decoding.InactivityTimer;
 import com.qrcode.view.ViewfinderView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Initial the camera
@@ -48,6 +57,9 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
     private boolean playBeep;
     private static final float BEEP_VOLUME = 0.10f;
     private boolean vibrate;
+
+    private String json_result;
+    private String com;
 
     /**
      * Called when the activity is first created.
@@ -119,17 +131,18 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
         String resultString = result.getText();
         if (resultString.equals("")) {
             Toast.makeText(MipcaActivityCapture.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+            finish();
         } else {
-            Intent resultIntent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putString("result", resultString);
-            bundle.putParcelable("bitmap", barcode);
-            BaseApplication.getInstance().setResult(resultString);
-            BaseApplication.getInstance().setBitmap(barcode);
-            resultIntent.putExtras(bundle);
-            setResult(1003, resultIntent);
+//            Intent resultIntent = new Intent();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("result", resultString);
+//            bundle.putParcelable("bitmap", barcode);
+//            BaseApplication.getInstance().setResult(resultString);
+//            BaseApplication.getInstance().setBitmap(barcode);
+//            resultIntent.putExtras(bundle);
+//            setResult(1003, resultIntent);
+            queryResult(resultString);
         }
-        MipcaActivityCapture.this.finish();
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
@@ -224,4 +237,77 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
         }
     };
 
+    /**
+     * 根据运单号直接查询结果
+     * @param num
+     */
+    private void queryResult(final String num) {
+        showCustomDialog("正在查询中...");
+        BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.MATCH_COMPANY
+                        + num + CommonConstants.HTML,
+                new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            String data = obj.optString("data");
+                            if (isJarray(data)) {
+                                JSONArray Jarry = new JSONArray(data);
+                                JSONObject json_data = null;
+                                json_data = Jarry.getJSONObject(0);
+                                json_result = json_data.getString("name");
+                                com = json_data.getString("exname");
+                            } else {
+                                JSONObject json = new JSONObject(data);
+                                JSONObject results = json.getJSONObject("0");
+                                String name = results.getString("name");
+                                com = results.getString("exname");
+                            }
+                            BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_EXPRESS_RESULT
+                                            + num + "-" + com + CommonConstants.HTML,
+                                    new BDListener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            dismissCustomDialog();
+                                            Intent intent = new Intent();
+                                            intent.putExtra("json", response);
+                                            intent.setClass(MipcaActivityCapture.this, ShowResultActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+
+                                        @Override
+                                        public void onErrorResponse(VolleyError volleyError) {
+                                            dismissCustomDialog();
+                                            Toast.makeText(MipcaActivityCapture.this, "查询失败", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
+                                    });
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(MipcaActivityCapture.this, "查询失败", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+    }
+
+    public static boolean isJarray(String str) {
+        JSONArray Jarray;
+        //JSONObject json_data = null;
+        try {
+            Jarray = new JSONArray(str);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            return false;
+
+        }
+        return true;
+    }
 }

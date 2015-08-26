@@ -1,8 +1,14 @@
 package com.example.express.activity.more;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,14 +50,26 @@ public class ChangePhoneOneActivity extends BaseActivity {
     private static final long MILLIS_IN_FUTURE = 60000; // 总额时间数
     private static final long COUNT_DOWN_INTERVAL = 1000; // 计数间隔时间
 
+    private SmsContent content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_phone);
+
+        content = new SmsContent(new Handler());
+        this.getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, content);
+
         initTop();
         setTitle("修改手机号");
         initViews();
         timer = new TimeCount(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.getContentResolver().unregisterContentObserver(content);
     }
 
     private void initViews() {
@@ -74,6 +92,10 @@ public class ChangePhoneOneActivity extends BaseActivity {
                     showToast("请输入手机号");
                     return;
                 }
+                if (!StringUtils.checkString(phone, "^1[3-8]+\\d{9}$")) {
+                    showToast("请输入正确的手机号");
+                    return;
+                }
                 btn_send_code.setClickable(false);
                 timer.start();
                 getVerifyCode();
@@ -84,6 +106,10 @@ public class ChangePhoneOneActivity extends BaseActivity {
                 code = et_code.getText().toString().trim();
                 if (StringUtils.isEmpty(phone)) {
                     showToast("请输入手机号");
+                    return;
+                }
+                if (!StringUtils.checkString(phone, "^1[3-8]+\\d{9}$")) {
+                    showToast("请输入正确的手机号");
                     return;
                 }
                 if (StringUtils.isEmpty(code)) {
@@ -206,6 +232,42 @@ public class ChangePhoneOneActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             setResult(RESULT_OK);
             finish();
+        }
+    }
+
+    /**
+     * 监听短信数据库
+     */
+    class SmsContent extends ContentObserver {
+
+        private Cursor cursor = null;
+
+        public SmsContent(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+
+            super.onChange(selfChange);
+            //读取收件箱中指定号码的短信
+            cursor = ChangePhoneOneActivity.this.managedQuery(Uri.parse("content://sms/inbox"), new String[]{"_id", "address", "read", "body"},
+                    " address=? and read=?", new String[]{CommonConstants.CODE_PHONE, "0"}, "_id desc");
+            if (cursor != null && cursor.getCount() > 0) {
+                ContentValues values = new ContentValues();
+                values.put("read", "1");        //修改短信为已读模式
+                cursor.moveToNext();
+                int smsbodyColumn = cursor.getColumnIndex("body");
+                String smsBody = cursor.getString(smsbodyColumn);
+
+                et_code.setText(StringUtils.getDynamicPassword(smsBody));
+
+            }
+
+            //在用managedQuery的时候，不能主动调用close()方法， 否则在Android 4.0+的系统上， 会发生崩溃
+            if(Build.VERSION.SDK_INT < 14) {
+                cursor.close();
+            }
         }
     }
 }

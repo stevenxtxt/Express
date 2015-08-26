@@ -4,7 +4,7 @@
     <string name="app_name">快递网</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <string name="scan_text">将条形码放入框内, 即可自动扫描</string>
 
     <string name="pull_to_refresh_from_bottom_pull_label">上拉可以刷新</string>
     <string name="pull_to_refresh_from_bottom_release_label">松开获取更多</string>
@@ -14,16 +14,24 @@
     <string name="pull_to_refresh_refreshing_label" translatable="false">正在加载中…</string>
     <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
 
-    <string name="about_us_content">\t\t\t\t快递网是追影网络旗下的的一个快递平台，提供一站式的快递查询服务，
-        涵盖近百家常用快递公司，支持手机查快递。并为B2C等网络应用提供免费的快递查询接口(API)，
-        帮助企业、网商提升物流环节的客户满意度。也帮助快递公司网点提高运营效率、减少客服成本、优化取件环节。\n\n
-        \t\t\t\t快递网改善了电话叫快递的多种弊病，比如：找不到快递电话号码、电话无法打通、无法确定取件时间、信息不对、手写快递信息等多个问题。
-        目前用户可以通过快递网的微信和网站下单叫快递，通过快递网叫快递可全程跟踪快递状态。\n\n
-        \t\t\t\t南京追影网络科技有限公司(简称"追影网络")，是一家专业从事互联网商务应用和增值服务的高新技术服务型企业。
-        公司以高科技为起点、以互联网增值服务为核心、以强大的销售服务队伍为支撑，与国内外各大新闻门户网站结成紧密的合作关系，
-        是南京金湖，规模最大的网络营销服务公司之一、公司致力于为政府、企事业单位上网提供高技术含量的网络应用解决方案及增值服务。\n\n
-        \t\t\t\t未来，追影网络将抓住当前快递业难得的发展机遇，开拓创新，锐意进取，大力推进全网信息化建设，秉承"投资于人，投资于技术"的企业文化，
-        与行业精英共同为中国快递事业的飞速发展贡献力量!</string>
+    <string name="about_us_content">
+        南京追影网络科技有限公司(简称"追影网络")，是一家专注于做快递行业信息化的高新技术服务型互联网企业。
+        追影网络旗下快递网（www.kuaidi.com），集成了国内外300多家快递、物流公司的快递查询、网点查询、价格查询、电话查询、网上寄快递等服务，
+        成为国内快递平台中的佼佼者，自2014年7月上线以来受到广大用户、各大电子商务网站的一致认可与好评。目前，快递网与百度、奇虎360、金山、
+        搜狗、2345、UC、遨游等互联网公司保持良好合作，并与顺丰、四通一达等国内外快递公司建立互利共赢的商务合作，为国内大型电商网站提供增值服务，
+        随着互联网行业、电子商务和快递行业的飞速发展，公司的发展日新月异。\n\n
+        我们的使命是用完美主义的极客精神，通过互联网模式简化中间环节，改善电话叫快递的多种弊端，为多方用户打造更直接更便利更具心意的
+        实用型快递工具——通过PC端网站、移动手机站（微信平台）、手机APP等全网平台为用户查快递、寄快递提供一站式信息化解决方案；
+        为B2C等网络应用提供免费的快递查询接口(API)，帮助企业、网商提升物流环节的客户满意度；帮助快递公司网点提高运营效率、减少客服成本、
+        优化取件环节。\n\n
+        我们的团队——年轻，对时代敏感。快递网没有复杂的企业人际关系，不同性格不同专业，同样坚定同样执念。在这里，没有曲高和寡，只有知己相伴。
+        我们用心只做好一件事，最好用的快递网。如果你对热爱的事业精益求精，加入我们吧，尽情享受与运营、技术、产品等各领域人才共同创业成长的快意！\n\n
+        联系我们\n\n
+        客服热线：025-68022102(服务时间：早9点至晚18点)\n\n
+        客服邮箱：liugang@akjunshi.com\n\n
+        用户交流群：399371544\n\n
+        总部地址：南京市建邺区江东中路303号奥体名座c座16楼\n\n
+    </string>
 
     <string name="map_api_key">2cbf441d2169c08af0c086e2e12a3977</string>
     <string name="map_api_key_debug">0a1e7d335799ae614dcc089193870c5f</string>
@@ -43,5 +51,42 @@
         <item>杭州市</item>
         <item>武汉市</item>
         <item>西安市</item>
+    </string-array>
+
+    <string-array name="hot_companies">
+        <item>中通快递</item>
+        <item>顺丰速运</item>
+        <item>申通快递</item>
+        <item>圆通速递</item>
+        <item>百世汇通快递</item>
+        <item>韵达快运</item>
+        <item>邮政EMS速递</item>
+        <item>全峰快递</item>
+        <item>天天快递</item>
+        <item>宅急送</item>
+    </string-array>
+    <string-array name="hot_coms">
+        <item>zhongtong</item>
+        <item>shunfeng</item>
+        <item>shentong</item>
+        <item>yuantong</item>
+        <item>huitongkuaidi</item>
+        <item>yunda</item>
+        <item>ems</item>
+        <item>quanfengkuaidi</item>
+        <item>tinatian</item>
+        <item>zhaijisong</item>
+    </string-array>
+    <string-array name="hot_phones">
+        <item>400-827-0270</item>
+        <item>4008-111-111</item>
+        <item>95543</item>
+        <item>021-69777888</item>
+        <item>400-956-5656</item>
+        <item>400-821-6789</item>
+        <item>11183</item>
+        <item>400-100-0001</item>
+        <item>400-188-8888</item>
+        <item>400-6789-000</item>
     </string-array>
 </resources>

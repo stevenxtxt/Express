@@ -49,18 +49,30 @@ public class WelcomeActivity extends BaseActivity {
         username = Preference.getString("username");
         password = Preference.getString("password");
 
-        //用户名密码为空，表示从未登录
-        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+        //判断是否有网络
+        if (StringUtils.isNetworkAvailable(this)) {
+            //用户名密码为空，表示从未登录
+            if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        jumpToActivity();
+                    }
+                }, LOAD_DELAY_TIME);
+
+            } else {
+                autoLogin();
+            }
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     jumpToActivity();
+                    showToast("没有可用的网络连接，请打开蜂窝数据或者wifi");
                 }
             }, LOAD_DELAY_TIME);
-
-        } else {
-            autoLogin();
         }
+
 
     }
 

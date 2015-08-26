@@ -23,6 +23,7 @@
             android:hint="快速搜索快递公司"
             android:textColorHint="@color/white"
             android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:singleLine="true"
             android:textSize="15sp"
             android:background="@drawable/btn_round_bg1"

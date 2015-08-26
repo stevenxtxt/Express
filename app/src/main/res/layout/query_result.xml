@@ -66,8 +66,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:visibility="gone">
-        <include layout="@layout/no_content_layout" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/no_content_icon"
+            android:layout_marginTop="60dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="抱歉，您查询的快递单号暂时没有查询结果！"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textColor="#666666"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请核对快递公司名称和快递单号是否正确？"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textColor="#666666"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="或提供快递公司信息继续查询"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textColor="#666666"/>
     </LinearLayout>
 
 

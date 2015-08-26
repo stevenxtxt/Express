@@ -82,9 +82,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     ft.add(R.id.fl_content, expressFragment);
                 }
                 ft.show(expressFragment);
-                tv_query.setBackgroundResource(R.drawable.top_left);
+                tv_query.setBackgroundResource(R.drawable.top_left_short);
                 tv_query.setTextColor(activity.getResources().getColor(R.color.blue_top));
-                tv_contacts.setBackgroundResource(R.drawable.top_right_press);
+                tv_contacts.setBackgroundResource(R.drawable.top_right_press_short);
                 tv_contacts.setTextColor(activity.getResources().getColor(R.color.white));
                 break;
 
@@ -97,9 +97,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                     ft.add(R.id.fl_content, contactsFragment);
                 }
                 ft.show(contactsFragment);
-                tv_query.setBackgroundResource(R.drawable.top_left_press);
+                tv_query.setBackgroundResource(R.drawable.top_left_press_short);
                 tv_query.setTextColor(activity.getResources().getColor(R.color.white));
-                tv_contacts.setBackgroundResource(R.drawable.top_right);
+                tv_contacts.setBackgroundResource(R.drawable.top_right_short);
                 tv_contacts.setTextColor(activity.getResources().getColor(R.color.blue_top));
                 break;
 

@@ -76,12 +76,15 @@
                     android:text="关注微博"
                     android:drawableLeft="@drawable/xinlang"
                     android:drawablePadding="5dp"/>
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/zuo" />
+                    android:drawableRight="@drawable/zuo"
+                    android:text="\@南京追影网络科技有限公司"
+                    android:drawablePadding="10dp"
+                    android:textSize="12sp"/>
             </RelativeLayout>
 
             <View
@@ -102,12 +105,15 @@
                     android:text="关注微信"
                     android:drawableLeft="@drawable/weixin"
                     android:drawablePadding="5dp"/>
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/zuo" />
+                    android:drawableRight="@drawable/zuo"
+                    android:text="kuaidicom"
+                    android:drawablePadding="10dp"
+                    android:textSize="12sp"/>
             </RelativeLayout>
 
             <View

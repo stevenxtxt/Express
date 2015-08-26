@@ -34,6 +34,7 @@ import com.example.express.activity.BaseFragment;
 import com.example.express.R;
 import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
+import com.example.express.utils.StringUtils;
 import com.example.express.utils.TestKey;
 
 public class QueryExpressFragment extends BaseFragment implements OnClickListener {
@@ -133,7 +134,7 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                                         json_data = Jarry.getJSONObject(0);
                                         json_result = json_data.getString("name");
                                         com = json_data.getString("exname");
-                                        tv_company.setText(result);
+                                        tv_company.setText(json_result);
                                     } else {
                                         JSONObject json = new JSONObject(data);
                                         JSONObject results = json.getJSONObject("0");
@@ -141,6 +142,7 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                                         com = results.getString("exname");
                                         tv_company.setText(name);
                                     }
+                                    BaseApplication.getInstance().setCom(com);
                                 } catch (JSONException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -169,7 +171,7 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
             case R.id.iv_scan:
                 intent = new Intent();
                 intent.setClass(getActivity(), MipcaActivityCapture.class);
-                getParentFragment().startActivityForResult(intent, 1002);
+                startActivity(intent);
                 break;
 
             case R.id.btn_express_query:
@@ -179,6 +181,11 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                     return;
                 }
                 if (com == null || com.equals("")) {
+                    Toast.makeText(getActivity(), "请选择快递公司", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String comText = tv_company.getText().toString().trim();
+                if (StringUtils.isEmpty(comText) || comText.equals("请选择快递公司")) {
                     Toast.makeText(getActivity(), "请选择快递公司", Toast.LENGTH_SHORT).show();
                     return;
                 }

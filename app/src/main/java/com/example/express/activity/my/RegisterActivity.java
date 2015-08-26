@@ -1,8 +1,14 @@
 package com.example.express.activity.my;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.ContentObserver;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,16 +59,27 @@ public class RegisterActivity extends BaseActivity {
     private String password;
     private String passwordConfirm;
 
+    private SmsContent content;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+
+        content = new SmsContent(new Handler());
+        this.getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, content);
         
         initTop();
         setTitle("注册");
         initViews();
 
         timer = new TimeCount(MILLIS_IN_FUTURE, COUNT_DOWN_INTERVAL);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.getContentResolver().unregisterContentObserver(content);
     }
 
     private void initViews() {
@@ -77,7 +94,7 @@ public class RegisterActivity extends BaseActivity {
         tv_protocol = (TextView) findViewById(R.id.tv_protocol);
 
         btn_top_right.setVisibility(View.VISIBLE);
-        btn_top_right.setBackgroundResource(R.drawable.zhuyi);
+        btn_top_right.setBackgroundResource(R.drawable.query_info_ico);
 
         btn_send_code.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
@@ -95,9 +112,13 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入手机号");
                     return;
                 }
+                if (!StringUtils.checkString(phone, "^1[3-8]+\\d{9}$")) {
+                    showToast("请输入正确的手机号");
+                    return;
+                }
                 btn_send_code.setClickable(false);
                 timer.start();
-                getVerifyCode();
+                verifyPhone();
                 break;
 
             case R.id.btn_confirm:
@@ -110,8 +131,16 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入用户名");
                     return;
                 }
+                if (!StringUtils.checkString(username, "[0-9a-zA-Z]{6,12}")) {
+                    showToast("用户名由6-12位的字母或者数字组成");
+                    return;
+                }
                 if (StringUtils.isEmpty(phone)) {
                     showToast("请输入手机号");
+                    return;
+                }
+                if (!StringUtils.checkString(phone, "^1[3-8]+\\d{9}$")) {
+                    showToast("请输入正确的手机号");
                     return;
                 }
                 if (StringUtils.isEmpty(code)) {
@@ -215,6 +244,37 @@ public class RegisterActivity extends BaseActivity {
     }
 
     /**
+     * 验证手机号是否被注册
+     */
+    private void verifyPhone() {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("phone", phone);
+        BDVolleyHttp.postString(CommonConstants.URLConstant + CommonConstants.VERIFY_PHONE_REGISTER + CommonConstants.HTML,
+                params, new BDListener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            if (obj.optBoolean("result")) {
+                                getVerifyCode();
+                            } else {
+                                showToast("该手机号已被注册");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            showToast("网络异常");
+                            return;
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        showToast("网络异常");
+                    }
+                });
+    }
+
+    /**
      * 注册
      */
     private void register() {
@@ -251,5 +311,41 @@ public class RegisterActivity extends BaseActivity {
                         showToast("网络异常，注册失败");
                     }
                 });
+    }
+
+    /**
+     * 监听短信数据库
+     */
+    class SmsContent extends ContentObserver {
+
+        private Cursor cursor = null;
+
+        public SmsContent(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+
+            super.onChange(selfChange);
+            //读取收件箱中指定号码的短信
+            cursor = RegisterActivity.this.managedQuery(Uri.parse("content://sms/inbox"), new String[]{"_id", "address", "read", "body"},
+                    " address=? and read=?", new String[]{CommonConstants.CODE_PHONE, "0"}, "_id desc");
+            if (cursor != null && cursor.getCount() > 0) {
+                ContentValues values = new ContentValues();
+                values.put("read", "1");        //修改短信为已读模式
+                cursor.moveToNext();
+                int smsbodyColumn = cursor.getColumnIndex("body");
+                String smsBody = cursor.getString(smsbodyColumn);
+
+                et_code.setText(StringUtils.getDynamicPassword(smsBody));
+
+            }
+
+            //在用managedQuery的时候，不能主动调用close()方法， 否则在Android 4.0+的系统上， 会发生崩溃
+            if(Build.VERSION.SDK_INT < 14) {
+                cursor.close();
+            }
+        }
     }
 }

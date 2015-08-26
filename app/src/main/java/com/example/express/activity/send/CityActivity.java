@@ -151,7 +151,8 @@ public class CityActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent hot_intent = new Intent();
                 hot_intent.putExtra("code", hotCityModel.get(i).getCode());
-                BaseApplication.getInstance().setExpressCity(hotCityModel.get(i).getName());
+                hot_intent.putExtra("name", hotCityModel.get(i).getName());
+//                BaseApplication.getInstance().setExpressCity(hotCityModel.get(i).getName());
                 setResult(RESULT_OK, hot_intent);
                 finish();
             }
@@ -164,7 +165,8 @@ public class CityActivity extends BaseActivity {
                 SortModel model = (SortModel) sortListView.getAdapter().getItem(i);
                 Intent intent = new Intent();
                 intent.putExtra("code", model.getCode());
-                BaseApplication.getInstance().setExpressCity(model.getName());
+                intent.putExtra("city", model.getName());
+//                BaseApplication.getInstance().setExpressCity(model.getName());
                 setResult(RESULT_OK, intent);
                 finish();
             }

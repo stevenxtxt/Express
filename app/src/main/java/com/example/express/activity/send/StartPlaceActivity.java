@@ -142,13 +142,10 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
 
                 Intent intent1 = new Intent();
                 intent1.putExtra("address", address);
-                app.setExpressAddress(address);
                 intent1.putExtra("latitude", latitude);
-                app.setExpressLat(latitude);
                 intent1.putExtra("longitude", longitude);
-                app.setExpressLng(longitude);
                 Logger.show("------->>>>>latlng", "latitude:" + latitude + ", " + "longitude:" + longitude);
-                setResult(RESULT_OK, intent1);
+                setResult(1001, intent1);
                 finish();
                 break;
 
@@ -180,7 +177,7 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
         if (resultCode == RESULT_OK) {
             address = data.getStringExtra("name");
             String district = data.getStringExtra("district");
-            city = app.getExpressCity();
+            city = data.getStringExtra("city");
             getLatlon(district + address);
         }
     }

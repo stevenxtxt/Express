@@ -28,6 +28,7 @@ public class SendCourierAdapter extends ArrayListAdapter<CourierBean> {
 
     private Activity context;
     private BaseApplication app;
+    private String address;
 
     public SendCourierAdapter(Activity context) {
         super(context);
@@ -53,7 +54,15 @@ public class SendCourierAdapter extends ArrayListAdapter<CourierBean> {
         ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), riv_courier_icon);
         tv_courier_name.setText(courierBean.getName());
         tv_courier_company.setText(courierBean.getCompany());
-        tv_courier_scope.setText(app.getExpressAddress() + "...");
+        if (address == null || address.equals("")) {
+            tv_courier_scope.setText(app.getExpressAddress() + "...");
+        } else {
+            tv_courier_scope.setText(address + "...");
+        }
         return convertView;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

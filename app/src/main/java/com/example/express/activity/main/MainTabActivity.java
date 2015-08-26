@@ -19,6 +19,7 @@ import com.example.express.activity.more.MoreFragment;
 import com.example.express.activity.my.MyFragment;
 import com.example.express.activity.query.HomeFragment;
 import com.example.express.activity.send.SendExpressFragment;
+import com.example.express.utils.StringUtils;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.update.UmengUpdateAgent;
 
@@ -64,7 +65,11 @@ public class MainTabActivity extends BaseActivity implements
 
         initData();
 
-        showDialog("正在获取定位信息...");
+        if (StringUtils.isNetworkAvailable(this)) {
+            showDialog("正在获取定位信息...");
+        } else {
+            showToast("没有可用的网络连接，请打开蜂窝数据或者wifi");
+        }
 
     }
 

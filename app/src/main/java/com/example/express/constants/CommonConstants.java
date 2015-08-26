@@ -20,7 +20,12 @@ public class CommonConstants {
 
     public static final String HOME_PAGE = "http://www.kuaidi.com";
     public static final String WEIXIN_PAGE = "http://www.kuaidi.com/weixin.html";
-    public static final String WEIBO_PAGE = "http://m.weibo.cn/5620577606";
+    public static final String WEIBO_PAGE = "http://www.weibo.cn/u/5620577606";
+
+    /**
+     * 发送短信验证码的号码
+     */
+    public static final String CODE_PHONE = "106905705741700716";
 
     /**
      * 查询快递接口
@@ -116,5 +121,10 @@ public class CommonConstants {
      * 注册
      */
     public static final String REGISTER = "/api-appregister";
+
+    /**
+     * 验证手机号是否注册
+     */
+    public static final String VERIFY_PHONE_REGISTER = "/api-apptelisreg";
 
 }

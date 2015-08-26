@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:text="常用快递"
+        android:padding="17dp"
+        android:textSize="18sp"
+        android:layout_height="56dp"
+        android:textColor="@color/orange"/>
+
+    <com.example.express.view.MyGridView
+        android:id="@+id/gv_hot_city"
+        android:layout_width="match_parent"
+        android:horizontalSpacing="17dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:layout_marginLeft="17dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="17dp"
+        android:verticalSpacing="17dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

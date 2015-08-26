@@ -1,5 +1,7 @@
 package com.silent.model;
 
+import android.graphics.drawable.Drawable;
+
 public class PhoneModel {
 
     private String imgSrc;
@@ -7,6 +9,7 @@ public class PhoneModel {
     private String sortLetters;
     private String phone;
     private String companytype;
+    private Drawable comicon;
 
     public String getCompanytype() {
         return companytype;
@@ -46,5 +49,13 @@ public class PhoneModel {
 
     public void setSortLetters(String sortLetters) {
         this.sortLetters = sortLetters;
+    }
+
+    public Drawable getComicon() {
+        return comicon;
+    }
+
+    public void setComicon(Drawable comicon) {
+        this.comicon = comicon;
     }
 }

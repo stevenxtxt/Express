@@ -41,7 +41,7 @@
     <LinearLayout
         android:id="@+id/ll_search_place"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_margin="15dp"
         android:background="@drawable/search_place_bg"
         android:orientation="horizontal"
@@ -50,9 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="搜索地点"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="#666666"
-            android:padding="10dp"
+            android:padding="5dp"
             android:drawableLeft="@drawable/check_express_icon"
             android:drawablePadding="5dp"/>
     </LinearLayout>

@@ -209,6 +209,9 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 riBean.setIco(queryRecordBean.getIco());
                 riBean.setLatestTime(queryRecordBean.getLatestTime());
                 riBean.setLatestContext(queryRecordBean.getLatestContext());
+                if (hasRepeatData(riBean)) {
+                    myDb.deleteByWhereStr(RecycleItemBean.class, "nu='" + riBean.getNu() + "'");
+                }
                 myDb.save(riBean);
 
                 myDb.deleteByWhereStr(QueryRecordBean.class, "nu='" + queryRecordBean.getNu() + "'");
@@ -222,5 +225,20 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                 }
             }
         });
+    }
+
+    private boolean hasRepeatData(RecycleItemBean bean) {
+        boolean flag = false;
+        List<RecycleItemBean> recycleList = myDb.findAll(RecycleItemBean.class);
+        if (recycleList == null || recycleList.size() == 0) {
+            return false;
+        }
+        for (RecycleItemBean riBean : recycleList) {
+            if (riBean.getNu().equals(bean.getNu())) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
     }
 }

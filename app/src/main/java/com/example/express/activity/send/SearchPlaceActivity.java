@@ -110,12 +110,12 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
                     String name = recordList.get(i).getName();
                     String district = recordList.get(i).getDistrict();
                     city = splitDistrict(district);
-                    app.setExpressCity(city);
                     Logger.show("--------->>>>>>>>>city---------", city);
                     //返回至上一个界面
                     Intent intent = new Intent();
                     intent.putExtra("name", name);
                     intent.putExtra("district", district);
+                    intent.putExtra("city", city);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -184,6 +184,7 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
                                     Intent intent = new Intent();
                                     intent.putExtra("name", name);
                                     intent.putExtra("district", district);
+                                    intent.putExtra("city", city);
                                     setResult(RESULT_OK, intent);
                                     finish();
                                 }
@@ -228,7 +229,7 @@ public class SearchPlaceActivity extends BaseActivity implements TextWatcher{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            city = app.getExpressCity();
+            city = data.getStringExtra("name");
             tv_city.setText(city);
         }
     }

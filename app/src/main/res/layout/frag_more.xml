@@ -40,7 +40,7 @@
                     android:id="@+id/riv_user_photo"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:background="@drawable/user_photo" />
+                    android:background="@drawable/user_logout_icon" />
 
                 <RelativeLayout
                     android:id="@+id/rl_username"
@@ -134,7 +134,8 @@
                 android:paddingBottom="10dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_icon2"
@@ -159,7 +160,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#d0d0d0" />
+                android:background="#d0d0d0"
+                android:visibility="gone"/>
 
             <RelativeLayout
                 android:id="@+id/rl_message"
@@ -214,7 +216,7 @@
                     style="@style/more_text"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iv_icon4"
-                    android:text="收藏的快递员" />
+                    android:text="关注的快递员" />
 
                 <ImageView
                     android:layout_width="wrap_content"

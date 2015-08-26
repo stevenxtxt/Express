@@ -54,6 +54,7 @@
         android:textSize="15sp"
         android:textColor="#666666"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"/>
 

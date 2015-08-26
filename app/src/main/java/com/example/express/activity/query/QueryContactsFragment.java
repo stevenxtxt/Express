@@ -1,21 +1,26 @@
 package com.example.express.activity.query;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +33,7 @@ import com.example.express.activity.BaseFragment;
 import com.example.express.bean.CompanyBean;
 import com.example.express.bean.CompanyListBean;
 import com.example.express.constants.CommonConstants;
+import com.example.express.utils.ArrayListAdapter;
 import com.example.express.utils.Density;
 import com.example.express.view.ClearEditText;
 import com.silent.adapter.SortAdapter;
@@ -70,6 +76,11 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
     private PinyinComparator pinyinComparator;
 
     private CompanyListBean companyListBean;
+
+    private GridView gv_hot_company;
+    private TextView tv_hot_title;
+    private HotCompanyAdapter hotCompanyAdapter;
+    private ArrayList<PhoneModel> hotCompanyList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -182,7 +193,7 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PhoneModel pm = ((PhoneModel) adapter.getItem(position));
+                PhoneModel pm = ((PhoneModel) adapter.getItem(position - 1));
                 showCallDialog(pm.getPhone());
             }
         });
@@ -193,7 +204,7 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
 
         Collections.sort(SourceDateList, pinyinComparator);
         adapter = new SortAdapter(getActivity(), SourceDateList);
-        sortListView.setAdapter(adapter);
+
 
         // 根据输入框输入值的改变来过滤搜索
         mClearEditText.addTextChangedListener(new TextWatcher() {
@@ -224,6 +235,29 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
                                             .getCurrentFocus().getWindowToken(),
                                     InputMethodManager.HIDE_NOT_ALWAYS);
                 return false;
+            }
+        });
+
+        View hotView = LayoutInflater.from(getActivity()).inflate(R.layout.hot_company, sortListView, false);
+        gv_hot_company= (GridView) hotView.findViewById(R.id.gv_hot_city);
+        tv_hot_title = (TextView) hotView.findViewById(R.id.tv_title);
+        tv_hot_title.setText("常用快递");
+        hotCompanyAdapter=new HotCompanyAdapter(getActivity());
+        hotCompanyList=new ArrayList<PhoneModel>();
+
+        //手动添加热门城市
+        setHotCompany();
+
+        hotCompanyAdapter.setList(hotCompanyList);
+        sortListView.addHeaderView(hotView, null, false);
+        sortListView.setAdapter(adapter);
+        gv_hot_company.setAdapter(hotCompanyAdapter);
+        //点击热门城市的事件监听
+        gv_hot_company.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                PhoneModel pm = ((PhoneModel) hotCompanyAdapter.getItem(i));
+                showCallDialog(pm.getPhone());
             }
         });
     }
@@ -311,5 +345,43 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
                 call_dialog.dismiss();
             }
         });
+    }
+
+    private void setHotCompany() {
+        String[] hotcompanies = getResources().getStringArray(R.array.hot_companies);
+        String[] hotcoms = getResources().getStringArray(R.array.hot_coms);
+        String[] hotphones = getResources().getStringArray(R.array.hot_phones);
+        for (int i = 0; i < hotcompanies.length; i++) {
+            PhoneModel pm = new PhoneModel();
+            pm.setName(hotcompanies[i]);
+            pm.setCompanytype(hotcoms[i]);
+            pm.setPhone(hotphones[i]);
+            hotCompanyList.add(pm);
+        }
+    }
+
+    class HotCompanyAdapter extends ArrayListAdapter<PhoneModel> {
+
+        public AbsListView.LayoutParams  params;
+        public HotCompanyAdapter(Activity context) {
+            super(context);
+            params=new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, Density.of(mContext, 40));
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView view;
+            if(null==convertView){
+                view=new TextView(mContext);
+                view.setLayoutParams(params);
+                view.setGravity(Gravity.CENTER);
+                view.setTextColor(Color.parseColor("#4c4c4c"));
+                view.setBackgroundResource(R.drawable.shape_white_rec);
+            }else{
+                view= (TextView) convertView;
+            }
+            view.setText(mList.get(position).getName());
+            return view;
+        }
     }
 }

@@ -9,11 +9,9 @@ import android.widget.EditText;
 import com.android.volley.VolleyError;
 import com.boredream.volley.BDListener;
 import com.boredream.volley.BDVolleyHttp;
-import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.constants.CommonConstants;
-import com.example.express.utils.Logger;
 import com.example.express.utils.MD5Util;
 import com.example.express.utils.StringUtils;
 

@@ -53,7 +53,9 @@ public class RecycleAdapter extends ArrayListAdapter<RecycleItemBean> {
         TextView tv_message_title = ViewHolder.get(convertView, R.id.tv_message_title);
         TextView tv_message_content = ViewHolder.get(convertView, R.id.tv_message_content);
         TextView tv_message_time = ViewHolder.get(convertView, R.id.tv_message_time);
-        ImageLoaderUtil.getInstance().displayImage(riBean.getIco(), iv_icon);
+//        ImageLoaderUtil.getInstance().displayImage(riBean.getIco(), iv_icon);
+        int resId = context.getResources().getIdentifier(riBean.getCompanytype() + "_logo", "drawable", context.getPackageName());
+        iv_icon.setBackgroundResource(resId);
         tv_message_title.setText(riBean.getCompany() + " " + riBean.getNu());
         tv_message_time.setText(riBean.getLatestTime());
         tv_message_content.setText(riBean.getLatestContext());

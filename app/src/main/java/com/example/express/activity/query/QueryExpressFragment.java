@@ -125,22 +125,24 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                             public void onResponse(String response) {
                                 try {
                                     JSONObject obj = new JSONObject(response);
-                                    String data = obj.optString("data");
-                                    if (isJarray(data)) {
-                                        Jarry = new JSONArray(data);
-                                        JSONObject json_data = null;
-                                        json_data = Jarry.getJSONObject(0);
-                                        json_result = json_data.getString("name");
-                                        com = json_data.getString("exname");
-                                        tv_company.setText(json_result);
-                                    } else {
-                                        JSONObject json = new JSONObject(data);
-                                        JSONObject results = json.getJSONObject("0");
-                                        String name = results.getString("name");
-                                        com = results.getString("exname");
-                                        tv_company.setText(name);
+                                    if (obj.optBoolean("result")) {
+                                        String data = obj.optString("data");
+                                        if (isJarray(data)) {
+                                            Jarry = new JSONArray(data);
+                                            JSONObject json_data = null;
+                                            json_data = Jarry.getJSONObject(0);
+                                            json_result = json_data.getString("name");
+                                            com = json_data.getString("exname");
+                                            tv_company.setText(json_result);
+                                        } else {
+                                            JSONObject json = new JSONObject(data);
+//                                            JSONObject results = json.getJSONObject("0");
+                                            String name = json.getString("name");
+                                            com = json.getString("exname");
+                                            tv_company.setText(name);
+                                        }
+                                        BaseApplication.getInstance().setCom(com);
                                     }
-                                    BaseApplication.getInstance().setCom(com);
                                 } catch (JSONException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -214,6 +216,7 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                 dismissCustomDialog();
                 Intent intent = new Intent();
                 intent.putExtra("json", response);
+                intent.putExtra("flag", "1");
                 intent.setClass(getActivity(), ShowResultActivity.class);
                 startActivity(intent);
             }

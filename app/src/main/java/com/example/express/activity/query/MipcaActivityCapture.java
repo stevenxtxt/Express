@@ -250,18 +250,23 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
                     public void onResponse(String response) {
                         try {
                             JSONObject obj = new JSONObject(response);
-                            String data = obj.optString("data");
-                            if (isJarray(data)) {
-                                JSONArray Jarry = new JSONArray(data);
-                                JSONObject json_data = null;
-                                json_data = Jarry.getJSONObject(0);
-                                json_result = json_data.getString("name");
-                                com = json_data.getString("exname");
+                            if (obj.optBoolean("result")) {
+                                String data = obj.optString("data");
+                                if (isJarray(data)) {
+                                    JSONArray Jarry = new JSONArray(data);
+                                    JSONObject json_data = null;
+                                    json_data = Jarry.getJSONObject(0);
+                                    json_result = json_data.getString("name");
+                                    com = json_data.getString("exname");
+                                } else {
+                                    JSONObject json = new JSONObject(data);
+//                                    JSONObject results = json.getJSONObject("0");
+                                    String name = json.getString("name");
+                                    com = json.getString("exname");
+                                }
                             } else {
-                                JSONObject json = new JSONObject(data);
-                                JSONObject results = json.getJSONObject("0");
-                                String name = results.getString("name");
-                                com = results.getString("exname");
+                                showToast("很抱歉，该单号无法解析，请手动输入单号并选择快递公司");
+                                finish();
                             }
                             BDVolleyHttp.getString(CommonConstants.URLConstant + CommonConstants.QUERY_EXPRESS_RESULT
                                             + num + "-" + com + CommonConstants.HTML,
@@ -270,6 +275,7 @@ public class MipcaActivityCapture extends BaseActivity implements Callback {
                                         public void onResponse(String response) {
                                             dismissCustomDialog();
                                             Intent intent = new Intent();
+                                            intent.putExtra("flag", "1");
                                             intent.putExtra("json", response);
                                             intent.setClass(MipcaActivityCapture.this, ShowResultActivity.class);
                                             startActivity(intent);

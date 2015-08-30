@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
         android:background="#f8f8f8"
-        android:drawableLeft="@drawable/star"
+        android:drawableLeft="@drawable/hot_star"
         android:gravity="center_vertical"
         android:drawablePadding="5dp"/>
 

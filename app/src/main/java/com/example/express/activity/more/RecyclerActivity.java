@@ -105,6 +105,7 @@ public class RecyclerActivity extends BaseActivity {
                     public void onResponse(String response) {
                         dismissCustomDialog();
                         Intent intent = new Intent();
+                        intent.putExtra("flag", "2");
                         intent.putExtra("json", response);
                         intent.setClass(RecyclerActivity.this, ShowResultActivity.class);
                         startActivity(intent);

@@ -85,8 +85,7 @@
                     <com.example.express.view.RoundImageView
                         android:id="@+id/riv_user_icon"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/user_photo" />
+                        android:layout_height="50dp" />
 
                     <TextView
                         android:id="@+id/tv_name"

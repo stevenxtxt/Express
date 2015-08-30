@@ -24,6 +24,7 @@ import com.example.express.BaseApplication;
 import com.example.express.R;
 import com.example.express.activity.BaseActivity;
 import com.example.express.activity.send.adapter.PoiAdapter;
+import com.example.express.constants.CommonConstants;
 import com.example.express.utils.Logger;
 
 import java.util.ArrayList;
@@ -64,6 +65,7 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_place);
+        CommonConstants.SELECTED = -1;
         app = BaseApplication.getInstance();
         city = app.getExpressCity();
         center_point = new LatLonPoint(app.getExpressLat(), app.getExpressLng());
@@ -82,6 +84,8 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
         lv_places.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                CommonConstants.SELECTED = i;
+                adapter.notifyDataSetChanged();
                 PoiItem item = poiItemList.get(i);
                 aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         convertToLatLng(item.getLatLonPoint()), 15));
@@ -175,6 +179,7 @@ public class StartPlaceActivity extends BaseActivity implements PoiSearch.OnPoiS
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+            CommonConstants.SELECTED = -1;
             address = data.getStringExtra("name");
             String district = data.getStringExtra("district");
             city = data.getStringExtra("city");

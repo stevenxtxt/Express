@@ -49,6 +49,7 @@ public class ShowResultActivity extends BaseActivity {
     private QueryResultBean queryResultBean;
 
     private MyDb myDb;
+    private String flag;//标识，判断是从哪个界面跳转过来的，1是从查询界面，2是从其他界面
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ShowResultActivity extends BaseActivity {
             myDb = MyDb.create(this, CommonConstants.DB_NAME, true);
         }
 
+        flag = getIntent().getStringExtra("flag");
         jsonStr = getIntent().getStringExtra("json");
         getJsonData(jsonStr);
 
@@ -76,7 +78,9 @@ public class ShowResultActivity extends BaseActivity {
 
             tv_company_name.setText(queryResultBean.getCompany());
             tv_order_no.setText(queryResultBean.getNu());
-            ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + queryResultBean.getIco(), iv_message_icon);
+//            ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + queryResultBean.getIco(), iv_message_icon);
+            int resId = getResources().getIdentifier(queryResultBean.getCompanytype() + "_logo", "drawable", getPackageName());
+            iv_message_icon.setBackgroundResource(resId);
 
             adapter = new ResultAdapter(ShowResultActivity.this);
             adapter.setList(queryResultBean.getData());
@@ -118,8 +122,10 @@ public class ShowResultActivity extends BaseActivity {
                 queryResultBean.setData(resultList);
             }
             queryResultBean.setIco(obj.optString("ico"));
-            //相关内容存储到数据库
-            saveRecord();
+            //根据flag判断界面，若是从查询界面跳转过来，则相关内容存储到数据库
+            if (flag.equals("1")) {
+                saveRecord();
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             return;

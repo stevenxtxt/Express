@@ -212,6 +212,7 @@ public class SendNearbyFragment extends BaseFragment implements View.OnClickList
                                         bean.setId(arrObj.optString("id"));
                                         bean.setCompany(arrObj.optString("ename"));
                                         bean.setIcon(CommonConstants.URLConstant + arrObj.optString("smartico"));
+                                        bean.setExname(arrObj.optString("exname"));
                                         courierList.add(bean);
                                     }
                                     adapter.setList(courierList);

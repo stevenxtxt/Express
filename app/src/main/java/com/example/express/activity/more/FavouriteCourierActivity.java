@@ -110,6 +110,7 @@ public class FavouriteCourierActivity extends BaseActivity {
                                         bean.setCompany(arrObj.optString("courierCompany"));
                                         bean.setIcon(CommonConstants.URLConstant + arrObj.optString("courierIcon"));
                                         bean.setPhone(arrObj.optString("phone"));
+                                        bean.setExname(arrObj.optString("exname"));
                                         courierList.add(bean);
                                     }
                                     showData();

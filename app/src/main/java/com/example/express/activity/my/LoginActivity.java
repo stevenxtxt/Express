@@ -108,11 +108,13 @@ public class LoginActivity extends BaseActivity {
             case R.id.tv_register:
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.tv_forget_password:
                 Intent intent1 = new Intent(LoginActivity.this, ForgetPasswordOneActivity.class);
                 startActivity(intent1);
+                finish();
                 break;
 
             default:

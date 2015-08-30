@@ -15,6 +15,7 @@ public class CourierBean extends BaseBean {
     private String icon;
     private String phone;
     private String company;
+    private String exname;//快递公司简码
 
     public String getId() {
         return id;
@@ -54,5 +55,13 @@ public class CourierBean extends BaseBean {
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    public String getExname() {
+        return exname;
+    }
+
+    public void setExname(String exname) {
+        this.exname = exname;
     }
 }

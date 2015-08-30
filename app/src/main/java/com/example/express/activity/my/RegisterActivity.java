@@ -93,9 +93,6 @@ public class RegisterActivity extends BaseActivity {
         btn_confirm = (Button) findViewById(R.id.btn_confirm);
         tv_protocol = (TextView) findViewById(R.id.tv_protocol);
 
-        btn_top_right.setVisibility(View.VISIBLE);
-        btn_top_right.setBackgroundResource(R.drawable.query_info_ico);
-
         btn_send_code.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
         tv_protocol.setOnClickListener(this);

@@ -45,7 +45,9 @@ public class FavCourierAdapter extends ArrayListAdapter<CourierBean> {
         ImageView iv_icon = ViewHolder.get(convertView, R.id.item_icon);
         TextView tv_name = ViewHolder.get(convertView, R.id.item_name);
         TextView tv_company = ViewHolder.get(convertView, R.id.item_company);
-        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), iv_icon);
+//        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), iv_icon);
+        int resId = context.getResources().getIdentifier(courierBean.getExname() + "_logo", "drawable", context.getPackageName());
+        iv_icon.setBackgroundResource(resId);
         tv_name.setText(courierBean.getName());
         tv_company.setText(courierBean.getCompany());
         return convertView;

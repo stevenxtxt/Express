@@ -55,7 +55,7 @@ public class ResultAdapter extends ArrayListAdapter<QueryResultItemBean> {
             tv_result_content.setTextColor(context.getResources().getColor(R.color.blue_top));
             tv_result_date.setTextColor(context.getResources().getColor(R.color.blue_top));
             tv_result_time.setTextColor(context.getResources().getColor(R.color.blue_top));
-            iv_result_divider.setBackgroundResource(R.drawable.gou);
+            iv_result_divider.setBackgroundResource(R.drawable.dui);
         } else {
             tv_result_content.setTextColor(Color.parseColor("#666666"));
             tv_result_date.setTextColor(Color.parseColor("#666666"));

@@ -61,7 +61,12 @@ public class WelcomeActivity extends BaseActivity {
                 }, LOAD_DELAY_TIME);
 
             } else {
-                autoLogin();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        autoLogin();
+                    }
+                }, 1000);
             }
         } else {
             new Handler().postDelayed(new Runnable() {

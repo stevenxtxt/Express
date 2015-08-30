@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.amap.api.services.core.PoiItem;
 import com.example.express.R;
+import com.example.express.constants.CommonConstants;
 import com.example.express.utils.ArrayListAdapter;
 import com.example.express.view.ViewHolder;
 
@@ -47,6 +48,11 @@ public class PoiAdapter extends ArrayListAdapter<PoiItem> {
         TextView tv_item_name = ViewHolder.get(convertView, R.id.tv_poi_item_name);
         TextView tv_item_district = ViewHolder.get(convertView, R.id.tv_poi_item_district);
         ImageView iv_item_icon = ViewHolder.get(convertView, R.id.iv_poi_item_icon);
+        if (CommonConstants.SELECTED == position) {
+            iv_item_icon.setVisibility(View.VISIBLE);
+        } else {
+            iv_item_icon.setVisibility(View.GONE);
+        }
 
         PoiItem poiItem = getItem(position);
 

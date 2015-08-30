@@ -51,7 +51,9 @@ public class SendCourierAdapter extends ArrayListAdapter<CourierBean> {
         TextView tv_courier_company = ViewHolder.get(convertView, R.id.tv_courier_company);
         TextView tv_courier_scope = ViewHolder.get(convertView, R.id.tv_courier_scope);
 
-        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), riv_courier_icon);
+//        ImageLoaderUtil.getInstance().displayImage(courierBean.getIcon(), riv_courier_icon);
+        int resId = context.getResources().getIdentifier(courierBean.getExname() + "_logo", "drawable", context.getPackageName());
+        riv_courier_icon.setBackgroundResource(resId);
         tv_courier_name.setText(courierBean.getName());
         tv_courier_company.setText(courierBean.getCompany());
         if (address == null || address.equals("")) {

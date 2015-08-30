@@ -12,8 +12,8 @@
 
     <com.example.express.view.RoundImageView
         android:id="@+id/riv_courier_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:text="申通快递"
             android:textSize="18sp"
             android:layout_marginBottom="5dp"
-            android:textColor="#fd6c03"/>
+            android:textColor="@color/blue_top"/>
         <TextView
             android:id="@+id/tv_courier_scope"
             android:layout_width="wrap_content"

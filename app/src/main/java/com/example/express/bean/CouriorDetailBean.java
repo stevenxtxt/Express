@@ -19,6 +19,7 @@ public class CouriorDetailBean extends BaseBean {
     private String courierIcon;
     private String isFavourite;//0表示已关注，1表示未关注
     private ArrayList<ScopeBean> delivery;
+    private String exname;//快递公司简码
 
     public String getName() {
         return name;
@@ -74,5 +75,13 @@ public class CouriorDetailBean extends BaseBean {
 
     public void setDelivery(ArrayList<ScopeBean> delivery) {
         this.delivery = delivery;
+    }
+
+    public String getExname() {
+        return exname;
+    }
+
+    public void setExname(String exname) {
+        this.exname = exname;
     }
 }

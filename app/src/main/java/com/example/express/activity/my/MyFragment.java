@@ -157,6 +157,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
                     public void onResponse(String response) {
                         dismissCustomDialog();
                         Intent intent = new Intent();
+                        intent.putExtra("flag", "2");
                         intent.putExtra("json", response);
                         intent.setClass(getActivity(), ShowResultActivity.class);
                         startActivity(intent);

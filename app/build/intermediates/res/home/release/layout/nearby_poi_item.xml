@@ -31,7 +31,7 @@
         android:id="@+id/iv_poi_item_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/zhuyi"
+        android:background="@drawable/gou"
         android:layout_gravity="center_vertical"
         android:visibility="gone"/>
 

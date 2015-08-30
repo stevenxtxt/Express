@@ -5,7 +5,44 @@
     android:layout_height="match_parent"
     android:background="@color/main_bg">
 
-    <include layout="@layout/common_top"/>
+    <RelativeLayout
+        style="@style/title_relativelayout">
+
+        <RelativeLayout
+            android:id="@+id/btn_title_btn_back_layout"
+            style="@style/title_btn_back_layout">
+
+            <ImageView
+                android:id="@+id/back"
+                style="@style/title_btn_back" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title_name"
+            style="@style/title_name"
+            android:ellipsize="end"
+            android:maxEms="11"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white" />
+
+        <!-- 默认不显示 -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <Button
+                android:id="@+id/btn_top_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/btn_top_right_first"
+                android:background="@drawable/query_info_ico"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +75,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="请输入用户名"
+                        android:hint="请输入用户名（数字或者拼音）"
                         android:textColorHint="#d4d4d4"
                         android:textColor="#3e3e3e"
                         android:background="@null"

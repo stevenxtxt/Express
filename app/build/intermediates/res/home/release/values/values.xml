@@ -314,7 +314,7 @@
 
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
+
     </style>
     <style name="RadioButtonBottomTab">
         <item name="android:layout_width">0dp</item>

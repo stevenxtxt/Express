@@ -77,6 +77,7 @@ public class ShowCompanyListActivity extends BaseActivity {
 
     private BaseApplication app;
 
+    private View hotView;
     private GridView gv_hot_company;
     private TextView tv_hot_title;
     private HotCompanyAdapter hotCompanyAdapter;
@@ -223,9 +224,12 @@ public class ShowCompanyListActivity extends BaseActivity {
             filterDateList.clear();
             for (PhoneModel sortModel : SourceDateList) {
                 String name = sortModel.getName();
+//                if (name.indexOf(filterStr.toString()) != -1
+//                        || filterStr.toString().toUpperCase()
+//                        .startsWith(sortModel.getSortLetters())) {
                 if (name.indexOf(filterStr.toString()) != -1
-                        || filterStr.toString().toUpperCase()
-                        .startsWith(sortModel.getSortLetters())) {
+                        || filterStr.toString().toUpperCase().startsWith(sortModel.getSortLetters())
+                        || characterParser.getSelling(name).startsWith(filterStr.toString())) {
                     filterDateList.add(sortModel);
                 }
             }
@@ -265,7 +269,7 @@ public class ShowCompanyListActivity extends BaseActivity {
             }
         });
 
-        View hotView = LayoutInflater.from(this).inflate(R.layout.hot_company, sortListView, false);
+        hotView = LayoutInflater.from(this).inflate(R.layout.hot_company, sortListView, false);
         gv_hot_company = (GridView) hotView.findViewById(R.id.gv_hot_city);
         tv_hot_title = (TextView) hotView.findViewById(R.id.tv_title);
         tv_hot_title.setText("常用快递");
@@ -298,8 +302,13 @@ public class ShowCompanyListActivity extends BaseActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PhoneModel pm;
                 TextView textview = (TextView) findViewById(R.id.company_name);
-                PhoneModel pm = ((PhoneModel) adapter.getItem(position - 1));
+                if (sortListView.getHeaderViewsCount() != 0) {
+                    pm = ((PhoneModel) adapter.getItem(position - 1));
+                } else {
+                    pm = ((PhoneModel) adapter.getItem(position));
+                }
                 Intent intent = new Intent();
                 intent.putExtra("company", pm.getName());
                 intent.putExtra("companytype", pm.getCompanytype());
@@ -324,7 +333,7 @@ public class ShowCompanyListActivity extends BaseActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // 当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表
-                filterData(charSequence.toString());
+//                filterData(charSequence.toString());
             }
 
             @Override
@@ -334,7 +343,17 @@ public class ShowCompanyListActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (hotView != null) {
+                    sortListView.removeHeaderView(hotView);
+                }
+                filterData(mClearEditText.getText().toString().trim());
 
+                if (mClearEditText.getText().toString().trim().length() == 0) {
+                    sortListView.addHeaderView(hotView, null, false);
+                    Collections.sort(SourceDateList, pinyinComparator);
+                    adapter = new SortAdapter(context, SourceDateList);
+                    sortListView.setAdapter(adapter);
+                }
             }
         });
 
@@ -356,8 +375,9 @@ public class ShowCompanyListActivity extends BaseActivity {
         String[] hotcompanies = getResources().getStringArray(R.array.hot_companies);
         String[] hotcoms = getResources().getStringArray(R.array.hot_coms);
         String[] hotphones = getResources().getStringArray(R.array.hot_phones);
-        int[] icons = new int[]{R.drawable.zt_logo, R.drawable.sf_logo, R.drawable.st_logo, R.drawable.yt_logo, R.drawable.htky_logo,
-                R.drawable.yd_logo, R.drawable.ems_logo, R.drawable.qfkd_logo, R.drawable.tt_logo, R.drawable.zjs_logo};
+        int[] icons = new int[]{R.drawable.zhongtong_logo, R.drawable.shunfeng_logo, R.drawable.shentong_logo,
+                R.drawable.yuantong_logo, R.drawable.huitongkuaidi_logo, R.drawable.yunda_logo,
+                R.drawable.ems_logo, R.drawable.quanfengkuaidi_logo, R.drawable.tiantian_logo, R.drawable.zhaijisong_logo};
         for (int i = 0; i < hotcompanies.length; i++) {
             PhoneModel pm = new PhoneModel();
             pm.setName(hotcompanies[i]);
@@ -387,6 +407,12 @@ public class ShowCompanyListActivity extends BaseActivity {
             ImageView iv_company_logo = ViewHolder.get(convertView, R.id.company_logo);
             TextView tv_company_name = ViewHolder.get(convertView, R.id.company_name);
             TextView tv_company_phone = ViewHolder.get(convertView, R.id.company_phone);
+            View v_bottom_line = ViewHolder.get(convertView, R.id.v_bottom_line);
+            if (position == mList.size() - 1) {
+                v_bottom_line.setVisibility(View.GONE);
+            } else {
+                v_bottom_line.setVisibility(View.VISIBLE);
+            }
             iv_company_logo.setImageDrawable(pm.getComicon());
             tv_company_name.setText(pm.getName());
             tv_company_phone.setText(pm.getPhone());

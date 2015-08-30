@@ -193,6 +193,7 @@ public class SendExpressFragment extends Fragment implements View.OnClickListene
                                         bean.setId(arrObj.optString("id"));
                                         bean.setCompany(arrObj.optString("ename"));
                                         bean.setIcon(CommonConstants.URLConstant + arrObj.optString("smartico"));
+                                        bean.setExname(arrObj.optString("exname"));
                                         courierList.add(bean);
                                     }
                                     adapter.setList(courierList);

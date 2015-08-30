@@ -54,7 +54,9 @@ public class MyRecordAdapter extends ArrayListAdapter<QueryRecordBean> {
         TextView tv_message_title = ViewHolder.get(convertView, R.id.tv_message_title);
         TextView tv_message_content = ViewHolder.get(convertView, R.id.tv_message_content);
         TextView tv_message_time = ViewHolder.get(convertView, R.id.tv_message_time);
-        ImageLoaderUtil.getInstance().displayImage(qrBean.getIco(), iv_icon);
+//        ImageLoaderUtil.getInstance().displayImage(qrBean.getIco(), iv_icon);
+        int resId = context.getResources().getIdentifier(qrBean.getCompanytype() + "_logo", "drawable", context.getPackageName());
+        iv_icon.setBackgroundResource(resId);
         tv_message_title.setText(qrBean.getCompany() + " " + qrBean.getNu());
         tv_message_time.setText(qrBean.getLatestTime());
         tv_message_content.setText(qrBean.getLatestContext());

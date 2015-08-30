@@ -165,7 +165,9 @@ public class CourierDetailActivity extends BaseActivity {
     }
 
     private void showData() {
-        ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + couriorDetailBean.getCourierIcon(), riv_user_icon);
+//        ImageLoaderUtil.getInstance().displayImage(CommonConstants.URLConstant + couriorDetailBean.getCourierIcon(), riv_user_icon);
+        int resId = getResources().getIdentifier(couriorDetailBean.getExname() + "_logo", "drawable", getPackageName());
+        riv_user_icon.setBackgroundResource(resId);
         tv_name.setText(couriorDetailBean.getName());
         tv_company.setText(couriorDetailBean.getEname());
         tv_service_time.setText(couriorDetailBean.getServertime());
@@ -300,6 +302,7 @@ public class CourierDetailActivity extends BaseActivity {
                 couriorDetailBean.setEname(obj.optString("ename"));
                 couriorDetailBean.setIsFavourite(obj.optString("isFavourite"));
                 couriorDetailBean.setCourierIcon(obj.getString("courierIcon"));
+                couriorDetailBean.setExname(obj.optString("exname"));
                 JSONArray arr = obj.optJSONArray("delivery");
                 if (arr != null && arr.length() > 0) {
                     for (int i = 0; i < arr.length(); i++) {

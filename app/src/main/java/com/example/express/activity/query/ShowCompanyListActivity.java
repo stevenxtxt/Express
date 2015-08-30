@@ -1,6 +1,8 @@
 package com.example.express.activity.query;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +30,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,6 +43,7 @@ import com.example.express.bean.CompanyListBean;
 import com.example.express.utils.ArrayListAdapter;
 import com.example.express.utils.Density;
 import com.example.express.view.ClearEditText;
+import com.example.express.view.ViewHolder;
 import com.google.gson.Gson;
 import com.silent.adapter.SortAdapter;
 import com.silent.handle.CharacterParser;
@@ -78,19 +82,28 @@ public class ShowCompanyListActivity extends BaseActivity {
     private HotCompanyAdapter hotCompanyAdapter;
     private ArrayList<PhoneModel> hotCompanyList;
 
+    private JSONObject jsonObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         app = BaseApplication.getInstance();
 
-        Intent intent = getIntent();
-        exjson = intent.getStringExtra("json");
-        getJsonData(exjson);
+//        Intent intent = getIntent();
+//        exjson = intent.getStringExtra("json");
+//        getJsonData(exjson);
+        initJsonData();
+        getJsonDataLocal(jsonObject);
         setContentView(R.layout.activity_company);
         initViews();
     }
 
-	private void getJsonData(String str) {
+    /**
+     * 从网络数据获取公司信息
+     *
+     * @param str
+     */
+    private void getJsonData(String str) {
         try {
             JSONObject obj = new JSONObject(str);
             companyListBean = new CompanyListBean();
@@ -113,6 +126,50 @@ public class ShowCompanyListActivity extends BaseActivity {
         } catch (JSONException e) {
             e.printStackTrace();
             return;
+        }
+    }
+
+    /**
+     * 读取本地json文件内容
+     */
+    private void initJsonData() {
+        try {
+            StringBuffer sb = new StringBuffer();
+            InputStream is = getAssets().open("ExpressCompany.json");
+            int len = -1;
+            byte[] buf = new byte[1024];
+            while ((len = is.read(buf)) != -1) {
+                sb.append(new String(buf, 0, len, "utf-8"));
+            }
+            is.close();
+            jsonObject = new JSONObject(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 从本地获取公司信息
+     *
+     * @param obj
+     */
+    private void getJsonDataLocal(JSONObject obj) {
+        companyListBean = new CompanyListBean();
+        JSONArray arr = obj.optJSONArray("data");
+        if (arr != null && arr.length() > 0) {
+            ArrayList<CompanyBean> list = new ArrayList<CompanyBean>();
+            for (int i = 0; i < arr.length(); i++) {
+                CompanyBean companyBean = new CompanyBean();
+                JSONObject arrObj = arr.optJSONObject(i);
+                companyBean.setCompanytype(arrObj.optString("companytype"));
+                companyBean.setCompany(arrObj.optString("company"));
+                companyBean.setPhone(arrObj.optString("phone"));
+                companyBean.setIco(arrObj.optString("ico"));
+                list.add(companyBean);
+            }
+            companyListBean.setData(list);
         }
     }
 
@@ -209,11 +266,11 @@ public class ShowCompanyListActivity extends BaseActivity {
         });
 
         View hotView = LayoutInflater.from(this).inflate(R.layout.hot_company, sortListView, false);
-        gv_hot_company= (GridView) hotView.findViewById(R.id.gv_hot_city);
+        gv_hot_company = (GridView) hotView.findViewById(R.id.gv_hot_city);
         tv_hot_title = (TextView) hotView.findViewById(R.id.tv_title);
         tv_hot_title.setText("常用快递");
-        hotCompanyAdapter=new HotCompanyAdapter(this);
-        hotCompanyList=new ArrayList<PhoneModel>();
+        hotCompanyAdapter = new HotCompanyAdapter(this);
+        hotCompanyList = new ArrayList<PhoneModel>();
 
         //手动添加热门城市
         setHotCompany();
@@ -298,12 +355,14 @@ public class ShowCompanyListActivity extends BaseActivity {
     private void setHotCompany() {
         String[] hotcompanies = getResources().getStringArray(R.array.hot_companies);
         String[] hotcoms = getResources().getStringArray(R.array.hot_coms);
-        int[] icons = new int[] {R.drawable.zt_logo, R.drawable.sf_logo, R.drawable.st_logo, R.drawable.yt_logo, R.drawable.htky_logo,
-                 R.drawable.yd_logo, R.drawable.ems_logo, R.drawable.qfkd_logo, R.drawable.tt_logo, R.drawable.zjs_logo};
+        String[] hotphones = getResources().getStringArray(R.array.hot_phones);
+        int[] icons = new int[]{R.drawable.zt_logo, R.drawable.sf_logo, R.drawable.st_logo, R.drawable.yt_logo, R.drawable.htky_logo,
+                R.drawable.yd_logo, R.drawable.ems_logo, R.drawable.qfkd_logo, R.drawable.tt_logo, R.drawable.zjs_logo};
         for (int i = 0; i < hotcompanies.length; i++) {
             PhoneModel pm = new PhoneModel();
             pm.setName(hotcompanies[i]);
             pm.setCompanytype(hotcoms[i]);
+            pm.setPhone(hotphones[i]);
             Drawable icon = getResources().getDrawable(icons[i]);
             pm.setComicon(icon);
             hotCompanyList.add(pm);
@@ -312,26 +371,26 @@ public class ShowCompanyListActivity extends BaseActivity {
 
     class HotCompanyAdapter extends ArrayListAdapter<PhoneModel> {
 
-        public AbsListView.LayoutParams  params;
+        public AbsListView.LayoutParams params;
+
         public HotCompanyAdapter(Activity context) {
             super(context);
-            params=new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, Density.of(mContext, 40));
+            params = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, Density.of(mContext, 40));
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView view;
-            if(null==convertView){
-                view=new TextView(mContext);
-                view.setLayoutParams(params);
-                view.setGravity(Gravity.CENTER);
-                view.setTextColor(Color.parseColor("#4c4c4c"));
-                view.setBackgroundResource(R.drawable.shape_white_rec);
-            }else{
-                view= (TextView) convertView;
+            if (null == convertView) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.hot_company_item, null);
             }
-            view.setText(mList.get(position).getName());
-            return view;
+            PhoneModel pm = getItem(position);
+            ImageView iv_company_logo = ViewHolder.get(convertView, R.id.company_logo);
+            TextView tv_company_name = ViewHolder.get(convertView, R.id.company_name);
+            TextView tv_company_phone = ViewHolder.get(convertView, R.id.company_phone);
+            iv_company_logo.setImageDrawable(pm.getComicon());
+            tv_company_name.setText(pm.getName());
+            tv_company_phone.setText(pm.getPhone());
+            return convertView;
         }
     }
 }

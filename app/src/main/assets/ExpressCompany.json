@@ -1,0 +1,820 @@
+{"data":
+[
+   {
+      "company" : "AAE快递",
+      "companytype" : "aae",
+      "ico" : "aae_logo",
+      "phone" : "400-610-0400"
+   },
+   {
+      "company" : "安能物流快递",
+      "companytype" : "annengwuliu",
+      "ico" : "annengwuliu_logo",
+      "phone" : "400-104-0088"
+   },
+   {
+      "company" : "百福东方物流",
+      "companytype" : "baifudongfang",
+      "ico" : "baifudongfang_logo",
+      "phone" : "400-706-0609"
+   },
+   {
+      "company" : "巴伦支快递",
+      "companytype" : "balunzhi",
+      "ico" : "balunzhi_logo",
+      "phone" : "400-636-1516"
+   },
+   {
+      "company" : "百世汇通快递",
+      "companytype" : "huitongkuaidi",
+      "ico" : "huitongkuaidi_logo",
+      "phone" : "400-956-5656"
+   },
+   {
+      "company" : "COE（东方快递）",
+      "companytype" : "coe",
+      "ico" : "coe_logo",
+      "phone" : "0755-83575000"
+   },
+   {
+      "company" : "City-link Express",
+      "companytype" : "citylink",
+      "ico" : "citylink_logo",
+      "phone" : "603-5565 8399"
+   },
+   {
+      "company" : "城市100",
+      "companytype" : "city100",
+      "ico" : "city100_logo",
+      "phone" : "010-52932760"
+   },
+   {
+      "company" : "传喜物流",
+      "companytype" : "chuanxiwuliu",
+      "ico" : "chuanxiwuliu_logo",
+      "phone" : "400-777-5656"
+   },
+   {
+      "company" : "城际速递",
+      "companytype" : "chengjisudi",
+      "ico" : "chengjisudi_logo",
+      "phone" : "4000-523-525 "
+   },
+   {
+      "company" : "成都立即送",
+      "companytype" : "lijisong",
+      "ico" : "lijisong_logo",
+      "phone" : "400-028-5666"
+   },
+   {
+      "company" : "出口易",
+      "companytype" : "chukou1",
+      "ico" : "chukou1_logo",
+      "phone" : "4006-988-223"
+   },
+   {
+      "company" : "DPEX",
+      "companytype" : "dpex",
+      "ico" : "dpex_logo",
+      "phone" : "021-64659883"
+   },
+   {
+      "company" : "D速物流",
+      "companytype" : "dsukuaidi",
+      "ico" : "dsukuaidi_logo",
+      "phone" : "0531-88636363"
+   },
+   {
+      "company" : "德邦物流",
+      "companytype" : "debangwuliu",
+      "ico" : "debangwuliu_logo",
+      "phone" : "400-830-5555"
+   },
+   {
+      "company" : "大田物流",
+      "companytype" : "datianwuliu",
+      "ico" : "datianwuliu_logo",
+      "phone" : "400-626-1166"
+   },
+   {
+      "company" : "FedEx（国际）",
+      "companytype" : "fedex",
+      "ico" : "fedex_logo",
+      "phone" : "400-886-1888"
+   },
+   {
+      "company" : "FedEx（美国）",
+      "companytype" : "fedexus",
+      "ico" : "fedexus_logo",
+      "phone" : "800-463-3339"
+   },
+   {
+      "company" : "飞康达物流",
+      "companytype" : "feikangda",
+      "ico" : "feikangda_logo",
+      "phone" : "010-84223376,84223378"
+   },
+   {
+      "company" : "凡宇速递",
+      "companytype" : "fanyukuaidi",
+      "ico" : "fanyukuaidi_logo",
+      "phone" : "4006-580-358 "
+   },
+   {
+      "company" : "颿达国际",
+      "companytype" : "fandaguoji",
+      "ico" : "fandaguoji_logo",
+      "phone" : "0755-27332618"
+   },
+   {
+      "company" : "飞远配送",
+      "companytype" : "feiyuanvipshop",
+      "ico" : "feiyuanvipshop_logo",
+      "phone" : "4007-031-313"
+   },
+   {
+      "company" : "GATI快递",
+      "companytype" : "gaticn",
+      "ico" : "gaticn_logo",
+      "phone" : "4000-804-284 "
+   },
+   {
+      "company" : "国通快递",
+      "companytype" : "guotongkuaidi",
+      "ico" : "guotongkuaidi_logo",
+      "phone" : "400-111-1123"
+   },
+   {
+      "company" : "港快速递",
+      "companytype" : "gdkd",
+      "ico" : "gdkd_logo",
+      "phone" : "400-11-33333"
+   },
+   {
+      "company" : "高铁速递",
+      "companytype" : "hre",
+      "ico" : "hre_logo",
+      "phone" : "400-999-7777"
+   },
+   {
+      "company" : "冠达快递",
+      "companytype" : "gda",
+      "ico" : "gda_logo",
+      "phone" : "+86 400-990-0088"
+   },
+   {
+      "company" : "恒路物流",
+      "companytype" : "hengluwuliu",
+      "ico" : "hengluwuliu_logo",
+      "phone" : "400-182-6666"
+   },
+   {
+      "company" : "户通物流",
+      "companytype" : "hutongwuliu",
+      "ico" : "hutongwuliu_logo",
+      "phone" : "400-060-1656"
+   },
+   {
+      "company" : "合众速递（UCS）",
+      "companytype" : "ucs",
+      "ico" : "ucs_logo",
+      "phone" : "(714) 522-2210"
+   },
+   {
+      "company" : "佳吉物流",
+      "companytype" : "jiajiwuliu",
+      "ico" : "jiajiwuliu_logo",
+      "phone" : "400-820-5566"
+   },
+   {
+      "company" : "佳怡物流",
+      "companytype" : "jiayiwuliu",
+      "ico" : "jiayiwuliu_logo",
+      "phone" : "400-631-9999"
+   },
+   {
+      "company" : "加运美快递",
+      "companytype" : "jiayunmeiwuliu",
+      "ico" : "jiayunmeiwuliu_logo",
+      "phone" : "0769-85515555"
+   },
+   {
+      "company" : "京广速递快件",
+      "companytype" : "jinguangsudikuaijian",
+      "ico" : "jinguangsudikuaijian_logo",
+      "phone" : "0769-83660666-60"
+   },
+   {
+      "company" : "京东快递",
+      "companytype" : "jd",
+      "ico" : "jd_logo",
+      "phone" : "400-603-3600"
+   },
+   {
+      "company" : "KCS Express",
+      "companytype" : "kcs",
+      "ico" : "kcs_logo",
+      "phone" : "800-858-5590"
+   },
+   {
+      "company" : "快捷快递",
+      "companytype" : "kuaijiesudi",
+      "ico" : "kuaijiesudi_logo",
+      "phone" : "400-830-4888"
+   },
+   {
+      "company" : "跨越物流",
+      "companytype" : "kuayue",
+      "ico" : "kuayue_logo",
+      "phone" : "4008-098-098 "
+   },
+   {
+      "company" : "快优达速递",
+      "companytype" : "kuaiyouda",
+      "ico" : "kuaiyouda_logo",
+      "phone" : "4006-068-555"
+   },
+   {
+      "company" : "联昊通物流",
+      "companytype" : "lianhaowuliu",
+      "ico" : "lianhaowuliu_logo",
+      "phone" : "0769-88620000"
+   },
+   {
+      "company" : "龙邦速递",
+      "companytype" : "longbanwuliu",
+      "ico" : "longbanwuliu_logo",
+      "phone" : "021-59218889"
+   },
+   {
+      "company" : "乐捷递",
+      "companytype" : "lejiedi",
+      "ico" : "lejiedi_logo",
+      "phone" : "400-618-1400"
+   },
+   {
+      "company" : "民航快递",
+      "companytype" : "minghangkuaidi",
+      "ico" : "minghangkuaidi_logo",
+      "phone" : "400-817-4008"
+   },
+   {
+      "company" : "美国快递",
+      "companytype" : "meiguokuaidi",
+      "ico" : "meiguokuaidi_logo",
+      "phone" : "888-611-1888"
+   },
+   {
+      "company" : "门对门",
+      "companytype" : "menduimen",
+      "ico" : "menduimen_logo",
+      "phone" : "400-700-7676"
+   },
+   {
+      "company" : "明亮物流",
+      "companytype" : "mingliangwuliu",
+      "ico" : "mingliangwuliu_logo",
+      "phone" : "400-035-6568"
+   },
+   {
+      "company" : "民邦速递",
+      "companytype" : "minbangsudi",
+      "ico" : "minbangsudi_logo",
+      "phone" : "0769-81515303"
+   },
+   {
+      "company" : "晟邦物流",
+      "companytype" : "nanjingshengbang",
+      "ico" : "nanjingshengbang_logo",
+      "phone" : "400-666-6066"
+   },
+   {
+      "company" : "平安达腾飞",
+      "companytype" : "pingandatengfei",
+      "ico" : "pingandatengfei_logo",
+      "phone" : "4006-230-009"
+   },
+   {
+      "company" : "陪行物流",
+      "companytype" : "peixingwuliu",
+      "ico" : "peixingwuliu_logo",
+      "phone" : "400-993-0555"
+   },
+   {
+      "company" : "全峰快递",
+      "companytype" : "quanfengkuaidi",
+      "ico" : "quanfengkuaidi_logo",
+      "phone" : "400-100-0001"
+   },
+   {
+      "company" : "全一快递",
+      "companytype" : "quanyikuaidi",
+      "ico" : "quanyikuaidi_logo",
+      "phone" : "400-663-1111"
+   },
+   {
+      "company" : "全晨快递",
+      "companytype" : "quanchenkuaidi",
+      "ico" : "quanchenkuaidi_logo",
+      "phone" : "0769-82026703"
+   },
+   {
+      "company" : "7天连锁物流",
+      "companytype" : "sevendays",
+      "ico" : "sevendays_logo",
+      "phone" : "400-882-1202"
+   },
+   {
+      "company" : "如风达快递",
+      "companytype" : "rufengda",
+      "ico" : "rufengda_logo",
+      "phone" : "400-010-6660"
+   },
+   {
+      "company" : "日本邮政",
+      "companytype" : "japanposten",
+      "ico" : "japanposten_logo",
+      "phone" : "+81 0570-046111"
+   },
+   {
+      "company" : "申通快递",
+      "companytype" : "shentong",
+      "ico" : "shentong_logo",
+      "phone" : "95543"
+   },
+   {
+      "company" : "顺丰速运",
+      "companytype" : "shunfeng",
+      "ico" : "shunfeng_logo",
+      "phone" : "4008-111-111"
+   },
+   {
+      "company" : "速尔快递",
+      "companytype" : "suer",
+      "ico" : "suer_logo",
+      "phone" : "400-158-9888"
+   },
+   {
+      "company" : "盛辉物流",
+      "companytype" : "shenghuiwuliu",
+      "ico" : "shenghuiwuliu_logo",
+      "phone" : "4008-222-222"
+   },
+   {
+      "company" : "盛丰物流",
+      "companytype" : "shengfengwuliu",
+      "ico" : "shengfengwuliu_logo",
+      "phone" : "0591-83621111"
+   },
+   {
+      "company" : "赛澳递",
+      "companytype" : "saiaodi",
+      "ico" : "saiaodi_logo",
+      "phone" : "4000-345-888"
+   },
+   {
+      "company" : "广通速递",
+      "companytype" : "gtongsudi",
+      "ico" : "gtongsudi_logo",
+      "phone" : "400-080-6369"
+   },
+   {
+      "company" : "圣安物流",
+      "companytype" : "shenganwuliu",
+      "ico" : "shenganwuliu_logo",
+      "phone" : "4006-618-169 "
+   },
+   {
+      "company" : "山西红马甲",
+      "companytype" : "sxhongmajia",
+      "ico" : "sxhongmajia_logo",
+      "phone" : "0351-5225858"
+   },
+   {
+      "company" : "穗佳物流",
+      "companytype" : "suijiawuliu",
+      "ico" : "suijiawuliu_logo",
+      "phone" : "400-880-9771"
+   },
+   {
+      "company" : "上海林道货运",
+      "companytype" : "shlindao",
+      "ico" : "shlindao_logo",
+      "phone" : "4008-200-112"
+   },
+   {
+      "company" : "TNT快递",
+      "companytype" : "tnt",
+      "ico" : "tnt_logo",
+      "phone" : "800-820-9868"
+   },
+   {
+      "company" : "天天快递",
+      "companytype" : "tiantian",
+      "ico" : "tiantian_logo",
+      "phone" : "400-188-8888"
+   },
+   {
+      "company" : "天地华宇",
+      "companytype" : "tiandihuayu",
+      "ico" : "tiandihuayu_logo",
+      "phone" : "400-808-6666"
+   },
+   {
+      "company" : "UC优速快递",
+      "companytype" : "youshuwuliu",
+      "ico" : "youshuwuliu_logo",
+      "phone" : "400-1111-119"
+   },
+   {
+      "company" : "USPS",
+      "companytype" : "usps",
+      "ico" : "usps_logo",
+      "phone" : "800-275-8777"
+   },
+   {
+      "company" : "万象物流",
+      "companytype" : "wanxiangwuliu",
+      "ico" : "wanxiangwuliu_logo",
+      "phone" : "400-820-8088"
+   },
+   {
+      "company" : "微特派",
+      "companytype" : "weitepai",
+      "ico" : "weitepai_logo",
+      "phone" : "400-6363-000"
+   },
+   {
+      "company" : "万家物流",
+      "companytype" : "wanjiawuliu",
+      "ico" : "wanjiawuliu_logo",
+      "phone" : "4001-156-561"
+   },
+   {
+      "company" : "新邦物流",
+      "companytype" : "xinbangwuliu",
+      "ico" : "xinbangwuliu_logo",
+      "phone" : "4008-000-222"
+   },
+   {
+      "company" : "信丰物流",
+      "companytype" : "xinfengwuliu",
+      "ico" : "xinfengwuliu_logo",
+      "phone" : "400-830-6333"
+   },
+   {
+      "company" : "新蛋物流",
+      "companytype" : "neweggozzo",
+      "ico" : "neweggozzo_logo",
+      "phone" : "400-820-4400"
+   },
+   {
+      "company" : "祥龙运通物流",
+      "companytype" : "xianglongyuntong",
+      "ico" : "xianglongyuntong_logo",
+      "phone" : "4008-908-908"
+   },
+   {
+      "company" : "新顺丰（NSF）",
+      "companytype" : "nsf",
+      "ico" : "nsf_logo",
+      "phone" : "0064-9-2818966"
+   },
+   {
+      "company" : "圆通速递",
+      "companytype" : "yuantong",
+      "ico" : "yuantong_logo",
+      "phone" : "021-69777888"
+   },
+   {
+      "company" : "韵达快运",
+      "companytype" : "yunda",
+      "ico" : "yunda_logo",
+      "phone" : "400-821-6789"
+   },
+   {
+      "company" : "运通快递",
+      "companytype" : "yuntongkuaidi",
+      "ico" : "yuntongkuaidi_logo",
+      "phone" : "0769-81156999"
+   },
+   {
+      "company" : "邮政国际",
+      "companytype" : "youzhengguoji",
+      "ico" : "youzhengguoji_logo",
+      "phone" : "11185"
+   },
+   {
+      "company" : "远成物流",
+      "companytype" : "yuanchengwuliu",
+      "ico" : "yuanchengwuliu_logo",
+      "phone" : "400-820-1646"
+   },
+   {
+      "company" : "亚风速递",
+      "companytype" : "yafengsudi",
+      "ico" : "yafengsudi_logo",
+      "phone" : "400-628-0018"
+   },
+   {
+      "company" : "源安达快递",
+      "companytype" : "yuananda",
+      "ico" : "yuananda_logo",
+      "phone" : "0769-85021875"
+   },
+   {
+      "company" : "原飞航物流",
+      "companytype" : "yuanfeihangwuliu",
+      "ico" : "yuanfeihangwuliu_logo",
+      "phone" : "0755-29778899"
+   },
+   {
+      "company" : "银捷速递",
+      "companytype" : "yinjiesudi",
+      "ico" : "yinjiesudi_logo",
+      "phone" : "0755-88250666"
+   },
+   {
+      "company" : "易通达",
+      "companytype" : "yitongda",
+      "ico" : "yitongda_logo",
+      "phone" : "0898-65339299"
+   },
+   {
+      "company" : "亿领速运",
+      "companytype" : "yilingsuyun",
+      "ico" : "yilingsuyun_logo",
+      "phone" : "400-1056-400"
+   },
+   {
+      "company" : "中通快递",
+      "companytype" : "zhongtong",
+      "ico" : "zhongtong_logo",
+      "phone" : "400-827-0270"
+   },
+   {
+      "company" : "宅急送",
+      "companytype" : "zhaijisong",
+      "ico" : "zhaijisong_logo",
+      "phone" : "400-6789-000"
+   },
+   {
+      "company" : "中铁快运",
+      "companytype" : "zhongtiewuliu",
+      "ico" : "zhongtiewuliu_logo",
+      "phone" : "95572"
+   },
+   {
+      "company" : "中铁物流",
+      "companytype" : "ztky",
+      "ico" : "ztky_logo",
+      "phone" : "400-000-5566"
+   },
+   {
+      "company" : "中邮物流",
+      "companytype" : "zhongyouwuliu",
+      "ico" : "zhongyouwuliu_logo",
+      "phone" : "11183"
+   },
+   {
+      "company" : "中国东方(COE)",
+      "companytype" : "coe",
+      "ico" : "coe_logo",
+      "phone" : "0755-83575000"
+   },
+   {
+      "company" : "芝麻开门",
+      "companytype" : "zhimakaimen",
+      "ico" : "zhimakaimen_logo",
+      "phone" : "4001-056-056,88056056 "
+   },
+   {
+      "company" : "中国邮政快递",
+      "companytype" : "youzhengguonei",
+      "ico" : "youzhengguonei_logo",
+      "phone" : "11185"
+   },
+   {
+      "company" : "中天万运",
+      "companytype" : "zhongtianwanyun",
+      "ico" : "zhongtianwanyun_logo",
+      "phone" : "0531-68850629"
+   },
+   {
+      "company" : "中睿速递",
+      "companytype" : "zhongruisudi",
+      "ico" : "zhongruisudi_logo",
+      "phone" : "400-0375-888"
+   },
+   {
+      "company" : "中外运速递",
+      "companytype" : "zhongwaiyun",
+      "ico" : "zhongwaiyun_logo",
+      "phone" : "010-8041 8611"
+   },
+   {
+      "company" : "增益速递",
+      "companytype" : "zengyisudi",
+      "ico" : "zengyisudi_logo",
+      "phone" : "4008-456-789 "
+   },
+   {
+      "company" : "Aramex",
+      "companytype" : "aramex",
+      "ico" : "aramex_logo",
+      "phone" : "010-80418634"
+   },
+   {
+      "company" : "保加利亚邮政",
+      "companytype" : "bulgarian",
+      "ico" : "bulgarian_logo",
+      "phone" : "+3592/949 3280"
+   },
+   {
+      "company" : "白俄罗斯邮政",
+      "companytype" : "belpost",
+      "ico" : "belpost_logo",
+      "phone" : "+375 17 293 59 10"
+   },
+   {
+      "company" : "DHL（中国件）",
+      "companytype" : "dhl",
+      "ico" : "dhl_logo",
+      "phone" : "800-810-8000"
+   },
+   {
+      "company" : "DHL（国际件）",
+      "companytype" : "dhlen",
+      "ico" : "dhlen_logo",
+      "phone" : ""
+   },
+   {
+      "company" : "FedEx",
+      "companytype" : "lianbangkuaidi",
+      "ico" : "lianbangkuaidi_logo",
+      "phone" : "400-889-1888"
+   },
+   {
+      "company" : "Fastway Ireland",
+      "companytype" : "fastway",
+      "ico" : "fastway_logo",
+      "phone" : "+353 1 4242 900"
+   },
+   {
+      "company" : "GLS",
+      "companytype" : "gls",
+      "ico" : "gls_logo",
+      "phone" : "877-914-5465"
+   },
+   {
+      "company" : "韩国邮政",
+      "companytype" : "koreapost",
+      "ico" : "koreapost_logo",
+      "phone" : "+82 2 2195 1114"
+   },
+   {
+      "company" : "加拿大邮政",
+      "companytype" : "canpost",
+      "ico" : "canpost_logo",
+      "phone" : "416-979-8822"
+   },
+   {
+      "company" : "罗马尼亚邮政",
+      "companytype" : "romanian",
+      "ico" : "romanian_logo",
+      "phone" : "+40 021 9393 111"
+   },
+   {
+      "company" : "马来西亚（大包EMS）",
+      "companytype" : "malaysiaems",
+      "ico" : "malaysiaems_logo",
+      "phone" : "+603 27279100"
+   },
+   {
+      "company" : "Purolator",
+      "companytype" : "purolator",
+      "ico" : "purolator_logo",
+      "phone" : "+1-888-744-7123"
+   },
+   {
+      "company" : "TNT（英国件）",
+      "companytype" : "tntuk",
+      "ico" : "tntuk_logo",
+      "phone" : "+44 0800 100 600"
+   },
+   {
+      "company" : "Toll Priority",
+      "companytype" : "tollpriority",
+      "ico" : "tollpriority_logo",
+      "phone" : "+61 13 15 31"
+   },
+   {
+      "company" : "新加坡邮政",
+      "companytype" : "singpost",
+      "ico" : "singpost_logo",
+      "phone" : ""
+   },
+   {
+      "company" : "新加坡邮政(大包、EMS)",
+      "companytype" : "speedpost",
+      "ico" : "speedpost_logo",
+      "phone" : "+65 6222 5777"
+   },
+   {
+      "company" : "希腊邮政",
+      "companytype" : "eltahell",
+      "ico" : "eltahell_logo",
+      "phone" : "+30 801 11 83000"
+   },
+   {
+      "company" : "西班牙邮政",
+      "companytype" : "correosdees",
+      "ico" : "correosdees_logo",
+      "phone" : "+34 902197197"
+   },
+   {
+      "company" : "安迅物流",
+      "companytype" : "anxl",
+      "ico" : "anxl_logo",
+      "phone" : "010-59288730"
+   },
+   {
+      "company" : "百千诚物流",
+      "companytype" : "bqcwl",
+      "ico" : "bqcwl_logo",
+      "phone" : "0755-2222 2232"
+   },
+   {
+      "company" : "博源恒通",
+      "companytype" : "byht",
+      "ico" : "byht_logo",
+      "phone" : "15834177000"
+   },
+   {
+      "company" : "飞鹰物流",
+      "companytype" : "hnfy",
+      "ico" : "hnfy_logo",
+      "phone" : "400-6291-666"
+   },
+   {
+      "company" : "瑞丰速递",
+      "companytype" : "rfsd",
+      "ico" : "rfsd_logo",
+      "phone" : "400-626-1667"
+   },
+   {
+      "company" : "云豹国际货运",
+      "companytype" : "leopard",
+      "ico" : "leopard_logo",
+      "phone" : "400-668-1818"
+   },
+   {
+      "company" : "郑州速捷",
+      "companytype" : "sujievip",
+      "ico" : "sujievip_logo",
+      "phone" : "0371-66612770,66612796"
+   },
+   {
+      "company" : "喜来快递",
+      "companytype" : "xilaikd",
+      "ico" : "xilaikd_logo",
+      "phone" : "86-029-87973055"
+   },
+   {
+      "company" : "腾达速递",
+      "companytype" : "nntengda",
+      "ico" : "nntengda_logo",
+      "phone" : "86-0771-4916505"
+   },
+   {
+      "company" : "塞浦路斯邮政",
+      "companytype" : "cypruspost",
+      "ico" : "cypruspost_logo",
+      "phone" : "77778013"
+   },
+   {
+      "company" : "UPS",
+      "companytype" : "ups",
+      "ico" : "ups_logo",
+      "phone" : "400-820-8388"
+   },
+   {
+      "company" : "东瀚物流",
+      "companytype" : "donghanwl",
+      "ico" : "donghanwl_logo",
+      "phone" : "400-092-2229"
+   },
+   {
+      "company" : "云南诚中",
+      "companytype" : "czwlyn",
+      "ico" : "czwlyn_logo",
+      "phone" : "0871-67413493"
+   },
+   {
+      "company" : "EMS快递",
+      "companytype" : "ems",
+      "ico" : "ems_logo",
+      "phone" : "11183"
+   }
+]
+}

@@ -20,7 +20,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/danhao" />
+                android:background="@drawable/danhao"/>
             <EditText
                 android:id="@+id/et_number"
                 android:layout_width="0dp"

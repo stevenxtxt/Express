@@ -33,9 +33,7 @@ import com.example.express.BaseApplication;
 import com.example.express.activity.BaseFragment;
 import com.example.express.R;
 import com.example.express.constants.CommonConstants;
-import com.example.express.utils.Logger;
 import com.example.express.utils.StringUtils;
-import com.example.express.utils.TestKey;
 
 public class QueryExpressFragment extends BaseFragment implements OnClickListener {
 
@@ -153,6 +151,10 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
                             }
                         });
 
+                if (et_number.getText().toString().trim().length() == 0) {
+                    tv_company.setText("请选择快递公司");
+                }
+
 
             }
         });
@@ -165,7 +167,10 @@ public class QueryExpressFragment extends BaseFragment implements OnClickListene
         Intent intent;
         switch (view.getId()) {
             case R.id.ll_company:
-                queryCompany();
+//                queryCompany();
+                intent = new Intent();
+                intent.setClass(getActivity(), ShowCompanyListActivity.class);
+                getParentFragment().startActivityForResult(intent, 1000);
                 break;
 
             case R.id.iv_scan:

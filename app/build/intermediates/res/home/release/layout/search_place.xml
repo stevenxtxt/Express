@@ -15,10 +15,13 @@
             android:layout_height="wrap_content"
             android:text="南京市"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="10dp"
+            android:drawableRight="@drawable/down_arrow"
+            android:drawablePadding="3dp"
+            android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -48,7 +51,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="text|textAutoComplete"
                 android:maxLength="20"
-                android:paddingRight="37.0dip"
+                android:paddingRight="10dip"
                 android:singleLine="true"
                 android:textColor="#ffffff"
                 android:textSize="16.0sp" />

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ import com.example.express.constants.CommonConstants;
 import com.example.express.utils.ArrayListAdapter;
 import com.example.express.utils.Density;
 import com.example.express.view.ClearEditText;
+import com.example.express.view.ViewHolder;
 import com.silent.adapter.SortAdapter;
 import com.silent.handle.CharacterParser;
 import com.silent.handle.PinyinComparator;
@@ -46,6 +49,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -82,6 +87,8 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
     private HotCompanyAdapter hotCompanyAdapter;
     private ArrayList<PhoneModel> hotCompanyList;
 
+    private JSONObject jsonObject;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,13 +98,59 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = View.inflate(getActivity(), R.layout.frag_contacts, null);
-        queryCompany();
+//        queryCompany();
+        initJsonData();
+        getJsonDataLocal(jsonObject);
         return view;
     }
 
     @Override
     public void onClick(View view) {
 
+    }
+
+    /**
+     * 读取本地json文件内容
+     */
+    private void initJsonData() {
+        try {
+            StringBuffer sb = new StringBuffer();
+            InputStream is = getActivity().getAssets().open("ExpressCompany.json");
+            int len = -1;
+            byte[] buf = new byte[1024];
+            while ((len = is.read(buf)) != -1) {
+                sb.append(new String(buf, 0, len, "utf-8"));
+            }
+            is.close();
+            jsonObject = new JSONObject(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 从本地获取公司信息
+     * @param obj
+     */
+    private void getJsonDataLocal(JSONObject obj) {
+        companyListBean = new CompanyListBean();
+        JSONArray arr = obj.optJSONArray("data");
+        if (arr != null && arr.length() > 0) {
+            ArrayList<CompanyBean> list = new ArrayList<CompanyBean>();
+            for (int i = 0; i < arr.length(); i++) {
+                CompanyBean companyBean = new CompanyBean();
+                JSONObject arrObj = arr.optJSONObject(i);
+                companyBean.setCompanytype(arrObj.optString("companytype"));
+                companyBean.setCompany(arrObj.optString("company"));
+                companyBean.setPhone(arrObj.optString("phone"));
+                companyBean.setIco(arrObj.optString("ico"));
+                list.add(companyBean);
+            }
+            companyListBean.setData(list);
+            initViews();
+        }
     }
 
     /**
@@ -351,11 +404,15 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
         String[] hotcompanies = getResources().getStringArray(R.array.hot_companies);
         String[] hotcoms = getResources().getStringArray(R.array.hot_coms);
         String[] hotphones = getResources().getStringArray(R.array.hot_phones);
+        int[] icons = new int[]{R.drawable.zt_logo, R.drawable.sf_logo, R.drawable.st_logo, R.drawable.yt_logo, R.drawable.htky_logo,
+                R.drawable.yd_logo, R.drawable.ems_logo, R.drawable.qfkd_logo, R.drawable.tt_logo, R.drawable.zjs_logo};
         for (int i = 0; i < hotcompanies.length; i++) {
             PhoneModel pm = new PhoneModel();
             pm.setName(hotcompanies[i]);
             pm.setCompanytype(hotcoms[i]);
             pm.setPhone(hotphones[i]);
+            Drawable icon = getResources().getDrawable(icons[i]);
+            pm.setComicon(icon);
             hotCompanyList.add(pm);
         }
     }
@@ -370,18 +427,17 @@ public class QueryContactsFragment extends BaseFragment implements View.OnClickL
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            TextView view;
-            if(null==convertView){
-                view=new TextView(mContext);
-                view.setLayoutParams(params);
-                view.setGravity(Gravity.CENTER);
-                view.setTextColor(Color.parseColor("#4c4c4c"));
-                view.setBackgroundResource(R.drawable.shape_white_rec);
-            }else{
-                view= (TextView) convertView;
+            if (null == convertView) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.hot_company_item, null);
             }
-            view.setText(mList.get(position).getName());
-            return view;
+            PhoneModel pm = getItem(position);
+            ImageView iv_company_logo = ViewHolder.get(convertView, R.id.company_logo);
+            TextView tv_company_name = ViewHolder.get(convertView, R.id.company_name);
+            TextView tv_company_phone = ViewHolder.get(convertView, R.id.company_phone);
+            iv_company_logo.setImageDrawable(pm.getComicon());
+            tv_company_name.setText(pm.getName());
+            tv_company_phone.setText(pm.getPhone());
+            return convertView;
         }
     }
 }

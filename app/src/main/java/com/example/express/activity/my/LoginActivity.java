@@ -3,9 +3,12 @@ package com.example.express.activity.my;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -29,6 +32,7 @@ import java.util.Map;
 
 
 public class LoginActivity extends BaseActivity {
+    private ImageView iv_login_icon;
     private EditText et_username;
     private EditText et_password;
     private Button btn_login;
@@ -50,6 +54,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void initViews() {
+        iv_login_icon = (ImageView) findViewById(R.id.iv_login_icon);
         et_password = (EditText) findViewById(R.id.et_password);
         et_username = (EditText) findViewById(R.id.et_username);
         btn_login = (Button) findViewById(R.id.btn_login);
@@ -59,6 +64,26 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(this);
         tv_forget_password.setOnClickListener(this);
         tv_register.setOnClickListener(this);
+
+        et_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                iv_login_icon.setBackgroundResource(R.drawable.login_close_icon);
+                if (et_password.getText().toString().trim().length() == 0) {
+                    iv_login_icon.setBackgroundResource(R.drawable.login_icon);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,6 +91,7 @@ public class LoginActivity extends BaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.btn_login:
+                iv_login_icon.setBackgroundResource(R.drawable.login_icon);
                 username = et_username.getText().toString().trim();
                 password = et_password.getText().toString().trim();
                 if (StringUtils.isEmpty(username)) {

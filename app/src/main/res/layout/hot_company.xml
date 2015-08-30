@@ -9,21 +9,23 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:text="常用快递"
-        android:padding="17dp"
-        android:textSize="18sp"
-        android:layout_height="56dp"
-        android:textColor="@color/orange"/>
+        android:paddingBottom="5dip"
+        android:paddingLeft="17dip"
+        android:paddingTop="5dip"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:background="#f8f8f8"
+        android:drawableLeft="@drawable/star"
+        android:gravity="center_vertical"
+        android:drawablePadding="5dp"/>
 
     <com.example.express.view.MyGridView
         android:id="@+id/gv_hot_city"
         android:layout_width="match_parent"
         android:horizontalSpacing="17dp"
-        android:numColumns="2"
+        android:numColumns="1"
         android:stretchMode="columnWidth"
-        android:layout_marginLeft="17dp"
-        android:layout_marginBottom="17dp"
-        android:layout_marginRight="17dp"
-        android:verticalSpacing="17dp"
         android:cacheColorHint="@android:color/transparent"
         android:listSelector="@android:color/transparent"
         android:layout_height="wrap_content" />
